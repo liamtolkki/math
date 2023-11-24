@@ -1,11 +1,41 @@
 #include <string>
-typedef long double mathType;
+typedef long double decimalType;
 typedef double imaginaryType;
 typedef double realType;
+typedef decimalType (*term)(double); // parses the terms of a function, ex: x^2 = x*x
+const decimalType pi = 3.14159265358979323846;
+const decimalType e = 2.71828182845904523536;
+const int STD_FORM = 0;
+const int SCI_FORM = 1;
+
+// standalone functions:
+decimalType sum(double start, double end, decimalType (*term)(double));
+decimalType log(double base, double x);
+decimalType ln(double x);
+long int fact(int x); // factorial: x! = x * (x-1) * (x-2) * ... * (x-n) * 1; ex: 3! = 3*2*1
+
 class BasicMath
 {
+public:
+};
 
-    // TODO
+class SciNot
+{ // for scientific notation, ex: 9747582 = 9.747582E+6
+public:
+    SciNot(decimalType coefficient, int exp);
+    SciNot(decimalType coefficient);
+
+    SciNot operator+(const SciNot &other) const;
+    SciNot operator-(const SciNot &other) const;
+    SciNot operator*(const SciNot &other) const;
+    SciNot operator/(const SciNot &other) const;
+
+    decimalType getCoefficient();
+    int getExp();
+
+private:
+    decimalType coefficient;
+    int exp;
 };
 
 class ComplexNum
