@@ -13,6 +13,8 @@ A fun project to calculate certain math operations
         --complex operators: (+, -, *, /)
     --Scientific notation:
         --Ex: 2.38903E19, -9.22719E8, 4.090145E-6, -7.22079389E-26
+    --Polynomials:
+        --Polynomial operators (+, -, *, /)
         ...
 --Calculus
     --differentiation
@@ -22,6 +24,9 @@ A fun project to calculate certain math operations
 --Linear Algebra
     --matrices
         --determinants
+        --inverse matrices
+        --transpose
+        
     --vector/matrix multiplication
     --cross/dot product
     ...
