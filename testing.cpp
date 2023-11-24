@@ -5,6 +5,10 @@ Liam Tolkkinen
 */
 
 #include <stdio.h>
+#include "math.h"
+#include <limits>
+// holds the largest long double possible
+long double largestValue = std::numeric_limits<long double>::max();
 
 int main()
 {
