@@ -1,6 +1,7 @@
 #include "math.h"
+#include <stdexcept>
 
-ComplexNum::ComplexNum(realType newReal, imaginaryType newImg) /// make a new complex number
+ComplexNum::ComplexNum(realType newReal, imaginaryType newImg) // make a new complex number
 {
     real = newReal;
     img = newImg;
@@ -28,10 +29,29 @@ ComplexNum ComplexNum::operator*(const ComplexNum &other) const
     return ComplexNum(realResult, imgResult);
 }
 
+ComplexNum ComplexNum::operator/(const ComplexNum &other) const
+{
+    double realNumerator = (real * other.real) + (img * other.img);
+    double realDenominator = (other.real * other.real) + (other.img * other.img);
+    double imgNumerator = ((img * other.real) - (real * other.img));
+    double imgDenominator = (other.real * other.real) + (other.img * other.img);
+    if (realDenominator == 0 || imgDenominator == 0)
+    { // handles a division by zero!
+        throw std::runtime_error("division by zero!");
+    }
+    else
+    {
+        // processes the quotient and returns it
+        double realComponent = realNumerator / realDenominator;
+        double imgComponent = imgNumerator / imgDenominator;
+        return ComplexNum(realComponent, imgComponent);
+    }
+}
+
 std::string ComplexNum::toString()
 {
     char result[50];
 
-    sprintf(result, "%f %c %fi", real, (img >= 0 ? '+' : '-'), (img >= 0 ? img : img * -1));
+    sprintf(result, "(%f %c %fi)", real, (img >= 0 ? '+' : '-'), (img >= 0 ? img : img * -1));
     return result;
 }
