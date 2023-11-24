@@ -1,7 +1,7 @@
 PROJECT = Test
 CC = g++
 
-CFLAGS = -g
+CFLAGS = -g -ggdb -Wall -ansi -pedantic -Wno-write-strings -Wno-parentheses
 
 OBJFILES = differentiation.o testing.o basicMath.o complexNum.o
 

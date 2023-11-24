@@ -33,6 +33,8 @@ public:
     decimalType getCoefficient();
     int getExp();
 
+    std::string toString();
+
 private:
     decimalType coefficient;
     int exp;
