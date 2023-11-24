@@ -3,7 +3,7 @@ CC = g++
 
 CFLAGS = -g
 
-OBJFILES = differentiation.o testing.o basicMath.o
+OBJFILES = differentiation.o testing.o basicMath.o complexNum.o
 
 $(PROJECT): $(OBJFILES)
 	$(CC) -o $(PROJECT) $(CFLAGS) $(OBJFILES)
