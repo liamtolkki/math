@@ -24,7 +24,7 @@ A fun project to calculate certain math operations
     --cross/dot product
     ...
 */
-
+#include <string>
 typedef long double mathType;
 typedef double imaginaryType;
 typedef double realType;
@@ -45,10 +45,11 @@ private:
     double img;
 
 public:
-    void compexNum(realType real, imaginaryType img);
+    ComplexNum(realType real, imaginaryType img);
+    ComplexNum operator*(const ComplexNum &other) const; // overloads the * operator
     realType getReal();
     imaginaryType getImg();
-    
+    std::string toString();
 };
 
 class Calculus
