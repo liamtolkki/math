@@ -12,3 +12,7 @@ $(OBJFILES): math.h
 
 clean:
 	rm -rf *o *.out $(PROJECT)
+test:
+	make clean
+	make test
+	./$(PROJECT)
