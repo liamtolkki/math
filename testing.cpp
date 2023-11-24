@@ -9,8 +9,8 @@ Liam Tolkkinen
 #include <limits>
 #define multiplyRVal1 -1.0
 #define multiplyIVal1 2.0
-#define multiplyRVal2 3.0
-#define multiplyIVal2 -4.0
+#define multiplyRVal2 0.0
+#define multiplyIVal2 1.0
 // holds the largest long double possible
 long double largestValue = std::numeric_limits<long double>::max();
 
