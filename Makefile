@@ -1,4 +1,4 @@
-PROJECT = MathTest
+PROJECT = Test
 CC = g++
 
 CFLAGS = -g

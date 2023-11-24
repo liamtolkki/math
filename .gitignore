@@ -1,5 +1,7 @@
 #vscode files
 .vscode
+#program executable:
+Test
 
 # Prerequisites
 *.d
@@ -33,4 +35,3 @@
 *.exe
 *.out
 *.app
-MathTest
