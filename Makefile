@@ -14,5 +14,5 @@ clean:
 	rm -rf *o *.out $(PROJECT)
 test:
 	make clean
-	make test
+	make
 	./$(PROJECT)
