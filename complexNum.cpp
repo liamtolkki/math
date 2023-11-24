@@ -32,6 +32,6 @@ std::string ComplexNum::toString()
 {
     char result[50];
 
-    sprintf(result, "%f+%fi", real, img);
+    sprintf(result, "%f %c %fi", real, (img >= 0 ? '+' : '-'), (img >= 0 ? img : img * -1));
     return result;
 }
