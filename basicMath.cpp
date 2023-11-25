@@ -27,35 +27,17 @@ long int fact(int x)
     }
 }
 
+SciNot::SciNot()
+{ // default constructor
+    exp = 0;
+    coefficient = 0;
+}
+
 SciNot::SciNot(decimalType newCoef, int newExp)
 {
-    if (newCoef > 1 && newCoef < 10)
-    { // coefficient must be between 1 and 10 for it to be true scientific notation
-        coefficient = newCoef;
-        exp = newExp;
-        printf("Coefficient: %f\nExp: %d\n", coefficient, exp);
-    }
-    else
-    { // if not in proper form, fix it so it is:
-        if (newCoef >= 10)
-        {
-            while (newCoef >= 10)
-            { // shift the decimal place over by one and add to the exponent
-                newExp++;
-                newCoef /= 10;
-            }
-        }
-        else
-        { // if newCoef <= 1:
-            while (newCoef <= 1)
-            {
-                newExp--;
-                newCoef *= 10;
-            }
-        }
-        coefficient = newCoef;
-        exp = newExp;
-    }
+    coefficient = newCoef;
+    exp = newExp;
+    notationFix(coefficient, exp); // passes by reference so the values fix themselves
 }
 SciNot::SciNot(decimalType newCoefficient)
 {
@@ -66,8 +48,73 @@ SciNot::SciNot(decimalType newCoefficient)
     coefficient = temp.coefficient;
     exp = temp.exp;
 }
+void SciNot::notationFix(decimalType &curCoef, int &curExp) const
+{
+    if (curCoef > 1 && curCoef < 10)
+    { // coefficient must be between 1 and 10 for it to be true scientific notation
+        // if this is the case, then do nothing, notation is already fine!
+        return;
+    }
+    else
+    { // if not in proper form, fix it so it is:
+        if (curCoef >= 10)
+        {
+            while (curCoef >= 10)
+            { // shift the decimal place over by one and add to the exponent
+                curExp++;
+                curCoef /= 10;
+            }
+        }
+        else
+        { // if newCoef <= 1:
+            while (curCoef <= 1)
+            {
+                curExp--;
+                curCoef *= 10;
+            }
+        }
+        return;
+    }
+}
 
-SciNot SciNot::operator+(const SciNot &other) const {}
+SciNot SciNot::operator+(const SciNot &other) const
+{
+    // make copies so that we can modify the values
+    int expCpy = exp;
+    int otherExpCpy = other.exp;
+    decimalType coefficientCpy = coefficient;
+    decimalType otherCoefficientCpy = other.coefficient;
+    SciNot result;
+    if (exp == other.exp)
+    {
+        result.coefficient = coefficient + other.coefficient;
+        notationFix(result.coefficient, result.exp);
+    }
+    else if (exp > other.exp)
+    {
+
+        while (expCpy > otherExpCpy)
+        {
+            otherExpCpy++;
+            otherCoefficientCpy /= 10;
+        }
+        result.coefficient = coefficientCpy + otherCoefficientCpy;
+        notationFix(result.coefficient, expCpy);
+        result.exp = expCpy;
+    }
+    else
+    { // exp < other.exp
+        while (expCpy < otherExpCpy)
+        {
+            expCpy++;
+            coefficientCpy /= 10;
+        }
+        result.coefficient = coefficientCpy + otherCoefficientCpy;
+        notationFix(result.coefficient, expCpy);
+        result.exp = expCpy;
+    }
+    return result;
+}
 SciNot SciNot::operator-(const SciNot &other) const {}
 SciNot SciNot::operator*(const SciNot &other) const {}
 SciNot SciNot::operator/(const SciNot &other) const {}
@@ -84,7 +131,11 @@ int SciNot::getExp()
 std::string SciNot::toString()
 { // converts the notation to a human readable string
     char result[30];
-    std::printf("coef: %f\n", coefficient);
-    sprintf(result, "%fE%d", coefficient, exp);
+    char sign;
+    if (exp > 0)
+        sign = '+';
+    if (exp < 0)
+        sign = '-';
+    sprintf(result, "%fE%c%d", coefficient, sign, (exp >= 0 ? exp : exp * -1));
     return result;
 }

@@ -22,9 +22,10 @@ public:
 class SciNot
 { // for scientific notation, ex: 9747582 = 9.747582E+6
 public:
+    SciNot();
     SciNot(decimalType coefficient, int exp);
     SciNot(decimalType coefficient);
-
+    void notationFix(decimalType &coefficient, int &exp) const;
     SciNot operator+(const SciNot &other) const;
     SciNot operator-(const SciNot &other) const;
     SciNot operator*(const SciNot &other) const;
