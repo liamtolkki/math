@@ -12,8 +12,8 @@ Liam Tolkkinen
 #define multiplyRVal2 0.0
 #define multiplyIVal2 1.0
 #define factorial 0
-#define coefficient 49.09938
-#define exp 3
+#define coefficient .0000049936947
+#define exp -3
 // holds the largest long double possible
 decimalType largestValue = std::numeric_limits<decimalType>::max();
 
@@ -35,7 +35,7 @@ int main()
        ComplexNum complexDivideResult = complexValue1 / complexValue2;
        printf("Result: %s\n", complexDivideResult.toString().c_str());
        SciNot sciNotTest = SciNot(coefficient, exp);
-       printf("testing scientific notation:\nCoef: %Lf\nexp: %d\nResult: %s\n", (long double)coefficient,
+       printf("testing scientific notation:\nCoef: %f\nexp: %d\nResult: %s\n", coefficient,
               exp, sciNotTest.toString().c_str());
 
        return 0;

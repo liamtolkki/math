@@ -33,6 +33,7 @@ SciNot::SciNot(decimalType newCoef, int newExp)
     { // coefficient must be between 1 and 10 for it to be true scientific notation
         coefficient = newCoef;
         exp = newExp;
+        printf("Coefficient: %f\nExp: %d\n", coefficient, exp);
     }
     else
     { // if not in proper form, fix it so it is:
@@ -52,6 +53,8 @@ SciNot::SciNot(decimalType newCoef, int newExp)
                 newCoef *= 10;
             }
         }
+        coefficient = newCoef;
+        exp = newExp;
     }
 }
 SciNot::SciNot(decimalType newCoefficient)
@@ -81,6 +84,7 @@ int SciNot::getExp()
 std::string SciNot::toString()
 { // converts the notation to a human readable string
     char result[30];
-    sprintf(result, "%LfE%d", coefficient, exp);
+    std::printf("coef: %f\n", coefficient);
+    sprintf(result, "%fE%d", coefficient, exp);
     return result;
 }

@@ -1,10 +1,10 @@
 #include <string>
-typedef long double decimalType;
+typedef double decimalType;
 typedef double imaginaryType;
 typedef double realType;
 typedef decimalType (*term)(double); // parses the terms of a function, ex: x^2 = x*x
-const decimalType pi = 3.14159265358979323846;
-const decimalType e = 2.71828182845904523536;
+const decimalType pi = 3.14159265358979;
+const decimalType e = 2.7182818284590452;
 const int STD_FORM = 0;
 const int SCI_FORM = 1;
 
