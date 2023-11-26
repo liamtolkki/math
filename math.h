@@ -9,6 +9,9 @@ const decimalType e = 2.7182818284590452;
 const int STD_FORM = 0;
 const int SCI_FORM = 1;
 
+const int COMPONENT_NOTATION = 0;
+const int UNIT_NOTATION = 1;
+
 // standalone functions:
 decimalType sum(double start, double end, decimalType (*term)(double));
 decimalType log(double base, double x);
@@ -68,5 +71,20 @@ class Calculus
 
 class LinearAlgebra
 {
+public:
+    class Vector
+    {
+    public:
+        Vector();
+        Vector(int degree);     // degree is how many elements in the vector
+        std::string toString(); // print the vector out in component form
+        std::string toString(int notation);
+
+    private:
+    };
+    class Matrix
+    {
+    };
     // TODO
+private:
 };
