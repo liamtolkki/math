@@ -12,9 +12,9 @@ Liam Tolkkinen
 #define multiplyRVal2 0.0
 #define multiplyIVal2 1.0
 #define factorial 10
-#define coefficient 8.0
+#define coefficient 3.0
 #define exp 2
-#define coefficient2 3.0
+#define coefficient2 6.0
 #define exp2 2
 // holds the largest long double possible
 decimalType largestValue = std::numeric_limits<decimalType>::max();
@@ -48,6 +48,16 @@ int main()
        printf("Testing Scientific notation subtraction:\n");
        printf("%s - %s:\n", sciNotTest.toString().c_str(), sciNotTest2.toString().c_str());
        sciNotOperatorResult = sciNotTest - sciNotTest2;
+       printf("%s\n", sciNotOperatorResult.toString().c_str());
+
+       printf("Testing Scientific notation multiplication:\n");
+       printf("%s * %s:\n", sciNotTest.toString().c_str(), sciNotTest2.toString().c_str());
+       sciNotOperatorResult = sciNotTest * sciNotTest2;
+       printf("%s\n", sciNotOperatorResult.toString().c_str());
+
+       printf("Testing Scientific notation division:\n");
+       printf("%s / %s:\n", sciNotTest.toString().c_str(), sciNotTest2.toString().c_str());
+       sciNotOperatorResult = sciNotTest / sciNotTest2;
        printf("%s\n", sciNotOperatorResult.toString().c_str());
 
        return 0;

@@ -1,7 +1,7 @@
 PROJECT = Test
 CC = g++
 
-CFLAGS = -g -ggdb -Wall -ansi -pedantic -Wno-write-strings -Wno-parentheses
+CFLAGS = -g -Wall -ansi -pedantic -Wno-write-strings -Wno-parentheses
 
 OBJFILES = differentiation.o testing.o basicMath.o complexNum.o
 
@@ -11,7 +11,7 @@ $(PROJECT): $(OBJFILES)
 $(OBJFILES): math.h
 
 clean:
-	rm -rf *o *.out $(PROJECT)
+	rm -rf *.o *.out $(PROJECT)
 test:
 	make clean
 	make

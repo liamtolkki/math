@@ -1,4 +1,5 @@
 #include <string>
+#include <stdexcept>
 typedef double decimalType;
 typedef double imaginaryType;
 typedef double realType;
