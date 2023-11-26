@@ -50,9 +50,19 @@ SciNot::SciNot(decimalType newCoefficient)
 }
 void SciNot::notationFix(decimalType &curCoef, int &curExp) const
 {
+    bool isNeg;
+    isNeg = (curCoef < 0);
+    curCoef = (isNeg ? -1 * curCoef : curCoef);
+    if (curCoef == 0)
+    {
+        curExp = 0;
+        return;
+    }
     if (curCoef > 1 && curCoef < 10)
     { // coefficient must be between 1 and 10 for it to be true scientific notation
         // if this is the case, then do nothing, notation is already fine!
+        if (isNeg)
+            curCoef *= -1;
         return;
     }
     else
@@ -73,6 +83,8 @@ void SciNot::notationFix(decimalType &curCoef, int &curExp) const
                 curCoef *= 10;
             }
         }
+        if (isNeg)
+            curCoef *= -1;
         return;
     }
 }
@@ -124,8 +136,27 @@ SciNot SciNot::operator-(const SciNot &other) const
     temp = operator+(temp); // add together
     return temp;
 }
-SciNot SciNot::operator*(const SciNot &other) const {}
-SciNot SciNot::operator/(const SciNot &other) const {}
+SciNot SciNot::operator*(const SciNot &other) const
+{ // multiplication operator:
+    SciNot result;
+    result.coefficient = coefficient * other.coefficient;
+    result.exp = exp + other.exp;
+    notationFix(result.coefficient, result.exp);
+    return result;
+}
+SciNot SciNot::operator/(const SciNot &other) const
+{ // divide 2 SciNot numbers:
+    SciNot result;
+    if (other.coefficient == 0)
+    { // cant divide by zero!
+        throw std::runtime_error("Divide by Zero!");
+        return result;
+    }
+    result.coefficient = coefficient / other.coefficient;
+    result.exp = exp - other.exp;
+    notationFix(result.coefficient, result.exp);
+    return result;
+}
 
 decimalType SciNot::getCoefficient()
 {
@@ -144,6 +175,9 @@ std::string SciNot::toString()
         sign = '+';
     if (exp < 0)
         sign = '-';
+    if (exp == 0)
+        sign = '0';
+    // so that the string printer doesn't think that '0' is a string terminator
     sprintf(result, "%fE%c%d", coefficient, sign, (exp >= 0 ? exp : exp * -1));
     return result;
 }
