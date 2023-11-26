@@ -88,6 +88,7 @@ SciNot SciNot::operator+(const SciNot &other) const
     if (exp == other.exp)
     {
         result.coefficient = coefficient + other.coefficient;
+        result.exp = exp;
         notationFix(result.coefficient, result.exp);
     }
     else if (exp > other.exp)
@@ -115,7 +116,14 @@ SciNot SciNot::operator+(const SciNot &other) const
     }
     return result;
 }
-SciNot SciNot::operator-(const SciNot &other) const {}
+SciNot SciNot::operator-(const SciNot &other) const
+{ // subtract 2 sciNot numbers together:
+    SciNot temp = other;
+    // no need to rewrite, just multiply by -1 and add:
+    temp.coefficient *= -1;
+    temp = operator+(temp); // add together
+    return temp;
+}
 SciNot SciNot::operator*(const SciNot &other) const {}
 SciNot SciNot::operator/(const SciNot &other) const {}
 
