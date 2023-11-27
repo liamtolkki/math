@@ -17,6 +17,8 @@ decimalType sum(double start, double end, decimalType (*term)(double))
 
 decimalType nRoot(decimalType x, int n)
 {
+    if (x == 2 && n == 2)
+        return __SQRT_2;
     int temp = 0;
     int i = 0;
     decimalType guess;
@@ -84,7 +86,7 @@ decimalType ln(double x)
 {
     return log(e, x);
 }
-long int fact(int x)
+decimalType fact(int x)
 {
     if (x == 1 || x == 0)
     {

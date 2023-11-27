@@ -9,6 +9,7 @@ typedef double realType;
 typedef decimalType (*term)(double); // parses the terms of a function, ex: x^2 = x*x
 const decimalType PI = 3.14159265358979;
 const decimalType e = 2.7182818284590452;
+const decimalType __SQRT_2 = 1.41421356237309504880;
 #ifdef __SCIENTIFIC_NOTATION_CONSTANTS
 const int STD_FORM = 0;
 const int SCI_FORM = 1;
@@ -22,7 +23,9 @@ decimalType fmod(decimalType x, decimalType y); // returns x % y
 decimalType sum(double start, double end, decimalType (*term)(double));
 decimalType log(double base, double x);
 decimalType ln(double x);
-long int fact(int x); // factorial: x! = x * (x-1) * (x-2) * ... * (x-n) * 1; ex: 3! = 3*2*1
+decimalType fact(int x); // factorial: x! = x * (x-1) * (x-2) * ... * (x-n) * 1; ex: 3! = 3*2*1
+// max factorial value supported is 170! (7.257416E+306)
+
 decimalType nRoot(decimalType x, int n);
 decimalType sqrt(decimalType x);
 decimalType pow(decimalType x, int n);
@@ -42,7 +45,6 @@ decimalType arctan(decimalType x);
 decimalType arcsec(decimalType x);
 decimalType arccsc(decimalType x);
 decimalType arccot(decimalType x);
-
 decimalType toDeg(decimalType rad); // radians -> degrees
 decimalType toRad(decimalType deg); // degrees -> radians
 #endif

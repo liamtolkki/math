@@ -11,7 +11,7 @@ Liam Tolkkinen
 #define multiplyIVal1 2.0
 #define multiplyRVal2 0.0
 #define multiplyIVal2 1.0
-#define factorial 10
+#define factorial 20.0
 #define coefficient 3.0
 #define exp 2
 #define coefficient2 6.0
@@ -19,10 +19,11 @@ Liam Tolkkinen
 
 #define powBase 5.0
 #define powExp 6
-#define nRootBase 10.0
-#define nRootN 3
+#define nRootBase 26.0
+#define nRootN 29
 #define degrees 180.0
 #define radians PI
+#define theta 3.0
 
 // holds the largest long double possible
 decimalType largestValue = std::numeric_limits<decimalType>::max();
@@ -72,12 +73,15 @@ int main()
        printf("testing nth root: %d root of %f: ", nRootN, nRootBase);
        decimalType nrootResult = nRoot(nRootBase, nRootN);
        printf("%f\n", nrootResult);
-       printf("Testing Factorial: \n%d! = ", factorial);
-       long int factResult = fact(factorial);
-       printf("%ld\n", factResult);
+       printf("Testing Factorial: \n%f! = ", factorial);
+       decimalType factResult = fact(factorial);
+       printf("%f\n", factResult);
+       SciNot factResultSciNot = SciNot(factResult);
+       printf("conversion to Scientific Notation: %s\n", factResultSciNot.toString().c_str());
 #ifdef TRIG
        printf("Degrees to Radians: %f deg = %f rad\n", degrees, toRad(degrees));
        printf("Radians to Degrees: %f rad = %f deg\n", radians, toDeg(radians));
+       printf("Testing sin(x): sin(%f) = %f\n", theta, sin(theta));
 #endif
        return 0;
 }

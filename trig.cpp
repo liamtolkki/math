@@ -15,6 +15,14 @@ decimalType toRad(decimalType deg)
 
 decimalType sin(decimalType x)
 {
+    decimalType sum = 0.0; // start at zero
+    x = fmod(x, 2 * PI);   // so that the series appx is more accurate (and faster)
+    // Taylor series:
+    for (int n = 0; n <= 20; n++) // 20 iterations
+    {
+        sum += (((n % 2 == 0 ? 1 : -1) * pow(x, ((2 * n) + 1))) / fact((2 * n) + 1));
+    }
+    return sum;
 }
 decimalType cos(decimalType x)
 {
