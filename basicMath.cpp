@@ -6,6 +6,53 @@ decimalType sum(double start, double end, decimalType (*term)(double))
     // TODO
     return result;
 }
+
+decimalType nRoot(decimalType x, int n)
+{
+    int temp = 0;
+    int i = 0;
+    while (temp < x) // test to see if a perfect root
+    {
+        temp = i;
+        for (int j = 1; j < n; j++)
+        {
+            temp *= i;
+        }
+        i++;
+    }
+    if (temp == x)
+        return temp; // found perfect root
+}
+
+decimalType pow(decimalType x, int n)
+{ // returns x^n
+    decimalType currentProduct = 1;
+    bool isNegExp = (n < 0);
+    if (n == 0)
+        return 1.0;
+    if (isNegExp)
+    {
+        n *= -1;
+    }
+    for (int i = 0; i < n; i++)
+    {
+        currentProduct *= x;
+    }
+    if (isNegExp)
+    {
+        currentProduct = 1 / currentProduct;
+    }
+    return currentProduct;
+}
+decimalType square(decimalType x)
+{
+    return pow(x, 2);
+}
+
+decimalType sqrt(decimalType x)
+{ // square root algorithm
+    return nRoot(x, 2);
+}
 decimalType log(double base, double x)
 {
     decimalType result;

@@ -17,6 +17,10 @@ decimalType sum(double start, double end, decimalType (*term)(double));
 decimalType log(double base, double x);
 decimalType ln(double x);
 long int fact(int x); // factorial: x! = x * (x-1) * (x-2) * ... * (x-n) * 1; ex: 3! = 3*2*1
+decimalType nRoot(decimalType x, int n);
+decimalType sqrt(decimalType x);
+decimalType pow(decimalType x, int n);
+decimalType square(decimalType x);
 
 class BasicMath
 {
@@ -76,9 +80,17 @@ public:
     {
     public:
         Vector();
-        Vector(int degree);     // degree is how many elements in the vector
-        std::string toString(); // print the vector out in component form
-        std::string toString(int notation);
+        Vector(int degree);                 // degree is how many elements in the vector
+        std::string toString();             // print the vector out in component form
+        std::string toString(int notation); // for choosing what notation to print it in
+        int getDegree();
+        double getVal(int x); // get the value at index x
+        void setDegree(int degree);
+        void setVal(int x, double newVal);     // set the value at x to be newVal
+        double dot(Vector *v1, Vector *v2);    // dot product
+        Vector *cross(Vector *v1, Vector *v2); // cross product
+        double mag(Vector *v);                 // returns the magnitude of the vector
+        Vector *norm(Vector *v);               // normalize the vector
 
     private:
     };

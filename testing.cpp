@@ -16,6 +16,10 @@ Liam Tolkkinen
 #define exp 2
 #define coefficient2 6.0
 #define exp2 2
+
+#define powBase 5.0
+#define powExp -6
+
 // holds the largest long double possible
 decimalType largestValue = std::numeric_limits<decimalType>::max();
 
@@ -59,6 +63,7 @@ int main()
        printf("%s / %s:\n", sciNotTest.toString().c_str(), sciNotTest2.toString().c_str());
        sciNotOperatorResult = sciNotTest / sciNotTest2;
        printf("%s\n", sciNotOperatorResult.toString().c_str());
-
+       decimalType powResult = pow(powBase, powExp);
+       printf("testing %f^%d: %f\n",powBase, powExp, powResult);
        return 0;
 }
