@@ -1,13 +1,18 @@
 #include <string>
 #include <stdexcept>
+//#define TRIG
+//#define __LINEAR_ALGEBRA
+#define __SCIENTIFIC_NOTATION_CONSTANTS
 typedef double decimalType;
 typedef double imaginaryType;
 typedef double realType;
 typedef decimalType (*term)(double); // parses the terms of a function, ex: x^2 = x*x
 const decimalType pi = 3.14159265358979;
 const decimalType e = 2.7182818284590452;
+#ifdef __SCIENTIFIC_NOTATION_CONSTANTS
 const int STD_FORM = 0;
 const int SCI_FORM = 1;
+#endif
 
 const int COMPONENT_NOTATION = 0;
 const int UNIT_NOTATION = 1;
@@ -23,6 +28,7 @@ decimalType pow(decimalType x, int n);
 decimalType square(decimalType x);
 
 // BEGIN BASIC TRIG FUNCTIONS--------------
+#ifdef TRIG
 decimalType sin(decimalType x);
 decimalType cos(decimalType x);
 decimalType tan(decimalType x);
@@ -35,6 +41,7 @@ decimalType arctan(decimalType x);
 decimalType arcsec(decimalType x);
 decimalType arccsc(decimalType x);
 decimalType arccot(decimalType x);
+#endif
 // END BASIC TRIG FUNCTIONS-----------------
 
 class BasicMath
@@ -87,7 +94,7 @@ class Calculus
 {
     // TODO
 };
-
+#ifdef __LINEAR_ALGEBRA
 class LinearAlgebra
 {
 public:
@@ -115,3 +122,4 @@ public:
     // TODO
 private:
 };
+#endif

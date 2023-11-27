@@ -67,9 +67,12 @@ int main()
        printf("%s\n", sciNotOperatorResult.toString().c_str());
        decimalType powResult = pow(powBase, powExp);
        printf("testing %f^%d: %f\n", powBase, powExp, powResult);
-       printf("testing nth root: %d root of %f:\n", nRootN, nRootBase);
+       printf("testing nth root: %d root of %f: ", nRootN, nRootBase);
        decimalType nrootResult = nRoot(nRootBase, nRootN);
        printf("%f\n", nrootResult);
-       
+       printf("Testing Factorial: \n%d! = ", factorial);
+       long int factResult = fact(factorial);
+       printf("%ld\n", factResult);
+
        return 0;
 }
