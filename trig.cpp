@@ -71,12 +71,42 @@ decimalType tan(decimalType x)
 }
 decimalType sec(decimalType x)
 {
+    decimalType cosX = cos(x);
+    if (cosX == 0.0)
+    {
+        throw std::runtime_error("[DOMAIN ERROR] secant(x)");
+        return 0;
+    }
+    else
+    {
+        return (1 / cosX);
+    }
 }
 decimalType csc(decimalType x)
 {
+    decimalType sinX = sin(x);
+    if (sinX == 0.0)
+    {
+        throw std::runtime_error("[DOMAIN ERROR] cosecant(x)");
+        return 0;
+    }
+    else
+    {
+        return (1 / sinX);
+    }
 }
 decimalType cot(decimalType x)
 {
+    decimalType tanX = tan(x);
+    if (tanX == 0.0)
+    {
+        throw std::runtime_error("[DOMAIN ERROR] cotangent(x)");
+        return 0;
+    }
+    else
+    {
+        return (1 / tanX);
+    }
 }
 decimalType arcsin(decimalType x)
 {
