@@ -24,7 +24,7 @@ Liam Tolkkinen
 #define degrees 180.0
 #define radians PI
 #define theta .75 * PI
-#define inverseTrig 0.80
+#define inverseTrig 0.79274
 
 // holds the largest long double possible
 decimalType largestValue = std::numeric_limits<decimalType>::max();
@@ -94,6 +94,10 @@ int main()
        printf("Testing arcsin(x): arcsin(%f) = %.10f\n", inverseTrig, arcsin(inverseTrig));
        printf("Testing arccos(x): arccos(%f) = %.10f\n", inverseTrig, arccos(inverseTrig));
        printf("Testing arctan(x): arctan(%f) = %.10f\n", inverseTrig, arctan(inverseTrig));
+       printf("Testing arccsc(x): arccsc(%f) = %.10f\n", inverseTrig, arccsc(inverseTrig));
+       printf("Testing arcsec(x): arcsec(%f) = %.10f\n", inverseTrig, arcsec(inverseTrig));
+       printf("Testing arccot(x): arccot(%f) = %.10f\n", inverseTrig, arccot(inverseTrig));
+
 
 #endif
        return 0;

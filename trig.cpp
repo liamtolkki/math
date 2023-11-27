@@ -230,11 +230,44 @@ decimalType arctan(decimalType x)
 }
 decimalType arcsec(decimalType x)
 {
+    // arcsec(x) = 1/arccos(x)
+    decimalType denominator = arccos(x);
+    if (std::abs(denominator) < epsilon)
+    {
+        std::runtime_error("[DOMAIN ERROR] arcsec()");
+        return 0.0;
+    }
+    else
+    {
+        return 1.0 / denominator;
+    }
 }
 decimalType arccsc(decimalType x)
 {
+    // arccsc(x) = 1/arcsin(x)
+    decimalType denominator = arcsin(x);
+    if (std::abs(denominator) < epsilon)
+    {
+        std::runtime_error("[DOMAIN ERROR] arccsc()");
+        return 0.0;
+    }
+    else
+    {
+        return 1.0 / denominator;
+    }
 }
 decimalType arccot(decimalType x)
 {
+    // arccot(x) = 1/arctan(x)
+    decimalType denominator = arctan(x);
+    if (std::abs(denominator) < epsilon)
+    {
+        std::runtime_error("[DOMAIN ERROR] arccot()");
+        return 0.0;
+    }
+    else
+    {
+        return 1.0 / denominator;
+    }
 }
 #endif
