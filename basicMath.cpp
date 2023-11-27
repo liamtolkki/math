@@ -1,6 +1,13 @@
 #include "math.h"
 #define epsilon .0000001
 
+decimalType fmod(decimalType x, decimalType y)
+{
+    int intResult = static_cast<int>(x / y);
+    decimalType result = x - (y * intResult);
+    return result;
+}
+
 decimalType sum(double start, double end, decimalType (*term)(double))
 {
     decimalType result;
@@ -243,17 +250,3 @@ std::string SciNot::toString()
     sprintf(result, "%fE%c%d", coefficient, sign, (exp >= 0 ? exp : exp * -1));
     return result;
 }
-#ifdef TRIG
-decimalType sin(decimalType x) {}
-decimalType cos(decimalType x) {}
-decimalType tan(decimalType x) {}
-decimalType sec(decimalType x) {}
-decimalType csc(decimalType x) {}
-decimalType cot(decimalType x) {}
-decimalType arcsin(decimalType x) {}
-decimalType arccos(decimalType x) {}
-decimalType arctan(decimalType x) {}
-decimalType arcsec(decimalType x) {}
-decimalType arccsc(decimalType x) {}
-decimalType arccot(decimalType x) {}
-#endif

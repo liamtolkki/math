@@ -1,13 +1,13 @@
 #include <string>
 #include <stdexcept>
-//#define TRIG
-//#define __LINEAR_ALGEBRA
+#define TRIG
+// #define __LINEAR_ALGEBRA
 #define __SCIENTIFIC_NOTATION_CONSTANTS
 typedef double decimalType;
 typedef double imaginaryType;
 typedef double realType;
 typedef decimalType (*term)(double); // parses the terms of a function, ex: x^2 = x*x
-const decimalType pi = 3.14159265358979;
+const decimalType PI = 3.14159265358979;
 const decimalType e = 2.7182818284590452;
 #ifdef __SCIENTIFIC_NOTATION_CONSTANTS
 const int STD_FORM = 0;
@@ -18,6 +18,7 @@ const int COMPONENT_NOTATION = 0;
 const int UNIT_NOTATION = 1;
 
 // standalone functions:
+decimalType fmod(decimalType x, decimalType y); // returns x % y
 decimalType sum(double start, double end, decimalType (*term)(double));
 decimalType log(double base, double x);
 decimalType ln(double x);
@@ -41,6 +42,9 @@ decimalType arctan(decimalType x);
 decimalType arcsec(decimalType x);
 decimalType arccsc(decimalType x);
 decimalType arccot(decimalType x);
+
+decimalType toDeg(decimalType rad); // radians -> degrees
+decimalType toRad(decimalType deg); // degrees -> radians
 #endif
 // END BASIC TRIG FUNCTIONS-----------------
 
