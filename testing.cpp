@@ -81,7 +81,11 @@ int main()
 #ifdef TRIG
        printf("Degrees to Radians: %f deg = %f rad\n", degrees, toRad(degrees));
        printf("Radians to Degrees: %f rad = %f deg\n", radians, toDeg(radians));
+       printf("Testing the Trig Functions:\n");
        printf("Testing sin(x): sin(%f) = %f\n", theta, sin(theta));
+       printf("Testing cos(x): cos(%f) = %f\n", theta, cos(theta));
+       printf("Testing tan(x): tan(%f) = %f\n", theta, tan(theta));
+
 #endif
        return 0;
 }
