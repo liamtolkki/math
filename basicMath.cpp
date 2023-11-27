@@ -1,4 +1,5 @@
 #include "math.h"
+#define epsilon .0000001
 
 decimalType sum(double start, double end, decimalType (*term)(double))
 {
@@ -11,17 +12,30 @@ decimalType nRoot(decimalType x, int n)
 {
     int temp = 0;
     int i = 0;
-    while (temp < x) // test to see if a perfect root
+    decimalType guess;
+    while (temp < x && x > 0) // test to see if a perfect root
     {
-        temp = i;
-        for (int j = 1; j < n; j++)
-        {
-            temp *= i;
-        }
+        temp = pow(i, n);
         i++;
     }
     if (temp == x)
-        return temp; // found perfect root
+        return i - 1; // found perfect root
+
+    // else, calculate by estimation:
+    if (x < 0 && (n % 2 == 0))
+    { // imaginary result
+        throw std::runtime_error("Imaginary result (even root of negative number)!");
+        return 0.0;
+    }
+    guess = x / 2;
+    decimalType prevGuess = 0.0;
+    while (std::abs(guess - prevGuess) > epsilon)
+    {
+        prevGuess = guess;
+        guess = ((n - 1.0) * guess + x / pow(guess, n - 1)) / n;
+        // black magic (Newton Raphson method)
+    }
+    return guess;
 }
 
 decimalType pow(decimalType x, int n)

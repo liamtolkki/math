@@ -18,7 +18,9 @@ Liam Tolkkinen
 #define exp2 2
 
 #define powBase 5.0
-#define powExp -6
+#define powExp 6
+#define nRootBase 10.0
+#define nRootN 3
 
 // holds the largest long double possible
 decimalType largestValue = std::numeric_limits<decimalType>::max();
@@ -64,6 +66,10 @@ int main()
        sciNotOperatorResult = sciNotTest / sciNotTest2;
        printf("%s\n", sciNotOperatorResult.toString().c_str());
        decimalType powResult = pow(powBase, powExp);
-       printf("testing %f^%d: %f\n",powBase, powExp, powResult);
+       printf("testing %f^%d: %f\n", powBase, powExp, powResult);
+       printf("testing nth root: %d root of %f:\n", nRootN, nRootBase);
+       decimalType nrootResult = nRoot(nRootBase, nRootN);
+       printf("%f\n", nrootResult);
+       
        return 0;
 }
