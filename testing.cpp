@@ -80,19 +80,21 @@ int main()
        SciNot factResultSciNot = SciNot(factResult);
        printf("conversion to Scientific Notation: %s\n", factResultSciNot.toString().c_str());
 #ifdef TRIG
-       printf("Degrees to Radians: %f deg = %f rad\n", degrees, toRad(degrees));
-       printf("Radians to Degrees: %f rad = %f deg\n", radians, toDeg(radians));
-       printf("Testing the Trig Functions:\n");
-       printf("Testing sin(x): sin(%f) = %f\n", theta, sin(theta));
-       printf("Testing cos(x): cos(%f) = %f\n", theta, cos(theta));
-       printf("Testing tan(x): tan(%f) = %f\n", theta, tan(theta));
+       printf("Degrees to Radians: %.10f deg = %.10f rad\n", degrees, toRad(degrees));
+       printf("Radians to Degrees: %.10f rad = %.10f deg\n", radians, toDeg(radians));
+       printf("Testing the Trig Functions:-----------------------------\n");
+       printf("Testing sin(x): sin(%f) = %.10f\n", theta, sin(theta));
+       printf("Testing cos(x): cos(%f) = %.10f\n", theta, cos(theta));
+       printf("Testing tan(x): tan(%f) = %.10f\n", theta, tan(theta));
 
-       printf("Testing csc(x): csc(%f) = %f\n", theta, csc(theta));
-       printf("Testing sec(x): sec(%f) = %f\n", theta, sec(theta));
-       printf("Testing cot(x): cot(%f) = %f\n", theta, cot(theta));
+       printf("Testing csc(x): csc(%f) = %.10f\n", theta, csc(theta));
+       printf("Testing sec(x): sec(%f) = %.10f\n", theta, sec(theta));
+       printf("Testing cot(x): cot(%f) = %.10f\n", theta, cot(theta));
+       printf("Testing INVERSE TRIG:----------------------------------\n");
+       printf("Testing arcsin(x): arcsin(%f) = %.10f\n", inverseTrig, arcsin(inverseTrig));
+       printf("Testing arccos(x): arccos(%f) = %.10f\n", inverseTrig, arccos(inverseTrig));
+       printf("Testing arctan(x): arctan(%f) = %.10f\n", inverseTrig, arctan(inverseTrig));
 
-       printf("Testing arcsin(x): arcsin(%f) = %f\n", inverseTrig, arcsin(inverseTrig));
-       printf("Testing arccos(x): arccos(%f) = %f\n", inverseTrig, arccos(inverseTrig));
 #endif
        return 0;
 }

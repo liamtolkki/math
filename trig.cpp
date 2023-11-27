@@ -196,6 +196,37 @@ decimalType arccos(decimalType x)
 }
 decimalType arctan(decimalType x)
 {
+    // arctan(x) = y --> tan(y) = x
+    // basically solving for y:
+    // lim x -> inf [arctan(x)] = PI / 2
+    bool inRange; // to determine if the appx is close enough
+    if (x == 0 || (std::abs(x) < epsilon))
+    {
+        return 0.0;
+    }
+    decimalType dx = 0.7853981634; // this is PI / 4
+    decimalType sign = (x > 0 ? 1.0 : -1.0);
+    decimalType currentGuess = 0.0;
+    decimalType result;
+    while (true)
+    {
+        currentGuess += (sign * dx);
+        result = tan(currentGuess);
+        if (std::abs(std::abs(result) - std::abs(x)) < epsilon)
+        { // found it!
+            return currentGuess;
+        }
+        else if (std::abs(result) > std::abs(x))
+        {
+            dx /= 2;
+            sign = (x > 0 ? -1.0 : 1.0);
+        }
+        else
+        { // result < x
+            dx /= 2;
+            sign = (x > 0 ? 1.0 : -1.0);
+        }
+    }
 }
 decimalType arcsec(decimalType x)
 {
