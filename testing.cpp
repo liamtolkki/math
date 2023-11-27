@@ -23,7 +23,7 @@ Liam Tolkkinen
 #define nRootN 29
 #define degrees 180.0
 #define radians PI
-#define theta 3.0
+#define theta .75 * PI
 
 // holds the largest long double possible
 decimalType largestValue = std::numeric_limits<decimalType>::max();
