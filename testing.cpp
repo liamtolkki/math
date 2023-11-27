@@ -98,7 +98,6 @@ int main()
        printf("Testing arcsec(x): arcsec(%f) = %.10f\n", inverseTrig, arcsec(inverseTrig));
        printf("Testing arccot(x): arccot(%f) = %.10f\n", inverseTrig, arccot(inverseTrig));
 
-
 #endif
        return 0;
 }
