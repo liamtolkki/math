@@ -1,7 +1,7 @@
 #include <string>
 #include <stdexcept>
 #define TRIG
-// #define __LINEAR_ALGEBRA
+#define __LINEAR_ALGEBRA
 #define __SCIENTIFIC_NOTATION_CONSTANTS
 typedef double decimalType;
 typedef double imaginaryType;

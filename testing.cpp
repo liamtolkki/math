@@ -99,5 +99,10 @@ int main()
        printf("Testing arccot(x): arccot(%f) = %.10f\n", inverseTrig, arccot(inverseTrig));
 
 #endif
+
+#ifdef __LINEAR_ALGEBRA
+
+
+#endif
        return 0;
 }
