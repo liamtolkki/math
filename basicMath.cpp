@@ -34,6 +34,7 @@ decimalType nRoot(decimalType x, int n)
         prevGuess = guess;
         guess = ((n - 1.0) * guess + x / pow(guess, n - 1)) / n;
         // black magic (Newton Raphson method)
+        // https://brilliant.org/wiki/newton-raphson-method/
     }
     return guess;
 }
