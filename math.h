@@ -3,6 +3,7 @@
 #define TRIG
 #define __LINEAR_ALGEBRA
 #define __SCIENTIFIC_NOTATION_CONSTANTS
+#define __VECTOR_NOTATION_CONSTANTS
 typedef double decimalType;
 typedef double imaginaryType;
 typedef double realType;
@@ -14,9 +15,10 @@ const decimalType __SQRT_2 = 1.41421356237309504880;
 const int STD_FORM = 0;
 const int SCI_FORM = 1;
 #endif
-
+#ifdef __VECTOR_NOTATION_CONSTANTS
 const int COMPONENT_NOTATION = 0;
 const int UNIT_NOTATION = 1;
+#endif
 
 // standalone functions:
 decimalType fmod(decimalType x, decimalType y); // returns x % y
@@ -108,19 +110,22 @@ public:
     {
     public:
         Vector();
-        Vector(int degree);                 // degree is how many elements in the vector
+        Vector(int degree);
+        ~Vector();                          // degree is how many elements in the vector
         std::string toString();             // print the vector out in component form
         std::string toString(int notation); // for choosing what notation to print it in
         int getDegree();
-        double getVal(int x); // get the value at index x
+        decimalType getVal(int x); // get the value at index x
         void setDegree(int degree);
-        void setVal(int x, double newVal);     // set the value at x to be newVal
-        double dot(Vector *v1, Vector *v2);    // dot product
-        Vector *cross(Vector *v1, Vector *v2); // cross product
-        double mag(Vector *v);                 // returns the magnitude of the vector
-        Vector *norm(Vector *v);               // normalize the vector
+        void setVal(int x, decimalType newVal);  // set the value at x to be newVal
+        decimalType dot(Vector *v1, Vector *v2); // dot product
+        Vector *cross(Vector *v1, Vector *v2);   // cross product
+        decimalType mag(Vector *v);              // returns the magnitude of the vector
+        Vector *norm(Vector *v);                 // normalize the vector
 
     private:
+        int degree;
+        decimalType *components;
     };
     class Matrix
     {
