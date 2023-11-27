@@ -21,6 +21,8 @@ Liam Tolkkinen
 #define powExp 6
 #define nRootBase 10.0
 #define nRootN 3
+#define degrees 180.0
+#define radians PI
 
 // holds the largest long double possible
 decimalType largestValue = std::numeric_limits<decimalType>::max();
@@ -73,6 +75,9 @@ int main()
        printf("Testing Factorial: \n%d! = ", factorial);
        long int factResult = fact(factorial);
        printf("%ld\n", factResult);
-
+#ifdef TRIG
+       printf("Degrees to Radians: %f deg = %f rad\n", degrees, toRad(degrees));
+       printf("Radians to Degrees: %f rad = %f deg\n", radians, toDeg(radians));
+#endif
        return 0;
 }
