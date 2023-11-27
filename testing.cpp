@@ -86,6 +86,10 @@ int main()
        printf("Testing cos(x): cos(%f) = %f\n", theta, cos(theta));
        printf("Testing tan(x): tan(%f) = %f\n", theta, tan(theta));
 
+       printf("Testing csc(x): csc(%f) = %f\n", theta, csc(theta));
+       printf("Testing sec(x): sec(%f) = %f\n", theta, sec(theta));
+       printf("Testing cot(x): cot(%f) = %f\n", theta, cot(theta));
+
 #endif
        return 0;
 }
