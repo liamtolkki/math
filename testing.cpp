@@ -119,6 +119,11 @@ int main()
        printf("Vector1 (component notation): %s\n", vec1.toString(COMPONENT_NOTATION).c_str());
        printf("Vector1 (Unit notation): %s\n", vec1.toString(UNIT_NOTATION).c_str());
 
+       printf("Vector1 magnitude: %f\n", vec1.mag());
+       vec1.norm();
+       printf("Vector1 normalized: %s\n", vec1.toString().c_str());
+       printf("Vector1 magnitude: %f\n", vec1.mag());
+
        printf("END TESTING VECTORS----------------------\n");
 
        printf("END TESTING LINEAR ALGEBRA---------------\n");

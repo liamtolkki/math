@@ -103,4 +103,13 @@ std::string LinearAlgebra::Vector::toString(int notation)
     }
 }
 
+void LinearAlgebra::Vector::norm()
+{
+    decimalType mag = this->mag();
+    for (int i = 0; i < degree; i++)
+    {
+        components[i] /= mag;
+    }
+}
+
 #endif

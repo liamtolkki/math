@@ -121,7 +121,7 @@ public:
         decimalType dot(Vector *other);         // dot product
         Vector *cross(Vector *other);           // cross product
         decimalType mag();                      // returns the magnitude of the vector
-        Vector *norm();                         // normalize the vector
+        void norm();                         // normalize the vector
 
     private:
         int degree;
