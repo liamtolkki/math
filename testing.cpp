@@ -109,14 +109,16 @@ int main()
 
 #ifdef __LINEAR_ALGEBRA
        // test the linear algebra library
-       LinearAlgebra::Vector *vec1 = new LinearAlgebra::Vector(degree);
-       vec1->setVal(0, v1);
-       vec1->setVal(1, v2);
-       vec1->setVal(2, v3);
+       LinearAlgebra::Vector vec1 = LinearAlgebra::Vector(degree);
+       vec1.setVal(0, v1);
+       vec1.setVal(1, v2);
+       vec1.setVal(2, v3);
        printf("TESTING LINEAR ALGEBRA-------------------\n\n");
        printf("TESTING VECTORS--------------------------\n\n");
 
-       printf("Vector1 (component notation): %s\n", vec1->toString(COMPONENT_NOTATION).c_str());
+       printf("Vector1 (component notation): %s\n", vec1.toString(COMPONENT_NOTATION).c_str());
+       printf("Vector1 (Unit notation): %s\n", vec1.toString(UNIT_NOTATION).c_str());
+
        printf("END TESTING VECTORS----------------------\n");
 
        printf("END TESTING LINEAR ALGEBRA---------------\n");

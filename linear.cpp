@@ -80,7 +80,21 @@ std::string LinearAlgebra::Vector::toString(int notation)
         return result;
     }
     else if (notation == UNIT_NOTATION)
-    { // Ai + Bk + Cj + ... + Nn
+    { // (Ai + Bk + Cj + ... + Nn)
+        std::string result = "(";
+        char comp = 'i'; // starting character
+        for (int i = 0; i < degree - 1; i++)
+        {
+
+            char subStr[30];
+            sprintf(subStr, "%f%c + ", components[i], comp);
+            result.append(subStr);
+            comp++;
+        }
+        char subStr[30];
+        sprintf(subStr, "%f%c)", components[degree - 1], comp);
+        result.append(subStr);
+        return result;
     }
     else
     { // unknown notation
