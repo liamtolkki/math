@@ -34,7 +34,7 @@ decimalType LinearAlgebra::Vector::getVal(int x)
     }
 }
 void LinearAlgebra::Vector::setVal(int x, decimalType newVal)
-{
+{ // sets component x to newVal
     if (x < degree)
     {
         components[x] = newVal;
