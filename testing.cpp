@@ -25,7 +25,11 @@ Liam Tolkkinen
 #define radians PI
 #define theta .75 * PI
 #define inverseTrig 0.79274
-
+// vector components:
+#define degree 3
+#define v1 2.0
+#define v2 3.0
+#define v3 4.0
 // holds the largest long double possible
 decimalType largestValue = std::numeric_limits<decimalType>::max();
 
@@ -90,6 +94,8 @@ int main()
        printf("Testing csc(x): csc(%f) = %.10f\n", theta, csc(theta));
        printf("Testing sec(x): sec(%f) = %.10f\n", theta, sec(theta));
        printf("Testing cot(x): cot(%f) = %.10f\n", theta, cot(theta));
+       printf("END Testing TRIG----------------------------------\n");
+
        printf("Testing INVERSE TRIG:----------------------------------\n");
        printf("Testing arcsin(x): arcsin(%f) = %.10f\n", inverseTrig, arcsin(inverseTrig));
        printf("Testing arccos(x): arccos(%f) = %.10f\n", inverseTrig, arccos(inverseTrig));
@@ -97,11 +103,23 @@ int main()
        printf("Testing arccsc(x): arccsc(%f) = %.10f\n", inverseTrig, arccsc(inverseTrig));
        printf("Testing arcsec(x): arcsec(%f) = %.10f\n", inverseTrig, arcsec(inverseTrig));
        printf("Testing arccot(x): arccot(%f) = %.10f\n", inverseTrig, arccot(inverseTrig));
+       printf("END Testing INVERSE TRIG----------------------------------\n");
 
 #endif
 
 #ifdef __LINEAR_ALGEBRA
+       // test the linear algebra library
+       LinearAlgebra::Vector *vec1 = new LinearAlgebra::Vector(degree);
+       vec1->setVal(0, v1);
+       vec1->setVal(1, v2);
+       vec1->setVal(2, v3);
+       printf("TESTING LINEAR ALGEBRA-------------------\n\n");
+       printf("TESTING VECTORS--------------------------\n\n");
 
+       printf("Vector1 (component notation): %s\n", vec1->toString(COMPONENT_NOTATION).c_str());
+       printf("END TESTING VECTORS----------------------\n");
+
+       printf("END TESTING LINEAR ALGEBRA---------------\n");
 
 #endif
        return 0;

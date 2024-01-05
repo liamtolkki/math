@@ -117,11 +117,11 @@ public:
         int getDegree();
         decimalType getVal(int x); // get the value at index x
         void setDegree(int degree);
-        void setVal(int x, decimalType newVal);  // set the value at x to be newVal
-        decimalType dot(Vector *v1, Vector *v2); // dot product
-        Vector *cross(Vector *v1, Vector *v2);   // cross product
-        decimalType mag(Vector *v);              // returns the magnitude of the vector
-        Vector *norm(Vector *v);                 // normalize the vector
+        void setVal(int x, decimalType newVal); // set the value at x to be newVal
+        decimalType dot(Vector *other);         // dot product
+        Vector *cross(Vector *other);           // cross product
+        decimalType mag();                      // returns the magnitude of the vector
+        Vector *norm();                         // normalize the vector
 
     private:
         int degree;
