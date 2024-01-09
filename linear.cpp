@@ -106,6 +106,11 @@ std::string LinearAlgebra::Vector::toString(int notation)
 void LinearAlgebra::Vector::norm()
 {
     decimalType mag = this->mag();
+    //cannot normalize a zero vector:
+    if (this->mag() == 0) {
+        throw std::runtime_error("Cannot normalize the zero vector!");
+        return;
+    }
     for (int i = 0; i < degree; i++)
     {
         components[i] /= mag;
