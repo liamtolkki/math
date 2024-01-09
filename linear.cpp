@@ -83,11 +83,12 @@ std::string LinearAlgebra::Vector::toString(int notation)
     { // (Ai + Bk + Cj + ... + Nn)
         std::string result = "(";
         char comp = 'i'; // starting character
+
         for (int i = 0; i < degree - 1; i++)
         {
 
             char subStr[30];
-            sprintf(subStr, "%f%c + ", components[i], comp);
+            sprintf(subStr, "%f%c %c ", (components[i]) >= 0 ? components[i] : components[i] * -1, comp, (components[i + 1] >= 0) ? '+' : '-');
             result.append(subStr);
             comp++;
         }
@@ -106,14 +107,39 @@ std::string LinearAlgebra::Vector::toString(int notation)
 void LinearAlgebra::Vector::norm()
 {
     decimalType mag = this->mag();
-    //cannot normalize a zero vector:
-    if (this->mag() == 0) {
+    // cannot normalize a zero vector:
+    if (this->mag() == 0)
+    {
         throw std::runtime_error("Cannot normalize the zero vector!");
         return;
     }
     for (int i = 0; i < degree; i++)
     {
         components[i] /= mag;
+    }
+}
+
+decimalType LinearAlgebra::Vector::dot(Vector *other)
+{ // dot product (return a scalar quantity
+    decimalType result = 0.0;
+    // must have same degree:
+    if (degree == other->degree)
+    {
+        if (degree == 0)
+        { // the zero vector dotted with itself is always zero
+            return 0.0;
+        }
+        // dot:
+        for (int i = 0; i < degree; i++)
+        {
+            result += (components[i] * other->components[i]);
+        }
+        return result;
+    }
+    else
+    {
+        throw std::runtime_error("Dot Product error: CANNOT DOT 2 VECTORS WITH DIFFERENT DEGREES");
+        return 0;
     }
 }
 
