@@ -136,10 +136,13 @@ public:
         Matrix operator+(const Matrix &other) const;
         Matrix operator-(const Matrix &other) const;
         Matrix operator*(const Matrix &other) const;
-        Matrix inverse();
+        Matrix inverse();                 // return the inverse of M (if exists)
         Matrix scale(decimalType scalar); // multiply a scalar to all the elements of M
+        decimalType det();                // determinant of M
+        Matrix transpose();               // transpose of M
 
     private:
+        
     };
     // TODO
 private:

@@ -30,6 +30,10 @@ Liam Tolkkinen
 #define v1 2.0
 #define v2 3.0
 #define v3 4.0
+
+#define u1 3.0
+#define u2 -2.0
+#define u3 2.0
 // holds the largest long double possible
 decimalType largestValue = std::numeric_limits<decimalType>::max();
 
@@ -113,16 +117,32 @@ int main()
        vec1.setVal(0, v1);
        vec1.setVal(1, v2);
        vec1.setVal(2, v3);
+       LinearAlgebra::Vector vec2 = LinearAlgebra::Vector(degree);
+       vec2.setVal(0, u1);
+       vec2.setVal(1, u2);
+       vec2.setVal(2, u3);
        printf("TESTING LINEAR ALGEBRA-------------------\n\n");
        printf("TESTING VECTORS--------------------------\n\n");
 
        printf("Vector1 (component notation): %s\n", vec1.toString(COMPONENT_NOTATION).c_str());
        printf("Vector1 (Unit notation): %s\n", vec1.toString(UNIT_NOTATION).c_str());
 
+       printf("Vector2 (component notation): %s\n", vec2.toString(COMPONENT_NOTATION).c_str());
+       printf("Vector2 (Unit notation): %s\n", vec2.toString(UNIT_NOTATION).c_str());
+
        printf("Vector1 magnitude: %f\n", vec1.mag());
+       printf("Vector2 magnitude: %f\n", vec2.mag());
+
+       decimalType dotResult = vec1.dot(&vec2);
+
+       printf("Testing V1 dot V2: %f\n", dotResult);
+
        vec1.norm();
+       vec2.norm();
        printf("Vector1 normalized: %s\n", vec1.toString().c_str());
        printf("Vector1 magnitude: %f\n", vec1.mag());
+       printf("Vector2 normalized: %s\n", vec2.toString().c_str());
+       printf("Vector2 magnitude: %f\n", vec2.mag());
 
        printf("END TESTING VECTORS----------------------\n");
 
