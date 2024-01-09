@@ -121,7 +121,7 @@ public:
         decimalType dot(Vector *other);         // dot product
         Vector *cross(Vector *other);           // cross product
         decimalType mag();                      // returns the magnitude of the vector
-        void norm();                         // normalize the vector
+        void norm();                            // normalize the vector
 
     private:
         int degree;
@@ -129,6 +129,17 @@ public:
     };
     class Matrix
     {
+    public:
+        Matrix();
+        Matrix(int rows, int columns);
+        ~Matrix();
+        Matrix operator+(const Matrix &other) const;
+        Matrix operator-(const Matrix &other) const;
+        Matrix operator*(const Matrix &other) const;
+        Matrix inverse();
+        Matrix scale(decimalType scalar); // multiply a scalar to all the elements of M
+
+    private:
     };
     // TODO
 private:
