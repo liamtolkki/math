@@ -29,4 +29,6 @@ A fun project to calculate certain math operations
         
     --vector/matrix multiplication
     --cross/dot product
+--Statistics
+    --
     ...
