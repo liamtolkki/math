@@ -1,5 +1,6 @@
 #include "math.h"
 #ifdef __LINEAR_ALGEBRA
+#ifdef __VECTORS
 LinearAlgebra::Vector::Vector()
 {
     degree = 0;
@@ -142,5 +143,134 @@ decimalType LinearAlgebra::Vector::dot(Vector *other)
         return 0;
     }
 }
+#endif
+
+#ifdef __MATRICES
+
+LinearAlgebra::Matrix::Matrix() : rows(0), columns(0), components(nullptr)
+{
+}
+
+LinearAlgebra::Matrix::Matrix(int r, int c) : rows(r), columns(c)
+{
+    // initialize the matrix
+    components = new decimalType *[rows];
+    for (int i = 0; i < rows; i++)
+    {
+        components[i] = new decimalType[columns];
+
+        // initialize to 0 value:
+        for (int j = 0; j < columns; j++)
+        {
+            components[i][j] = 0.0;
+        }
+    }
+}
+LinearAlgebra::Matrix::Matrix(int r, int c, decimalType *compArr, int sz) : rows(r), columns(c)
+{
+    components = new decimalType *[rows];
+    for (int i = 0; i < rows; i++)
+    {
+        components[i] = new decimalType[columns];
+    }
+    this->initialize(compArr, sz); // initialize the matrix
+}
+LinearAlgebra::Matrix::~Matrix()
+{
+    // delete all components:
+    for (int i = 0; i < rows; i++)
+    {
+        delete components[i];
+    }
+    delete components;
+}
+
+decimalType LinearAlgebra::Matrix::get(int i, int j)
+{
+    if ((i < rows) && (j < columns))
+    {
+        return components[i][j];
+    }
+    else
+    {
+        throw std::runtime_error("index out of range of matrix");
+    }
+}
+void LinearAlgebra::Matrix::set(int i, int j, decimalType newVal)
+{
+    if ((i < rows) && (j < columns))
+    {
+        components[i][j] = newVal;
+    }
+    else
+    {
+        throw std::runtime_error("index out of range of matrix");
+    }
+}
+
+std::string LinearAlgebra::Matrix::toString()
+{
+    std::string result = ""; // start with empty string
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns - 1; j++)
+        {
+            // printf("appended: [%f]\n", components[i][j]);
+            char temp[100];
+            sprintf(temp, "[%12.6f] ", components[i][j]);
+            result.append(temp);
+        }
+        // printf("appended: [%f]\n", components[i][columns - 1]);
+        char temp[100];
+        sprintf(temp, "[%12.6f]\n\n\n", components[i][columns - 1]);
+        result.append(temp);
+    }
+    return result;
+}
+
+void LinearAlgebra::Matrix::initialize(decimalType *compArr, int sz)
+{
+    if (rows * columns == sz)
+    {
+        // initialize:
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                // this maps the matrix components to the proper index of the array
+                components[i][j] = compArr[(i * columns) + j];
+            }
+        }
+    }
+    else
+    {
+        throw std::runtime_error("Initializer array must match the size of the matrix!");
+    }
+}
+
+//+, -, * operators:
+
+LinearAlgebra::Matrix LinearAlgebra::Matrix::operator+(const Matrix &other) const
+{
+    if (columns == other.columns && rows == other.rows)
+    { // add
+        Matrix matSum = Matrix(rows, columns);
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                matSum.components[i][j] = components[i][j] + other.components[i][j];
+            }
+        }
+
+        return matSum;
+    }
+    else
+    {
+        throw std::runtime_error("Addition error: both matrices must have the same dimensions");
+    }
+}
+
+#endif
 
 #endif

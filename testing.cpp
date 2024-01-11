@@ -4,6 +4,8 @@ Liam Tolkkinen
 11/23/2023
 */
 
+#define __MATRIX_TESTING
+
 #include <stdio.h>
 #include "math.h"
 #include <limits>
@@ -34,6 +36,24 @@ Liam Tolkkinen
 #define u1 3.0
 #define u2 -2.0
 #define u3 2.0
+
+// matrix testing stuff:
+#define M1Rows 4
+#define M1Columns 3
+#define M1Sz (M1Rows * M1Columns)
+#define M1CompArr                                                        \
+       {                                                                 \
+              4.0, 6.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 2.0, 0.0, 1.0, 4.0 \
+       }
+
+#define M2Rows 4
+#define M2Columns 4
+#define M2Sz (M2Rows * M2Columns)
+#define M2CompArr                                                                                          \
+       {                                                                                                   \
+              3.0, 24.0, 6.0, 4.5, 3.04, 0.0, -28.0, 7.922, -0.23, 83.0, 2.0, 9.0, 83.1, -19.0, 2.718, 3.3 \
+       }
+
 // holds the largest long double possible
 decimalType largestValue = std::numeric_limits<decimalType>::max();
 
@@ -112,6 +132,7 @@ int main()
 #endif
 
 #ifdef __LINEAR_ALGEBRA
+#ifdef __VECTORS
        // test the linear algebra library
        LinearAlgebra::Vector vec1 = LinearAlgebra::Vector(degree);
        vec1.setVal(0, v1);
@@ -145,6 +166,41 @@ int main()
        printf("Vector2 magnitude: %f\n", vec2.mag());
 
        printf("END TESTING VECTORS----------------------\n");
+#endif
+#ifdef __MATRICES
+#ifdef __MATRIX_TESTING
+
+       printf("TESTING MATRICES--------------------------\n\n");
+
+       decimalType componentArray1[] = M1CompArr;
+       LinearAlgebra::Matrix m1 = LinearAlgebra::Matrix(M1Rows, M1Columns, componentArray1, M1Sz);
+       printf("Matrix 1:\n%s\n", m1.toString().c_str());
+
+       decimalType componentArray2[] = M2CompArr;
+       LinearAlgebra::Matrix m2 = LinearAlgebra::Matrix(M2Rows, M2Columns, componentArray2, M2Sz);
+       printf("Matrix 2:\n%s\n", m2.toString().c_str());
+
+       printf("testing get():\n");
+       printf("getting matrix_1(1,1): %f\n", m1.get(1, 1));
+       printf("getting matrix_2(1,1): %f\n", m2.get(1, 1));
+       m1.set(1, 1, 3.1415);
+       m2.set(1, 1, 12.34);
+       printf("testing set():\n");
+
+       printf("setting matrix_1(1,1) to 3.1415:\n");
+       printf("Matrix 1:\n%s\n", m1.toString().c_str());
+
+       printf("setting matrix_2(1,1) to 12.34:\n");
+       printf("Matrix 2:\n%s\n", m2.toString().c_str());
+       LinearAlgebra::Matrix matSum = m1 + m1;
+       printf("Got this far!\n");
+       printf("Msum(1,1):\n");
+
+       printf("Testing M1 + M1:\n%s", matSum.toString().c_str());
+
+       printf("END TESTING MATRICES----------------------\n\n");
+#endif
+#endif
 
        printf("END TESTING LINEAR ALGEBRA---------------\n");
 

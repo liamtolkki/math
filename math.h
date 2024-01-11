@@ -1,7 +1,10 @@
+#pragma once
 #include <string>
 #include <stdexcept>
 #define TRIG
 #define __LINEAR_ALGEBRA
+#define __VECTORS
+#define __MATRICES
 #define __SCIENTIFIC_NOTATION_CONSTANTS
 #define __VECTOR_NOTATION_CONSTANTS
 typedef double decimalType;
@@ -106,6 +109,7 @@ class Calculus
 class LinearAlgebra
 {
 public:
+#ifdef __VECTORS
     class Vector
     {
     public:
@@ -122,28 +126,41 @@ public:
         Vector *cross(Vector *other);           // cross product
         decimalType mag();                      // returns the magnitude of the vector
         void norm();                            // normalize the vector
+        void scale(decimalType scalar);         // apply a scalar to the vector and return
 
     private:
         int degree;
         decimalType *components;
     };
+#endif
+#ifdef __MATRICES
     class Matrix
     {
     public:
         Matrix();
         Matrix(int rows, int columns);
+        Matrix(int rows, int columns, decimalType *compArr, int sz);
         ~Matrix();
+        void initialize(decimalType *componentArray, int size);
+        decimalType get(int i, int j);              // get value in M(i, j)
+        void set(int i, int j, decimalType newVal); // set value in M(i, j) to newVal
+        std::string toString();                     // return the string print of the matrix M
         Matrix operator+(const Matrix &other) const;
         Matrix operator-(const Matrix &other) const;
         Matrix operator*(const Matrix &other) const;
-        Matrix inverse();                 // return the inverse of M (if exists)
-        Matrix scale(decimalType scalar); // multiply a scalar to all the elements of M
-        decimalType det();                // determinant of M
-        Matrix transpose();               // transpose of M
+        Matrix inverse();                       // return the inverse of M (if exists)
+        void scale(decimalType scalar);         // multiply a scalar to all the elements of M
+        decimalType det();                      // determinant of M
+        Matrix transpose();                     // transpose of M
+        decimalType minor(int row, int column); // returns the minor of M. (eg: M(1,2))
 
     private:
-        
+        decimalType **components; // a 2-D array to hold the matrix components
+        int rows;
+        int columns;
     };
+#endif
+
     // TODO
 private:
 };
