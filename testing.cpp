@@ -223,15 +223,15 @@ int main()
 #ifdef __DETERMINANT_TESTING
        printf("Testing determinants----------------------\n");
 
+              // det(M3) should be 30
+       decimalType detTest2 = m3.det();
+       printf("det(M3) = %f\n", detTest2);
+
        decimalType componentArray4[] = M4CompArr;
        LinearAlgebra::Matrix m4 = LinearAlgebra::Matrix(M4Rows, M4Columns, componentArray4, M4Sz);
        printf("Matrix 4:\n%s", m4.toString().c_str());
        decimalType detTest1 = m4.det();
        printf("det(M4) = %f\n", detTest1);
-
-       // det(M3) should be 30
-       decimalType detTest2 = m3.det();
-       printf("det(M3) = %f\n", detTest2);
 
 #endif
 #endif
