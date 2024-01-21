@@ -2,6 +2,8 @@
 #ifdef TRIG
 #define epsilon (double)(1.0E-10) // because there will always be error with appx
 
+
+
 decimalType toDeg(decimalType rad)
 {
     decimalType reducedRad = fmod(rad, 2 * PI);
@@ -23,11 +25,11 @@ decimalType sin(decimalType x)
     {
         sum += (((n % 2 == 0 ? 1 : -1) * pow(x, ((2 * n) + 1))) / fact((2 * n) + 1));
     }
-    if (std::abs(sum) < epsilon || sum == 0)
+    if (abs(sum) < epsilon || sum == 0)
     {
         return 0.0; // to account for very small errors
     }
-    else if (std::abs((1 - std::abs(sum))) < epsilon || sum == 1)
+    else if (abs((1 - abs(sum))) < epsilon || sum == 1)
     {
         return 1.0;
     }
@@ -44,11 +46,11 @@ decimalType cos(decimalType x)
     {
         sum += (n % 2 == 0 ? 1 : -1) * pow(x, (2 * n)) / fact(2 * n);
     }
-    if (std::abs(sum) < epsilon || sum == 0)
+    if (abs(sum) < epsilon || sum == 0)
     {
         return 0.0; // to account for very small errors
     }
-    else if (std::abs(1 - std::abs(sum)) < epsilon || sum == 1)
+    else if (abs(1 - abs(sum)) < epsilon || sum == 1)
     {
         return 1.0;
     }
@@ -112,11 +114,11 @@ decimalType arcsin(decimalType x)
 {
     decimalType sum = 0; // will hold the resulting value of the series
     int samples = 25;
-    if (std::abs(x) > 0.75)
+    if (abs(x) > 0.75)
     {
         samples = 30;
     }
-    if (std::abs(x) > 0.95)
+    if (abs(x) > 0.95)
     {
         samples = 40;
     }
@@ -143,7 +145,7 @@ decimalType arcsin(decimalType x)
     {
         return (PI * -0.5);
     }
-    if (std::abs(x) > 0.98) // better to use guess and check at this point
+    if (abs(x) > 0.98) // better to use guess and check at this point
     {
         // sin(y) = x --> arcsin(x) = y
         bool next = true;
@@ -160,11 +162,11 @@ decimalType arcsin(decimalType x)
             prevGuess = currentGuess; // update
             // this makes O(log(N)) where N is the amount of places the result is accurate to
             result = sin(currentGuess);
-            if ((std::abs(std::abs(result) - std::abs(x))) < epsilon)
+            if ((abs(abs(result) - abs(x))) < epsilon)
             { // within accepted accuracy
                 return currentGuess;
             }
-            else if (std::abs(result) > std::abs(x))
+            else if (abs(result) > abs(x))
             {
                 dx /= 2; // make the dx smaller and check the new section
                 sign = (x > 0 ? -1.0 : 1.0);
@@ -200,7 +202,7 @@ decimalType arctan(decimalType x)
     // basically solving for y:
     // lim x -> inf [arctan(x)] = PI / 2
     bool inRange; // to determine if the appx is close enough
-    if (x == 0 || (std::abs(x) < epsilon))
+    if (x == 0 || (abs(x) < epsilon))
     {
         return 0.0;
     }
@@ -212,11 +214,11 @@ decimalType arctan(decimalType x)
     {
         currentGuess += (sign * dx);
         result = tan(currentGuess);
-        if (std::abs(std::abs(result) - std::abs(x)) < epsilon)
+        if (abs(abs(result) - abs(x)) < epsilon)
         { // found it!
             return currentGuess;
         }
-        else if (std::abs(result) > std::abs(x))
+        else if (abs(result) > abs(x))
         {
             dx /= 2;
             sign = (x > 0 ? -1.0 : 1.0);
@@ -232,7 +234,7 @@ decimalType arcsec(decimalType x)
 {
     // arcsec(x) = 1/arccos(x)
     decimalType denominator = arccos(x);
-    if (std::abs(denominator) < epsilon)
+    if (abs(denominator) < epsilon)
     {
         std::runtime_error("[DOMAIN ERROR] arcsec()");
         return 0.0;
@@ -246,7 +248,7 @@ decimalType arccsc(decimalType x)
 {
     // arccsc(x) = 1/arcsin(x)
     decimalType denominator = arcsin(x);
-    if (std::abs(denominator) < epsilon)
+    if (abs(denominator) < epsilon)
     {
         std::runtime_error("[DOMAIN ERROR] arccsc()");
         return 0.0;
@@ -260,7 +262,7 @@ decimalType arccot(decimalType x)
 {
     // arccot(x) = 1/arctan(x)
     decimalType denominator = arctan(x);
-    if (std::abs(denominator) < epsilon)
+    if (abs(denominator) < epsilon)
     {
         std::runtime_error("[DOMAIN ERROR] arccot()");
         return 0.0;

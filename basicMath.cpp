@@ -1,6 +1,18 @@
 #include "math.h"
 #define epsilon .0000001
 
+decimalType abs(decimalType x)
+{
+    if (x >= 0.0)
+    {
+        return x;
+    }
+    else
+    {
+        return x * -1.0;
+    }
+}
+
 decimalType fmod(decimalType x, decimalType y)
 {
     int intResult = static_cast<int>(x / y);
@@ -8,12 +20,6 @@ decimalType fmod(decimalType x, decimalType y)
     return result;
 }
 
-decimalType sum(double start, double end, decimalType (*term)(double))
-{
-    decimalType result;
-    // TODO
-    return result;
-}
 
 decimalType nRoot(decimalType x, int n)
 {
@@ -38,7 +44,7 @@ decimalType nRoot(decimalType x, int n)
     }
     guess = x / 2;
     decimalType prevGuess = 0.0;
-    while (std::abs(guess - prevGuess) > epsilon)
+    while (abs(guess - prevGuess) > epsilon)
     {
         prevGuess = guess;
         guess = ((n - 1.0) * guess + x / pow(guess, n - 1)) / n;

@@ -4,7 +4,7 @@
 LinearAlgebra::Vector::Vector()
 {
     degree = 0;
-    components = nullptr;
+    components = NULL;
 }
 
 LinearAlgebra::Vector::Vector(int deg)
@@ -147,11 +147,11 @@ decimalType LinearAlgebra::Vector::dot(Vector *other)
 
 #ifdef __MATRICES
 
-LinearAlgebra::Matrix::Matrix() : rows(0), columns(0), components(nullptr)
+LinearAlgebra::Matrix::Matrix() : rows(0), columns(0)
 {
 }
 
-LinearAlgebra::Matrix::Matrix(int r, int c) : rows(r), columns(c)
+LinearAlgebra::Matrix::Matrix(int r, int c) : rows(r), columns(c), components(NULL)
 {
     // initialize the matrix
     components = new decimalType *[rows];
@@ -180,11 +180,20 @@ LinearAlgebra::Matrix::~Matrix()
     // delete all components:
     for (int i = 0; i < rows; i++)
     {
-        delete components[i];
+        delete[] components[i];
     }
-    delete components;
+    delete[] components;
 }
 
+int LinearAlgebra::Matrix::getRows()
+{
+    return rows;
+}
+
+int LinearAlgebra::Matrix::getColumns()
+{
+    return columns;
+}
 decimalType LinearAlgebra::Matrix::get(int i, int j)
 {
     if ((i < rows) && (j < columns))
@@ -228,8 +237,21 @@ std::string LinearAlgebra::Matrix::toString()
     return result;
 }
 
+void LinearAlgebra::Matrix::initializeComp()
+{
+    if (!components)
+    {
+        components = new decimalType *[rows];
+        for (int i = 0; i < rows; i++)
+        {
+            components[i] = new decimalType[columns];
+        }
+    }
+}
+
 void LinearAlgebra::Matrix::initialize(decimalType *compArr, int sz)
 {
+    this->initializeComp(); // just in case the component array is a nullptr
     if (rows * columns == sz)
     {
         // initialize:
@@ -248,7 +270,99 @@ void LinearAlgebra::Matrix::initialize(decimalType *compArr, int sz)
     }
 }
 
-//+, -, * operators:
+// recursive function helper:
+decimalType detHelp(LinearAlgebra::Matrix *sub)
+{
+    decimalType result = 0.0;
+    int subRows = sub->getRows();
+    int subCols = sub->getColumns();
+
+    if (subRows == 1 && subCols == 1)
+    { // -------BASE CASE-------
+      //    CURRENT SUB IS 1X1
+        return sub->get(0, 0);
+    }
+    decimalType currCoef = 0.0;
+    int sign = 1; // will either be +1 or -1
+    for (int i = 0; i < subCols; i++)
+    {
+        currCoef = sub->get(0, i);    // current coefficient to multiply to the minor
+        sign = (i % 2 == 0) ? 1 : -1; // check to see if i is even
+        currCoef *= sign;             // sets the sign
+        int subSz = (subCols - 1) * (subRows - 1);
+        decimalType *compArr = new decimalType[subSz];
+        int nextIndx = 0;
+        // initialize the component array
+        for (int j = 0; j < subCols; j++) // j = new i (column index)
+        {
+            if (j == i)
+            {
+                ; // skip the current column
+            }
+            else
+            {
+                for (int k = 1; k < subCols; k++) // k == row index
+                {
+                    compArr[nextIndx] = sub->get(k, j);
+                    nextIndx++;
+                }
+            }
+        }
+        LinearAlgebra::Matrix *newSub = new LinearAlgebra::Matrix(subRows - 1, subCols - 1, compArr, subSz);
+
+        // actual recursive step:
+
+        result += currCoef * detHelp(newSub); // multiply the coefficient to the current minor
+
+        // free up mem
+        delete newSub;
+        delete[] compArr;
+    }
+    return result;
+}
+decimalType LinearAlgebra::Matrix::det()
+{
+    decimalType determinant = 0.0;
+    if (rows == columns) // must be a square matrix
+    {
+        determinant = detHelp(this);
+    }
+    else
+    {
+        throw std::runtime_error("Det(M) error: M must be a square matrix");
+    }
+    return determinant;
+}
+
+//+, -, *, = operators:
+
+LinearAlgebra::Matrix &LinearAlgebra::Matrix::operator=(const Matrix &other)
+{
+    if (this != &other)
+    {
+
+        for (int i = 0; i < rows; i++)
+        {
+            delete[] components[i];
+        }
+        delete[] components;
+
+        // copy the matrix
+        rows = other.rows;
+        columns = other.columns;
+        components = new decimalType *[rows];
+
+        for (int i = 0; i < rows; i++)
+        {
+            components[i] = new decimalType[columns];
+            for (int j = 0; j < columns; j++)
+            {
+                components[i][j] = other.components[i][j]; // copy!!
+            }
+        }
+    }
+    return *this;
+}
 
 LinearAlgebra::Matrix LinearAlgebra::Matrix::operator+(const Matrix &other) const
 {
@@ -262,6 +376,8 @@ LinearAlgebra::Matrix LinearAlgebra::Matrix::operator+(const Matrix &other) cons
                 matSum.components[i][j] = components[i][j] + other.components[i][j];
             }
         }
+        printf("address of matSum->components: %p\n", (void *)matSum.components);
+        printf("Got to end of + operator!\n");
 
         return matSum;
     }

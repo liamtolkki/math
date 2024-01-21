@@ -3,6 +3,14 @@ CC = g++
 
 CFLAGS = -g -Wall -ansi -pedantic -Wno-write-strings -Wno-parentheses
 
+.SUFFIXES: .cpp .o .C
+
+.C.o:
+	$(CC) $(CFLAGS) -c $<
+
+.cpp.o:
+	$(CC) $(CFLAGS) -c $<
+
 OBJFILES = differentiation.o testing.o basicMath.o complexNum.o linear.o trig.o
 
 $(PROJECT): $(OBJFILES)

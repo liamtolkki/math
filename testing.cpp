@@ -5,6 +5,8 @@ Liam Tolkkinen
 */
 
 #define __MATRIX_TESTING
+#define __DETERMINANT_TESTING
+// #define __MATRIX_SUM_TESTING
 
 #include <stdio.h>
 #include "math.h"
@@ -53,7 +55,22 @@ Liam Tolkkinen
        {                                                                                                   \
               3.0, 24.0, 6.0, 4.5, 3.04, 0.0, -28.0, 7.922, -0.23, 83.0, 2.0, 9.0, 83.1, -19.0, 2.718, 3.3 \
        }
+#define M3CompArr                                         \
+       {                                                  \
+              4.0, 6.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 2.0 \
+       }
+#define M3Rows 3
+#define M3Columns 3
+#define M4CompArr                \
+       {                         \
+              2.0, 3.0, 4.0, 2.0 \
+       }
+#define M4Columns 2
 
+#define M4Rows 2
+#define M4Sz (M4Rows * M4Columns)
+// det(M3) should be 30
+#define M3Sz (M3Rows * M3Columns)
 // holds the largest long double possible
 decimalType largestValue = std::numeric_limits<decimalType>::max();
 
@@ -180,6 +197,10 @@ int main()
        LinearAlgebra::Matrix m2 = LinearAlgebra::Matrix(M2Rows, M2Columns, componentArray2, M2Sz);
        printf("Matrix 2:\n%s\n", m2.toString().c_str());
 
+       decimalType componentArray3[] = M3CompArr;
+       LinearAlgebra::Matrix m3 = LinearAlgebra::Matrix(M3Rows, M3Columns, componentArray3, M3Sz);
+       printf("Matrix 3:\n%s\n", m3.toString().c_str());
+
        printf("testing get():\n");
        printf("getting matrix_1(1,1): %f\n", m1.get(1, 1));
        printf("getting matrix_2(1,1): %f\n", m2.get(1, 1));
@@ -192,13 +213,27 @@ int main()
 
        printf("setting matrix_2(1,1) to 12.34:\n");
        printf("Matrix 2:\n%s\n", m2.toString().c_str());
-       LinearAlgebra::Matrix matSum = m1 + m1;
-       printf("Got this far!\n");
-       printf("Msum(1,1):\n");
-
+#ifdef __MATRIX_SUM_TESTING
+       LinearAlgebra::Matrix matSum = LinearAlgebra::Matrix(M1Rows, M1Columns);
+       matSum = m1 + m1;
        printf("Testing M1 + M1:\n%s", matSum.toString().c_str());
 
        printf("END TESTING MATRICES----------------------\n\n");
+#endif
+#ifdef __DETERMINANT_TESTING
+       printf("Testing determinants----------------------\n");
+
+       decimalType componentArray4[] = M4CompArr;
+       LinearAlgebra::Matrix m4 = LinearAlgebra::Matrix(M4Rows, M4Columns, componentArray4, M4Sz);
+       printf("Matrix 4:\n%s", m4.toString().c_str());
+       decimalType detTest1 = m4.det();
+       printf("det(M4) = %f\n", detTest1);
+
+       // det(M3) should be 30
+       decimalType detTest2 = m3.det();
+       printf("det(M3) = %f\n", detTest2);
+
+#endif
 #endif
 #endif
 

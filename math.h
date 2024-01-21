@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <stdexcept>
+#include <cstdio>
 #define TRIG
 #define __LINEAR_ALGEBRA
 #define __VECTORS
@@ -24,6 +25,7 @@ const int UNIT_NOTATION = 1;
 #endif
 
 // standalone functions:
+decimalType abs(decimalType x);
 decimalType fmod(decimalType x, decimalType y); // returns x % y
 decimalType sum(double start, double end, decimalType (*term)(double));
 decimalType log(double base, double x);
@@ -142,9 +144,11 @@ public:
         Matrix(int rows, int columns, decimalType *compArr, int sz);
         ~Matrix();
         void initialize(decimalType *componentArray, int size);
+        void initializeComp();
         decimalType get(int i, int j);              // get value in M(i, j)
         void set(int i, int j, decimalType newVal); // set value in M(i, j) to newVal
         std::string toString();                     // return the string print of the matrix M
+        Matrix &operator=(const Matrix &other);
         Matrix operator+(const Matrix &other) const;
         Matrix operator-(const Matrix &other) const;
         Matrix operator*(const Matrix &other) const;
@@ -153,6 +157,8 @@ public:
         decimalType det();                      // determinant of M
         Matrix transpose();                     // transpose of M
         decimalType minor(int row, int column); // returns the minor of M. (eg: M(1,2))
+        int getRows();
+        int getColumns();
 
     private:
         decimalType **components; // a 2-D array to hold the matrix components
