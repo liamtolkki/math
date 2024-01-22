@@ -151,7 +151,7 @@ LinearAlgebra::Matrix::Matrix() : rows(0), columns(0)
 {
 }
 
-LinearAlgebra::Matrix::Matrix(int r, int c) : rows(r), columns(c), components(NULL)
+LinearAlgebra::Matrix::Matrix(int r, int c) : rows(r), columns(c)
 {
     // initialize the matrix
     components = new decimalType *[rows];
@@ -175,6 +175,21 @@ LinearAlgebra::Matrix::Matrix(int r, int c, decimalType *compArr, int sz) : rows
     }
     this->initialize(compArr, sz); // initialize the matrix
 }
+
+// copy constructor:
+LinearAlgebra::Matrix::Matrix(const Matrix &other) : rows(other.rows), columns(other.columns)
+{
+    components = new decimalType *[rows];
+    for (int i = 0; i < rows; i++)
+    {
+        components[i] = new decimalType[columns];
+        for (int j = 0; j < columns; j++)
+        {
+            components[i][j] = other.components[i][j];
+        }
+    }
+}
+
 LinearAlgebra::Matrix::~Matrix()
 {
     // delete all components:
@@ -194,7 +209,7 @@ int LinearAlgebra::Matrix::getColumns()
 {
     return columns;
 }
-decimalType LinearAlgebra::Matrix::get(int i, int j)
+decimalType LinearAlgebra::Matrix::get(int i, int j) const
 {
     if ((i < rows) && (j < columns))
     {
@@ -357,7 +372,7 @@ LinearAlgebra::Matrix &LinearAlgebra::Matrix::operator=(const Matrix &other)
             components[i] = new decimalType[columns];
             for (int j = 0; j < columns; j++)
             {
-                components[i][j] = other.components[i][j]; // copy!!
+                components[i][j] = other.get(i, j); // copy!!
             }
         }
     }
@@ -373,11 +388,11 @@ LinearAlgebra::Matrix LinearAlgebra::Matrix::operator+(const Matrix &other) cons
         {
             for (int j = 0; j < columns; j++)
             {
-                matSum.components[i][j] = components[i][j] + other.components[i][j];
+                matSum.components[i][j] = get(i, j) + other.get(i, j);
             }
         }
-        printf("address of matSum->components: %p\n", (void *)matSum.components);
-        printf("Got to end of + operator!\n");
+        // printf("address of matSum->components: %p\n", (void *)matSum.components);
+        // printf("Got to end of + operator!\n");
 
         return matSum;
     }
