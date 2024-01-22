@@ -80,6 +80,24 @@ Liam Tolkkinen
 
 #define M5Rows 2
 #define M5Sz (M5Rows * M5Columns)
+
+#define M6CompArr                          \
+       {                                   \
+              1.0, 2.0, 5.0, 3.0, 9.0, 0.0 \
+       }
+#define M6Columns 3
+
+#define M6Rows 2
+#define M6Sz (M6Rows * M6Columns)
+#define M7CompArr                                         \
+       {                                                  \
+              3.0, 4.0, 0.0, -9.0, 6.5, 0.6, 3.1, 2, 8.95 \
+       }
+#define M7Columns 3
+
+#define M7Rows 3
+#define M7Sz (M7Rows * M7Columns)
+
 // det(M3) should be 30
 // holds the largest long double possible
 decimalType largestValue = std::numeric_limits<decimalType>::max();
@@ -248,6 +266,21 @@ int main()
 
        matSum = m4 - m5;
        printf("Testing M4 - M5:\n%s", matSum.toString().c_str());
+
+       LinearAlgebra::Matrix matProd = m4 * m4;
+       printf("Testing M4 * M4:\n%s", matProd.toString().c_str());
+       matProd = m5 * m5;
+       printf("Testing M5 * M5:\n%s", matProd.toString().c_str());
+
+       decimalType componentArray6[] = M6CompArr;
+       LinearAlgebra::Matrix m6 = LinearAlgebra::Matrix(M6Rows, M6Columns, componentArray6, M6Sz);
+       printf("Matrix 6:\n%s\n", m6.toString().c_str());
+
+       decimalType componentArray7[] = M7CompArr;
+       LinearAlgebra::Matrix m7 = LinearAlgebra::Matrix(M7Rows, M7Columns, componentArray7, M7Sz);
+       printf("Matrix 7:\n%s\n", m7.toString().c_str());
+       matProd = m6 * m7;
+       printf("Testing M6 * M7:\n%s", matProd.toString().c_str());
 
 #endif
 

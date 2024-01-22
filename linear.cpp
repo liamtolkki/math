@@ -420,6 +420,33 @@ LinearAlgebra::Matrix LinearAlgebra::Matrix::operator-(const Matrix &other) cons
     return result;
 }
 
+/*
+Pre::M1 columns = M2 Rows
+Post::multiplies both matrices as M1 X M2
+*/
+LinearAlgebra::Matrix LinearAlgebra::Matrix::operator*(const Matrix &other) const
+{
+    if (columns != other.rows)
+    {
+        throw std::runtime_error("Multiplication error!\nM1's columns must match M2's rows!");
+    }
+    Matrix result = Matrix(rows, other.columns);
+    // multiply:
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < other.columns; j++)
+        {
+            decimalType tempSum = 0.0;
+            for (int k = 0; k < columns; k++)
+            {
+                tempSum += (components[i][k] * other.components[k][j]);
+            }
+            result.components[i][j] = tempSum;
+        }
+    }
+    return result;
+}
+
 #endif
 
 #endif
