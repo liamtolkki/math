@@ -372,7 +372,7 @@ LinearAlgebra::Matrix &LinearAlgebra::Matrix::operator=(const Matrix &other)
             components[i] = new decimalType[columns];
             for (int j = 0; j < columns; j++)
             {
-                components[i][j] = other.get(i, j); // copy!!
+                components[i][j] = other.components[i][j]; // copy!!
             }
         }
     }
@@ -388,11 +388,9 @@ LinearAlgebra::Matrix LinearAlgebra::Matrix::operator+(const Matrix &other) cons
         {
             for (int j = 0; j < columns; j++)
             {
-                matSum.components[i][j] = get(i, j) + other.get(i, j);
+                matSum.components[i][j] = components[i][j] + other.components[i][j];
             }
         }
-        // printf("address of matSum->components: %p\n", (void *)matSum.components);
-        // printf("Got to end of + operator!\n");
 
         return matSum;
     }
