@@ -246,6 +246,9 @@ int main()
        matSum = m1 + m1;
        printf("Testing M1 + M1:\n%s", matSum.toString().c_str());
 
+       matSum = m4 - m5;
+       printf("Testing M4 - M5:\n%s", matSum.toString().c_str());
+
 #endif
 
 #endif

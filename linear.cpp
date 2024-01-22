@@ -381,9 +381,9 @@ LinearAlgebra::Matrix &LinearAlgebra::Matrix::operator=(const Matrix &other)
 
 LinearAlgebra::Matrix LinearAlgebra::Matrix::operator+(const Matrix &other) const
 {
+    Matrix matSum = Matrix(rows, columns);
     if (columns == other.columns && rows == other.rows)
     { // add
-        Matrix matSum = Matrix(rows, columns);
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
@@ -398,6 +398,26 @@ LinearAlgebra::Matrix LinearAlgebra::Matrix::operator+(const Matrix &other) cons
     {
         throw std::runtime_error("Addition error: both matrices must have the same dimensions");
     }
+}
+
+LinearAlgebra::Matrix LinearAlgebra::Matrix::operator-(const Matrix &other) const
+{
+    Matrix result = Matrix(rows, columns);
+    if (columns == other.columns && rows == other.rows)
+    {
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                result.components[i][j] = components[i][j] - other.components[i][j];
+            }
+        }
+    }
+    else
+    {
+        throw std::runtime_error("Subtraction error: both matrices must have the same dimensions");
+    }
+    return result;
 }
 
 #endif
