@@ -6,7 +6,7 @@ Liam Tolkkinen
 
 #define __MATRIX_TESTING
 #define __DETERMINANT_TESTING
-// #define __MATRIX_SUM_TESTING
+#define __MATRIX_SUM_TESTING
 
 #include <stdio.h>
 #include "math.h"
@@ -61,6 +61,8 @@ Liam Tolkkinen
        }
 #define M3Rows 3
 #define M3Columns 3
+#define M3Sz (M3Rows * M3Columns)
+
 #define M4CompArr                \
        {                         \
               2.0, 3.0, 4.0, 2.0 \
@@ -69,8 +71,16 @@ Liam Tolkkinen
 
 #define M4Rows 2
 #define M4Sz (M4Rows * M4Columns)
+
+#define M5CompArr                \
+       {                         \
+              1.0, 2.0, 5.0, 3.0 \
+       }
+#define M5Columns 2
+
+#define M5Rows 2
+#define M5Sz (M5Rows * M5Columns)
 // det(M3) should be 30
-#define M3Sz (M3Rows * M3Columns)
 // holds the largest long double possible
 decimalType largestValue = std::numeric_limits<decimalType>::max();
 
@@ -213,17 +223,11 @@ int main()
 
        printf("setting matrix_2(1,1) to 12.34:\n");
        printf("Matrix 2:\n%s\n", m2.toString().c_str());
-#ifdef __MATRIX_SUM_TESTING
-       LinearAlgebra::Matrix matSum = LinearAlgebra::Matrix(M1Rows, M1Columns);
-       matSum = m1 + m1;
-       printf("Testing M1 + M1:\n%s", matSum.toString().c_str());
 
-       printf("END TESTING MATRICES----------------------\n\n");
-#endif
 #ifdef __DETERMINANT_TESTING
        printf("Testing determinants----------------------\n");
 
-              // det(M3) should be 30
+       // det(M3) should be 30
        decimalType detTest2 = m3.det();
        printf("det(M3) = %f\n", detTest2);
 
@@ -232,6 +236,17 @@ int main()
        printf("Matrix 4:\n%s", m4.toString().c_str());
        decimalType detTest1 = m4.det();
        printf("det(M4) = %f\n", detTest1);
+
+       decimalType componentArray5[] = M5CompArr;
+       LinearAlgebra::Matrix m5 = LinearAlgebra::Matrix(M5Rows, M5Columns, componentArray5, M5Sz);
+       printf("Matrix 5:\n%s\n", m5.toString().c_str());
+
+#ifdef __MATRIX_SUM_TESTING
+       LinearAlgebra::Matrix matSum = LinearAlgebra::Matrix(M1Rows, M1Columns);
+       matSum = m1 + m1;
+       printf("Testing M1 + M1:\n%s", matSum.toString().c_str());
+
+#endif
 
 #endif
 #endif
