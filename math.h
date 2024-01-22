@@ -142,10 +142,11 @@ public:
         Matrix();
         Matrix(int rows, int columns);
         Matrix(int rows, int columns, decimalType *compArr, int sz);
+        Matrix(const Matrix &other); // copy constructor
         ~Matrix();
         void initialize(decimalType *componentArray, int size);
         void initializeComp();
-        decimalType get(int i, int j);              // get value in M(i, j)
+        decimalType get(int i, int j) const;        // get value in M(i, j)
         void set(int i, int j, decimalType newVal); // set value in M(i, j) to newVal
         std::string toString();                     // return the string print of the matrix M
         Matrix &operator=(const Matrix &other);
