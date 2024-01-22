@@ -27,7 +27,7 @@ A fun project to calculate certain math operations
         --inverse matrices
         --transpose
         
-    --vector/matrix multiplication
+    --vector/matrix operators: addition, subtraction, multiplication (dot product for vectors)
     --cross/dot product
 --Statistics
     --
