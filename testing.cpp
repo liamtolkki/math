@@ -281,6 +281,9 @@ int main()
        printf("Matrix 7:\n%s\n", m7.toString().c_str());
        matProd = m6 * m7;
        printf("Testing M6 * M7:\n%s", matProd.toString().c_str());
+       printf("Testing (M6 * M7) transpose:\n");
+       LinearAlgebra::Matrix matProdT = matProd.transpose();
+       printf("%s\n", matProdT.toString().c_str());
 
 #endif
 
