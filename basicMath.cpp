@@ -20,7 +20,6 @@ decimalType fmod(decimalType x, decimalType y)
     return result;
 }
 
-
 decimalType nRoot(decimalType x, int n)
 {
     if (x == 2 && n == 2)
@@ -94,13 +93,20 @@ decimalType ln(double x)
 }
 decimalType fact(int x)
 {
-    if (x == 1 || x == 0)
+    if (x >= 0)
     {
-        return 1;
+        if (x == 1 || x == 0)
+        {
+            return 1;
+        }
+        else
+        {
+            return (x * fact(x - 1));
+        }
     }
     else
     {
-        return (x * fact(x - 1));
+        throw std::runtime_error("Factorial error: input must be >0");
     }
 }
 
