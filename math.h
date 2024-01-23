@@ -6,6 +6,7 @@
 #define __LINEAR_ALGEBRA
 #define __VECTORS
 #define __MATRICES
+// #define __TRANSPOSE
 #define __SCIENTIFIC_NOTATION_CONSTANTS
 #define __VECTOR_NOTATION_CONSTANTS
 typedef double decimalType;
@@ -160,6 +161,13 @@ public:
         decimalType minor(int row, int column); // returns the minor of M. (eg: M(1,2))
         int getRows() const;
         int getColumns() const;
+
+        // performs: row2 = (Scalar1*row1 + Scalar2*row2)
+        void rowOp(int row1, decimalType scalar1, int row2, decimalType scalar2);
+        void rowOp(int row1, decimalType scalar1, int row2);
+        void rowOp(int row1, int row2, decimalType scalar2);
+
+        void rowOp(int row1, int row2);
 
     private:
         decimalType **components; // a 2-D array to hold the matrix components

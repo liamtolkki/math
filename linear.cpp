@@ -348,7 +348,6 @@ decimalType LinearAlgebra::Matrix::det()
     }
     return determinant;
 }
-
 LinearAlgebra::Matrix LinearAlgebra::Matrix::transpose() const
 {
     LinearAlgebra::Matrix result = Matrix(columns, rows); // new matrix, but rows&columns flipped
@@ -360,6 +359,35 @@ LinearAlgebra::Matrix LinearAlgebra::Matrix::transpose() const
         }
     }
     return result;
+}
+
+void LinearAlgebra::Matrix::rowOp(int row1, decimalType scalar1, int row2, decimalType scalar2)
+{
+    if (row1 >= rows || row2 >= rows)
+    {
+        throw std::runtime_error("rowOp() error: row index out of bounds of matrix!");
+    }
+    else
+    {
+        for (int i = 0; i < columns; i++)
+        {
+            components[row2][i] = (scalar2 * components[row2][i]) + (scalar1 * components[row1][i]);
+        }
+    }
+}
+
+// rowOp overloads:
+void LinearAlgebra::Matrix::rowOp(int row1, decimalType scalar1, int row2)
+{
+    rowOp(row1, scalar1, row2, 1.0);
+}
+void LinearAlgebra::Matrix::rowOp(int row1, int row2, decimalType scalar2)
+{
+    rowOp(row1, 1.0, row2, scalar2);
+}
+void LinearAlgebra::Matrix::rowOp(int row1, int row2)
+{
+    rowOp(row1, 1.0, row2, 1.0);
 }
 
 //+, -, *, = operators:
