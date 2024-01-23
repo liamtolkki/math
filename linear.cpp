@@ -200,12 +200,12 @@ LinearAlgebra::Matrix::~Matrix()
     delete[] components;
 }
 
-int LinearAlgebra::Matrix::getRows()
+int LinearAlgebra::Matrix::getRows() const
 {
     return rows;
 }
 
-int LinearAlgebra::Matrix::getColumns()
+int LinearAlgebra::Matrix::getColumns() const
 {
     return columns;
 }
@@ -347,6 +347,19 @@ decimalType LinearAlgebra::Matrix::det()
         throw std::runtime_error("Det(M) error: M must be a square matrix");
     }
     return determinant;
+}
+
+LinearAlgebra::Matrix LinearAlgebra::Matrix::transpose() const
+{
+    LinearAlgebra::Matrix result = Matrix(columns, rows); // new matrix, but rows&columns flipped
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            result.components[j][i] = components[i][j]; // copy (inverted)
+        }
+    }
+    return result;
 }
 
 //+, -, *, = operators:
