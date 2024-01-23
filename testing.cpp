@@ -285,6 +285,13 @@ int main()
        LinearAlgebra::Matrix matProdT = matProd.transpose();
        printf("%s\n", matProdT.toString().c_str());
 
+       printf("row operations (matrix_5):\n");
+       printf("%s", m5.toString().c_str());
+
+       printf("(M5): R1*(2) + R2*(-5.2) --> R2\n");
+       m5.rowOp(0, 2.0, 1, -5.2);
+       printf("%s", m5.toString().c_str());
+
 #endif
 
 #endif
