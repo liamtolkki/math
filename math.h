@@ -153,13 +153,13 @@ public:
         Matrix operator+(const Matrix &other) const;
         Matrix operator-(const Matrix &other) const;
         Matrix operator*(const Matrix &other) const;
-        Matrix inverse();                       // return the inverse of M (if exists)
+        Matrix inverse() const;                 // return the inverse of M (if exists)
         void scale(decimalType scalar);         // multiply a scalar to all the elements of M
         decimalType det();                      // determinant of M
-        Matrix transpose();                     // transpose of M
+        Matrix transpose() const;               // transpose of M
         decimalType minor(int row, int column); // returns the minor of M. (eg: M(1,2))
-        int getRows();
-        int getColumns();
+        int getRows() const;
+        int getColumns() const;
 
     private:
         decimalType **components; // a 2-D array to hold the matrix components
