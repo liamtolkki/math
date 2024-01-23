@@ -2,8 +2,6 @@
 #ifdef TRIG
 #define epsilon (double)(1.0E-10) // because there will always be error with appx
 
-
-
 decimalType toDeg(decimalType rad)
 {
     decimalType reducedRad = fmod(rad, 2 * PI);
@@ -201,7 +199,6 @@ decimalType arctan(decimalType x)
     // arctan(x) = y --> tan(y) = x
     // basically solving for y:
     // lim x -> inf [arctan(x)] = PI / 2
-    bool inRange; // to determine if the appx is close enough
     if (x == 0 || (abs(x) < epsilon))
     {
         return 0.0;
