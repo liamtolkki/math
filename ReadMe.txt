@@ -8,6 +8,8 @@ A fun project to calculate certain math operations
         --log_n(base, x)
         --exp(x)
         --sqrt(x)
+        --fact(x)
+        --fib(x)
         --nthroot(n, x)
     --complex numbers (EX: 3 + 5i)
         --complex operators: (+, -, *, /)

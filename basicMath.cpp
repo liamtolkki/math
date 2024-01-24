@@ -110,6 +110,17 @@ decimalType fact(int x)
     }
 }
 
+int fib(int x)
+{
+    if (x < 0)
+    {
+        throw std::runtime_error("fib(x) error: x must be greater than 0");
+    }
+    if (x < 2)
+        return x;
+    return fib(x - 2) + fib(x - 1);
+}
+
 SciNot::SciNot()
 { // default constructor
     exp = 0;

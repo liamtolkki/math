@@ -149,9 +149,17 @@ int main()
        printf("%f\n", nrootResult);
        printf("Testing Factorial: \n%f! = ", factorial);
        decimalType factResult = fact(factorial);
+
        printf("%f\n", factResult);
        SciNot factResultSciNot = SciNot(factResult);
        printf("conversion to Scientific Notation: %s\n", factResultSciNot.toString().c_str());
+       printf("Testing fibonacci:\n");
+       int fibResult = 0;
+       for (int i = 0; i < 10; i++)
+       {
+              fibResult = fib(i);
+              printf("fib(%d) = %d\n", i, fibResult);
+       }
 #ifdef TRIG
        printf("Degrees to Radians: %.10f deg = %.10f rad\n", degrees, toRad(degrees));
        printf("Radians to Degrees: %.10f rad = %.10f deg\n", radians, toDeg(radians));

@@ -6,7 +6,7 @@
 #define __LINEAR_ALGEBRA
 #define __VECTORS
 #define __MATRICES
-// #define __TRANSPOSE
+// #define __MATRIX_INVERSE
 #define __SCIENTIFIC_NOTATION_CONSTANTS
 #define __VECTOR_NOTATION_CONSTANTS
 typedef double decimalType;
@@ -32,6 +32,7 @@ decimalType sum(double start, double end, decimalType (*term)(double));
 decimalType log(double base, double x);
 decimalType ln(double x);
 decimalType fact(int x); // factorial: x! = x * (x-1) * (x-2) * ... * (x-n) * 1; ex: 3! = 3*2*1
+int fib(int x);
 // max factorial value supported is 170! (7.257416E+306)
 
 decimalType nRoot(decimalType x, int n);
@@ -154,7 +155,10 @@ public:
         Matrix operator+(const Matrix &other) const;
         Matrix operator-(const Matrix &other) const;
         Matrix operator*(const Matrix &other) const;
-        Matrix inverse() const;                 // return the inverse of M (if exists)
+#ifdef __MATRIX_INVERSE
+        Matrix inverse() const; // return the inverse of M (if exists)
+#endif
+
         void scale(decimalType scalar);         // multiply a scalar to all the elements of M
         decimalType det();                      // determinant of M
         Matrix transpose() const;               // transpose of M
