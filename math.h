@@ -32,7 +32,7 @@ decimalType sum(double start, double end, decimalType (*term)(double));
 decimalType log(double base, double x);
 decimalType ln(double x);
 decimalType fact(int x); // factorial: x! = x * (x-1) * (x-2) * ... * (x-n) * 1; ex: 3! = 3*2*1
-int fib(int x);
+decimalType fib(int x);
 // max factorial value supported is 170! (7.257416E+306)
 
 decimalType nRoot(decimalType x, int n);

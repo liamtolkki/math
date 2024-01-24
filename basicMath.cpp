@@ -110,15 +110,39 @@ decimalType fact(int x)
     }
 }
 
-int fib(int x)
+decimalType fibHelper(int x, decimalType *dict)
 {
     if (x < 0)
     {
         throw std::runtime_error("fib(x) error: x must be greater than 0");
     }
     if (x < 2)
+    {
+        dict[x] = x;
         return x;
-    return fib(x - 2) + fib(x - 1);
+    }
+
+    if (dict[x] != 0)
+    {
+        return dict[x];
+    }
+    else
+    {
+        dict[x] = fibHelper(x - 2, dict) + fibHelper(x - 1, dict);
+        return dict[x];
+    }
+}
+
+decimalType fib(int x)
+{
+    decimalType *dict = new decimalType[x + 1]; // to hold fibonacci values that are already known for faster runtime
+    for (int i = 0; i <= x; i++)
+    {
+        dict[i] = 0.0; // initialize to zeroes
+    }
+    decimalType result = fibHelper(x, dict);
+    delete[] dict;
+    return result;
 }
 
 SciNot::SciNot()

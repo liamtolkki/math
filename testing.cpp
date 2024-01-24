@@ -147,18 +147,18 @@ int main()
        printf("testing nth root: %d root of %f: ", nRootN, nRootBase);
        decimalType nrootResult = nRoot(nRootBase, nRootN);
        printf("%f\n", nrootResult);
-       printf("Testing Factorial: \n%f! = ", factorial);
+       printf("Testing Factorial: \n%.0f! = ", factorial);
        decimalType factResult = fact(factorial);
 
-       printf("%f\n", factResult);
+       printf("%.0f\n", factResult);
        SciNot factResultSciNot = SciNot(factResult);
        printf("conversion to Scientific Notation: %s\n", factResultSciNot.toString().c_str());
        printf("Testing fibonacci:\n");
-       int fibResult = 0;
-       for (int i = 0; i < 10; i++)
+       decimalType fibResult = 0;
+       for (int i = 0; i <= 200; i++)
        {
               fibResult = fib(i);
-              printf("fib(%d) = %d\n", i, fibResult);
+              printf("fib(%i) = %.0f\n", i, fibResult);
        }
 #ifdef TRIG
        printf("Degrees to Radians: %.10f deg = %.10f rad\n", degrees, toRad(degrees));
