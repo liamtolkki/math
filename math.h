@@ -16,6 +16,7 @@ typedef decimalType (*term)(double); // parses the terms of a function, ex: x^2 
 const decimalType PI = 3.14159265358979;
 const decimalType e = 2.7182818284590452;
 const decimalType __SQRT_2 = 1.41421356237309504880;
+const decimalType __GOLDEN_RATIO = 1.61803398874989484821;
 #ifdef __SCIENTIFIC_NOTATION_CONSTANTS
 const int STD_FORM = 0;
 const int SCI_FORM = 1;
