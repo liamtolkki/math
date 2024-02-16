@@ -16,6 +16,8 @@ Liam Tolkkinen
 #define multiplyRVal2 0.0
 #define multiplyIVal2 1.0
 #define factorial 20.0
+#define fibVal1 10
+#define fibVal2 1000
 #define coefficient 3.0
 #define exp 2
 #define coefficient2 6.0
@@ -155,11 +157,10 @@ int main()
        printf("conversion to Scientific Notation: %s\n", factResultSciNot.toString().c_str());
        printf("Testing fibonacci:\n");
        decimalType fibResult = 0;
-       for (int i = 0; i <= 200; i++)
-       {
-              fibResult = fib(i);
-              printf("fib(%i) = %.0f\n", i, fibResult);
-       }
+       printf("fib(%i) = ", fibVal1);
+       printf("%.0f\n", fib(fibVal1));
+       printf("fib(%i) = ", fibVal2);
+       printf("%.0f\n", fib(fibVal2));
 #ifdef TRIG
        printf("Degrees to Radians: %.10f deg = %.10f rad\n", degrees, toRad(degrees));
        printf("Radians to Degrees: %.10f rad = %.10f deg\n", radians, toDeg(radians));
