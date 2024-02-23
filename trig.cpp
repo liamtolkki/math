@@ -1,6 +1,5 @@
 #include "math.h"
 #ifdef TRIG
-#define epsilon (double)(1.0E-10) // because there will always be error with appx
 
 decimalType toDeg(decimalType rad)
 {
@@ -23,11 +22,11 @@ decimalType sin(decimalType x)
     {
         sum += (((n % 2 == 0 ? 1 : -1) * pow(x, ((2 * n) + 1))) / fact((2 * n) + 1));
     }
-    if (abs(sum) < epsilon || sum == 0)
+    if (abs(sum) < epsilon_TRIG || sum == 0)
     {
         return 0.0; // to account for very small errors
     }
-    else if (abs((1 - abs(sum))) < epsilon || sum == 1)
+    else if (abs((1 - abs(sum))) < epsilon_TRIG || sum == 1)
     {
         return 1.0;
     }
@@ -44,11 +43,11 @@ decimalType cos(decimalType x)
     {
         sum += (n % 2 == 0 ? 1 : -1) * pow(x, (2 * n)) / fact(2 * n);
     }
-    if (abs(sum) < epsilon || sum == 0)
+    if (abs(sum) < epsilon_TRIG || sum == 0)
     {
         return 0.0; // to account for very small errors
     }
-    else if (abs(1 - abs(sum)) < epsilon || sum == 1)
+    else if (abs(1 - abs(sum)) < epsilon_TRIG || sum == 1)
     {
         return 1.0;
     }
@@ -160,7 +159,7 @@ decimalType arcsin(decimalType x)
             prevGuess = currentGuess; // update
             // this makes O(log(N)) where N is the amount of places the result is accurate to
             result = sin(currentGuess);
-            if ((abs(abs(result) - abs(x))) < epsilon)
+            if ((abs(abs(result) - abs(x))) < epsilon_TRIG)
             { // within accepted accuracy
                 return currentGuess;
             }
@@ -199,7 +198,7 @@ decimalType arctan(decimalType x)
     // arctan(x) = y --> tan(y) = x
     // basically solving for y:
     // lim x -> inf [arctan(x)] = PI / 2
-    if (x == 0 || (abs(x) < epsilon))
+    if (x == 0 || (abs(x) < epsilon_TRIG))
     {
         return 0.0;
     }
@@ -211,7 +210,7 @@ decimalType arctan(decimalType x)
     {
         currentGuess += (sign * dx);
         result = tan(currentGuess);
-        if (abs(abs(result) - abs(x)) < epsilon)
+        if (abs(abs(result) - abs(x)) < epsilon_TRIG)
         { // found it!
             return currentGuess;
         }
@@ -231,7 +230,7 @@ decimalType arcsec(decimalType x)
 {
     // arcsec(x) = 1/arccos(x)
     decimalType denominator = arccos(x);
-    if (abs(denominator) < epsilon)
+    if (abs(denominator) < epsilon_TRIG)
     {
         std::runtime_error("[DOMAIN ERROR] arcsec()");
         return 0.0;
@@ -245,7 +244,7 @@ decimalType arccsc(decimalType x)
 {
     // arccsc(x) = 1/arcsin(x)
     decimalType denominator = arcsin(x);
-    if (abs(denominator) < epsilon)
+    if (abs(denominator) < epsilon_TRIG)
     {
         std::runtime_error("[DOMAIN ERROR] arccsc()");
         return 0.0;
@@ -259,7 +258,7 @@ decimalType arccot(decimalType x)
 {
     // arccot(x) = 1/arctan(x)
     decimalType denominator = arctan(x);
-    if (abs(denominator) < epsilon)
+    if (abs(denominator) < epsilon_TRIG)
     {
         std::runtime_error("[DOMAIN ERROR] arccot()");
         return 0.0;
