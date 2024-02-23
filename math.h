@@ -12,7 +12,10 @@
 typedef double decimalType;
 typedef double imaginaryType;
 typedef double realType;
-typedef decimalType (*term)(double); // parses the terms of a function, ex: x^2 = x*x
+typedef decimalType (*term)(double);   // parses the terms of a function, ex: x^2 = x*x
+//defined 2 different epsilon values, depending on the function it is used for
+#define epsilon_TRIG (decimalType)(1.0E-10) // because there will always be error with appx
+#define epsilon_BASIC (decimalType)(1.0E-7)
 const decimalType PI = 3.14159265358979;
 const decimalType e = 2.7182818284590452;
 const decimalType __SQRT_2 = 1.41421356237309504880;
@@ -28,7 +31,8 @@ const int UNIT_NOTATION = 1;
 
 // standalone functions:
 decimalType abs(decimalType x);
-decimalType fmod(decimalType x, decimalType y); // returns x % y
+bool compareMag(decimalType n1, decimalType n2); // tests if |n1| <= |n2|
+decimalType fmod(decimalType x, decimalType y);  // returns x % y
 decimalType sum(decimalType start, decimalType end, decimalType (*term)(decimalType));
 decimalType log(decimalType base, decimalType x);
 decimalType ln(decimalType x);
