@@ -1,5 +1,10 @@
 #include "math.h"
-#define epsilon .0000001
+// #define epsilon .0000001 
+
+bool compareMag(decimalType n1, decimalType n2)
+{ // if n1 is within the magnitude of n2, return true, else return
+    return abs(n1) <= abs(n2);
+}
 
 decimalType abs(decimalType x)
 {
@@ -43,7 +48,8 @@ decimalType nRoot(decimalType x, int n)
     }
     guess = x / 2;
     decimalType prevGuess = 0.0;
-    while (abs(guess - prevGuess) > epsilon)
+
+    while (!compareMag(guess - prevGuess, epsilon_BASIC))
     {
         prevGuess = guess;
         guess = ((n - 1.0) * guess + x / pow(guess, n - 1)) / n;
@@ -82,14 +88,23 @@ decimalType sqrt(decimalType x)
 { // square root algorithm
     return nRoot(x, 2);
 }
-decimalType log(double base, double x)
+decimalType log(decimalType base, decimalType x)
 {
-    decimalType result;
-    return result;
+    return ln(x) / ln(base); //
 }
-decimalType ln(double x)
+decimalType ln(decimalType x)
 {
-    return log(e, x);
+
+    if (x <= epsilon_BASIC)
+    {
+        throw std::runtime_error("ln(x): x must be greater than zero!");
+    }
+    else if (x < 1)
+    {
+    }
+    else // x > 1
+    {
+    }
 }
 decimalType fact(int x)
 {
