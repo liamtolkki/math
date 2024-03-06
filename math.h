@@ -35,6 +35,8 @@ struct Fraction
     int denominator;
 };
 // standalone functions:
+Fraction toFrac(decimalType x);
+int gcd(int a, int b); // returns greatest common denominator
 decimalType abs(decimalType x);
 bool compareMag(decimalType n1, decimalType n2); // tests if |n1| <= |n2|
 decimalType fmod(decimalType x, decimalType y);  // returns x % y
