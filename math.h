@@ -29,6 +29,11 @@ const int COMPONENT_NOTATION = 0;
 const int UNIT_NOTATION = 1;
 #endif
 
+struct Fraction
+{
+    int numerator;
+    int denominator;
+};
 // standalone functions:
 decimalType abs(decimalType x);
 bool compareMag(decimalType n1, decimalType n2); // tests if |n1| <= |n2|
@@ -66,11 +71,6 @@ decimalType toRad(decimalType deg); // degrees -> radians
 
 class BasicMath
 {
-    struct Fraction
-    {
-        int numerator;
-        int denominator;
-    };
 
 public:
 };
