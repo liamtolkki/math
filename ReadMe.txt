@@ -6,7 +6,9 @@ A fun project to calculate certain math operations
 --basic
     --basic math functions
         --log_n(base, x)
+        --toFrac(x)
         --exp(x)
+        --pow(base, x)
         --sqrt(x)
         --fact(x)
         --fib(x)
