@@ -12,8 +12,8 @@
 typedef double decimalType;
 typedef double imaginaryType;
 typedef double realType;
-typedef decimalType (*term)(double);   // parses the terms of a function, ex: x^2 = x*x
-//defined 2 different epsilon values, depending on the function it is used for
+typedef decimalType (*term)(double); // parses the terms of a function, ex: x^2 = x*x
+// defined 2 different epsilon values, depending on the function it is used for
 #define epsilon_TRIG (decimalType)(1.0E-10) // because there will always be error with appx
 #define epsilon_BASIC (decimalType)(1.0E-7)
 const decimalType PI = 3.14159265358979;
@@ -66,6 +66,12 @@ decimalType toRad(decimalType deg); // degrees -> radians
 
 class BasicMath
 {
+    struct Fraction
+    {
+        int numerator;
+        int denominator;
+    };
+
 public:
 };
 
