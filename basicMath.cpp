@@ -6,6 +6,13 @@ bool compareMag(decimalType n1, decimalType n2)
     return abs(n1) <= abs(n2);
 }
 
+std::string Fraction::toString()
+{
+    char result[30];
+    sprintf(result, "%i / %i", this->numerator, this->denominator);
+    return result;
+}
+
 decimalType abs(decimalType x)
 {
     if (x >= 0.0)
@@ -50,6 +57,14 @@ Fraction toFrac(decimalType x)
     result.denominator = precision;
     x *= precision;
     result.numerator = static_cast<int>(x);
+    int factor = gcd(result.numerator, result.denominator); // starting value
+    while (factor > 1)
+    { // simplify and reduce
+        result.numerator /= factor;
+        result.denominator /= factor;
+        factor = gcd(result.numerator, result.denominator);
+    }
+    return result;
 }
 
 decimalType nRoot(decimalType x, int n)

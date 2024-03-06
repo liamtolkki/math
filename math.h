@@ -33,6 +33,7 @@ struct Fraction
 {
     int numerator;
     int denominator;
+    std::string toString();
 };
 // standalone functions:
 Fraction toFrac(decimalType x);

@@ -20,6 +20,7 @@ Liam Tolkkinen
 #define fibVal2 1000
 #define gcd1 18438
 #define gcd2 210
+#define decimal 3.14159
 #define coefficient 3.0
 #define exp 2
 #define coefficient2 6.0
@@ -160,6 +161,10 @@ int main()
 
        printf("Testing GCD:\n");
        printf("gcd(%i, %i) = %i\n", gcd1, gcd2, gcd(gcd1, gcd2));
+
+       printf("Testing toFrac(%f)\n", decimal);
+       Fraction piFrac = toFrac(decimal);
+       printf("toFrac(%f) = %s\n", decimal, piFrac.toString().c_str());
 
        printf("Testing fibonacci:\n");
        decimalType fibResult = 0;
