@@ -2,7 +2,7 @@
 // #define epsilon .0000001 
 
 bool compareMag(decimalType n1, decimalType n2)
-{ // if n1 is within the magnitude of n2, return true, else return
+{ // if n1 is within the magnitude of n2, return true, else return false
     return abs(n1) <= abs(n2);
 }
 
