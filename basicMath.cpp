@@ -101,20 +101,24 @@ decimalType nRoot(decimalType x, int n)
     return guess;
 }
 
-decimalType pow(decimalType x, int n)
-{ // returns x^n
+decimalType pow(decimalType x, decimalType n)
+{                                  // returns x^n
+    Fraction exponent = toFrac(n); // turn the exponent into fraction form for easier computation
     decimalType currentProduct = 1;
     bool isNegExp = (n < 0);
-    if (n == 0)
+    if (n == 0.0)
         return 1.0;
+    if (n == 1.0)
+        return x;
     if (isNegExp)
     {
-        n *= -1;
+        exponent.numerator *= -1;
     }
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < exponent.numerator; i++)
     {
         currentProduct *= x;
     }
+    currentProduct = nRoot(currentProduct, exponent.denominator);
     if (isNegExp)
     {
         currentProduct = 1 / currentProduct;
