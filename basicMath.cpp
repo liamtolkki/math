@@ -1,5 +1,5 @@
 #include "math.h"
-// #define epsilon .0000001 
+// #define epsilon .0000001
 
 bool compareMag(decimalType n1, decimalType n2)
 { // if n1 is within the magnitude of n2, return true, else return false
@@ -23,6 +23,33 @@ decimalType fmod(decimalType x, decimalType y)
     int intResult = static_cast<int>(x / y);
     decimalType result = x - (y * intResult);
     return result;
+}
+int gcd(int a, int b)
+{
+    if (a < b)
+    {
+        int temp = a;
+        a = b;
+        b = temp;
+    }
+    // Assert: a >= b
+
+    while (b)
+    {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a; // gcd
+}
+
+Fraction toFrac(decimalType x)
+{
+    int precision = 1000000;
+    Fraction result;
+    result.denominator = precision;
+    x *= precision;
+    result.numerator = static_cast<int>(x);
 }
 
 decimalType nRoot(decimalType x, int n)
