@@ -20,7 +20,7 @@ decimalType sin(decimalType x)
     // Taylor series:
     for (int n = 0; n <= 20; n++) // 20 iterations
     {
-        sum += (((n % 2 == 0 ? 1 : -1) * pow(x, ((2 * n) + 1))) / fact((2 * n) + 1));
+        sum += (((n % 2 == 0 ? 1 : -1) * powINT_ONLY(x, ((2 * n) + 1))) / fact((2 * n) + 1));
     }
     if (abs(sum) < epsilon_TRIG || sum == 0)
     {
@@ -41,7 +41,7 @@ decimalType cos(decimalType x)
     // Taylor series:
     for (int n = 0; n <= 20; n++) // 20 iterations
     {
-        sum += (n % 2 == 0 ? 1 : -1) * pow(x, (2 * n)) / fact(2 * n);
+        sum += (n % 2 == 0 ? 1 : -1) * powINT_ONLY(x, (2 * n)) / fact(2 * n);
     }
     if (abs(sum) < epsilon_TRIG || sum == 0)
     {
@@ -180,7 +180,7 @@ decimalType arcsin(decimalType x)
     for (int n = 0; n < samples; n++)
     {
         // the series for arcsin(x):
-        sum += (((pow(x, ((2 * n) + 1)) * fact(2 * n))) / ((pow(2, 2 * n) * (pow(fact(n), 2)) * ((2 * n) + 1))));
+        sum += (((powINT_ONLY(x, ((2 * n) + 1)) * fact(2 * n))) / ((powINT_ONLY(2, 2 * n) * (powINT_ONLY(fact(n), 2)) * ((2 * n) + 1))));
     }
     return sum;
 }

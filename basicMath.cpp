@@ -66,6 +66,29 @@ Fraction toFrac(decimalType x)
     }
     return result;
 }
+decimalType powINT_ONLY(decimalType x, int n)
+{ // returns x^n
+    // this is to break recursive cycle (private function)
+    decimalType currentProduct = 1;
+    bool isNegExp = (n < 0);
+    if (n == 0.0)
+        return 1.0;
+    if (n == 1.0)
+        return x;
+    if (isNegExp)
+    {
+        n *= -1;
+    }
+    for (int i = 0; i < n; i++)
+    {
+        currentProduct *= x;
+    }
+    if (isNegExp)
+    {
+        currentProduct = 1 / currentProduct;
+    }
+    return currentProduct;
+}
 
 decimalType nRoot(decimalType x, int n)
 {
@@ -76,7 +99,7 @@ decimalType nRoot(decimalType x, int n)
     decimalType guess;
     while (temp < x && x > 0) // test to see if a perfect root
     {
-        temp = pow(i, n);
+        temp = powINT_ONLY(i, n);
         i++;
     }
     if (temp == x)
@@ -94,7 +117,7 @@ decimalType nRoot(decimalType x, int n)
     while (!compareMag(guess - prevGuess, epsilon_BASIC))
     {
         prevGuess = guess;
-        guess = ((n - 1.0) * guess + x / pow(guess, n - 1)) / n;
+        guess = ((n - 1.0) * guess + x / powINT_ONLY(guess, n - 1)) / n;
         // black magic (Newton Raphson method)
         // https://brilliant.org/wiki/newton-raphson-method/
     }

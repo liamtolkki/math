@@ -51,6 +51,7 @@ decimalType fib(int x);
 decimalType nRoot(decimalType x, int n);
 decimalType sqrt(decimalType x);
 decimalType pow(decimalType x, decimalType n);
+decimalType powINT_ONLY(decimalType x, int n);
 decimalType square(decimalType x);
 
 // BEGIN BASIC TRIG FUNCTIONS--------------

@@ -3,11 +3,11 @@ A testing environment for the math library made by me
 Liam Tolkkinen
 11/23/2023
 */
-
-#define __MATRIX_TESTING
-#define __DETERMINANT_TESTING
-#define __MATRIX_SUM_TESTING
-
+//
+// #define __MATRIX_TESTING
+// #define __DETERMINANT_TESTING
+// #define __MATRIX_SUM_TESTING
+//
 #include <stdio.h>
 #include "math.h"
 #include <limits>
@@ -27,7 +27,7 @@ Liam Tolkkinen
 #define exp2 2
 
 #define powBase 5.0
-#define powExp 6
+#define powExp 6.134
 #define nRootBase 26.0
 #define nRootN 29
 #define degrees 180.0
@@ -147,8 +147,9 @@ int main()
        printf("%s / %s:\n", sciNotTest.toString().c_str(), sciNotTest2.toString().c_str());
        sciNotOperatorResult = sciNotTest / sciNotTest2;
        printf("%s\n", sciNotOperatorResult.toString().c_str());
+
        decimalType powResult = pow(powBase, powExp);
-       printf("testing %f^%d: %f\n", powBase, powExp, powResult);
+       printf("testing %f^%f: %f\n", powBase, powExp, powResult);
        printf("testing nth root: %d root of %f: ", nRootN, nRootBase);
        decimalType nrootResult = nRoot(nRootBase, nRootN);
        printf("%f\n", nrootResult);
