@@ -347,11 +347,17 @@ std::string SciNot::toString()
     char result[30];
     char sign;
     if (exp > 0)
+    {
         sign = '+';
-    if (exp < 0)
+    }
+    else if (exp < 0)
+    {
         sign = '-';
-    if (exp == 0)
+    }
+    else // exp == 0
+    {
         sign = '0';
+    }
     // so that the string printer doesn't think that '0' is a string terminator
     sprintf(result, "%fE%c%d", coefficient, sign, (exp >= 0 ? exp : exp * -1));
     return result;
