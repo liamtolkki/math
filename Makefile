@@ -1,25 +1,51 @@
 PROJECT = Test
 CC = g++
 
-CFLAGS = -g -Wall -ansi -pedantic -Wno-write-strings -Wno-parentheses
+INC_DIR = include
+
+OBJ_DIR = obj
+
+SRC_DIR = src
+
+TEST_DIR = testing
+
+CFLAGS = -I$(INC_DIR) -I$(SRC_DIR) -I$(OBJ_DIR) -g -Wall -ansi -pedantic -Wno-write-strings -Wno-parentheses
+
 
 .SUFFIXES: .cpp .o .C
 
 .C.o:
-	$(CC) $(CFLAGS) -c $<
+	$(CC) $(CFLAGS) -c -o $(OBJ_DIR)/$@ $<
 
 .cpp.o:
-	$(CC) $(CFLAGS) -c $<
+	$(CC) $(CFLAGS) -c -o $(OBJ_DIR)/$@ $<
 
-OBJFILES = differentiation.o testing.o basicMath.o complexNum.o linear.o trig.o
+TEST_FILES := $(wildcard $(TEST_DIR)/*.cpp)
 
-$(PROJECT): $(OBJFILES)
-	$(CC) -o $(PROJECT) $(CFLAGS) $(OBJFILES)
+SRC_FILES := $(wildcard $(SRC_DIR)/*.cpp)
 
-$(OBJFILES): math.h
+TEST_OBJ_FILES := $(patsubst $(TEST_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(TEST_FILES))
+
+
+OBJFILES := $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRC_FILES))
+
+$(info TEST_OBJ_FILES: $(TEST_OBJ_FILES))
+
+
+$(PROJECT): $(TEST_OBJ_FILES) $(OBJFILES)
+	$(CC) -o $(PROJECT) $(CFLAGS) $^
+
+$(OBJFILES): $(INC_DIR)/math.h 
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+$(OBJ_DIR)/%.o: $(TEST_DIR)/%.cpp
+	$(CC) $(CFLAGS) -c -o $@ $<
+
 
 clean:
-	rm -rf *.o *.out $(PROJECT)
+	rm -rf $(OBJ_DIR)/*.o *.out $(PROJECT)
 test:
 	make clean
 	make
