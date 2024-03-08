@@ -1,34 +1,35 @@
 #include "math.h"
+#include "linearAlgebra.h"
 #ifdef __LINEAR_ALGEBRA
 #ifdef __VECTORS
-LinearAlgebra::Vector::Vector()
+Vector::Vector()
 {
     degree = 0;
     components = NULL;
 }
 
-LinearAlgebra::Vector::Vector(int deg)
+Vector::Vector(int deg)
 {
     degree = deg;
     components = new decimalType[deg];
 }
 
-LinearAlgebra::Vector::~Vector()
+Vector::~Vector()
 {
     delete components;
 }
 
-int LinearAlgebra::Vector::getDegree()
+int Vector::getDegree()
 {
     return degree;
 }
-void LinearAlgebra::Vector::setDegree(int deg)
+void Vector::setDegree(int deg)
 {
     delete components;
     components = new decimalType[deg];
     degree = deg;
 }
-decimalType LinearAlgebra::Vector::getVal(int x)
+decimalType Vector::getVal(int x)
 {
     if (x < degree)
     {
@@ -40,7 +41,7 @@ decimalType LinearAlgebra::Vector::getVal(int x)
         return 0;
     }
 }
-void LinearAlgebra::Vector::setVal(int x, decimalType newVal)
+void Vector::setVal(int x, decimalType newVal)
 { // sets component x to newVal
     if (x < degree)
     {
@@ -48,7 +49,7 @@ void LinearAlgebra::Vector::setVal(int x, decimalType newVal)
     }
     return;
 }
-decimalType LinearAlgebra::Vector::mag()
+decimalType Vector::mag()
 {
     decimalType result = 0;
     for (int i = 0; i < degree; i++)
@@ -58,11 +59,11 @@ decimalType LinearAlgebra::Vector::mag()
     result = sqrt(result);
     return result;
 }
-std::string LinearAlgebra::Vector::toString()
+std::string Vector::toString()
 { // default to component notation
     return toString(COMPONENT_NOTATION);
 }
-std::string LinearAlgebra::Vector::toString(int notation)
+std::string Vector::toString(int notation)
 {
     if (degree == 0)
         return "ZERO_VECTOR";
@@ -105,7 +106,7 @@ std::string LinearAlgebra::Vector::toString(int notation)
     }
 }
 
-void LinearAlgebra::Vector::norm()
+void Vector::norm()
 {
     decimalType mag = this->mag();
     // cannot normalize a zero vector:
@@ -120,7 +121,7 @@ void LinearAlgebra::Vector::norm()
     }
 }
 
-decimalType LinearAlgebra::Vector::dot(Vector *other)
+decimalType Vector::dot(Vector *other)
 { // dot product (return a scalar quantity
     decimalType result = 0.0;
     // must have same degree:
@@ -147,11 +148,10 @@ decimalType LinearAlgebra::Vector::dot(Vector *other)
 
 #ifdef __MATRICES
 
-LinearAlgebra::Matrix::Matrix() : rows(0), columns(0)
+Matrix::Matrix() : rows(0), columns(0)
 {
 }
-
-LinearAlgebra::Matrix::Matrix(int r, int c) : rows(r), columns(c)
+Matrix::Matrix(int r, int c) : rows(r), columns(c)
 {
     // initialize the matrix
     components = new decimalType *[rows];
@@ -166,7 +166,7 @@ LinearAlgebra::Matrix::Matrix(int r, int c) : rows(r), columns(c)
         }
     }
 }
-LinearAlgebra::Matrix::Matrix(int r, int c, decimalType *compArr, int sz) : rows(r), columns(c)
+Matrix::Matrix(int r, int c, decimalType *compArr, int sz) : rows(r), columns(c)
 {
     components = new decimalType *[rows];
     for (int i = 0; i < rows; i++)
@@ -177,7 +177,7 @@ LinearAlgebra::Matrix::Matrix(int r, int c, decimalType *compArr, int sz) : rows
 }
 
 // copy constructor:
-LinearAlgebra::Matrix::Matrix(const Matrix &other) : rows(other.rows), columns(other.columns)
+Matrix::Matrix(const Matrix &other) : rows(other.rows), columns(other.columns)
 {
     components = new decimalType *[rows];
     for (int i = 0; i < rows; i++)
@@ -190,7 +190,7 @@ LinearAlgebra::Matrix::Matrix(const Matrix &other) : rows(other.rows), columns(o
     }
 }
 
-LinearAlgebra::Matrix::~Matrix()
+Matrix::~Matrix()
 {
     // delete all components:
     for (int i = 0; i < rows; i++)
@@ -200,16 +200,16 @@ LinearAlgebra::Matrix::~Matrix()
     delete[] components;
 }
 
-int LinearAlgebra::Matrix::getRows() const
+int Matrix::getRows() const
 {
     return rows;
 }
 
-int LinearAlgebra::Matrix::getColumns() const
+int Matrix::getColumns() const
 {
     return columns;
 }
-decimalType LinearAlgebra::Matrix::get(int i, int j) const
+decimalType Matrix::get(int i, int j) const
 {
     if ((i < rows) && (j < columns))
     {
@@ -220,7 +220,7 @@ decimalType LinearAlgebra::Matrix::get(int i, int j) const
         throw std::runtime_error("index out of range of matrix");
     }
 }
-void LinearAlgebra::Matrix::set(int i, int j, decimalType newVal)
+void Matrix::set(int i, int j, decimalType newVal)
 {
     if ((i < rows) && (j < columns))
     {
@@ -232,7 +232,7 @@ void LinearAlgebra::Matrix::set(int i, int j, decimalType newVal)
     }
 }
 
-std::string LinearAlgebra::Matrix::toString()
+std::string Matrix::toString()
 {
     std::string result = ""; // start with empty string
     for (int i = 0; i < rows; i++)
@@ -252,7 +252,7 @@ std::string LinearAlgebra::Matrix::toString()
     return result;
 }
 
-void LinearAlgebra::Matrix::initializeComp()
+void Matrix::initializeComp()
 {
     if (!components)
     {
@@ -264,7 +264,7 @@ void LinearAlgebra::Matrix::initializeComp()
     }
 }
 
-void LinearAlgebra::Matrix::initialize(decimalType *compArr, int sz)
+void Matrix::initialize(decimalType *compArr, int sz)
 {
     this->initializeComp(); // just in case the component array is a nullptr
     if (rows * columns == sz)
@@ -286,7 +286,7 @@ void LinearAlgebra::Matrix::initialize(decimalType *compArr, int sz)
 }
 
 // recursive function helper:
-decimalType detHelp(LinearAlgebra::Matrix *sub)
+decimalType detHelp(Matrix *sub)
 {
     decimalType result = 0.0;
     int subRows = sub->getRows();
@@ -323,7 +323,7 @@ decimalType detHelp(LinearAlgebra::Matrix *sub)
                 }
             }
         }
-        LinearAlgebra::Matrix *newSub = new LinearAlgebra::Matrix(subRows - 1, subCols - 1, compArr, subSz);
+        Matrix *newSub = new Matrix(subRows - 1, subCols - 1, compArr, subSz);
 
         // actual recursive step:
 
@@ -335,7 +335,7 @@ decimalType detHelp(LinearAlgebra::Matrix *sub)
     }
     return result;
 }
-decimalType LinearAlgebra::Matrix::det()
+decimalType Matrix::det()
 {
     decimalType determinant = 0.0;
     if (rows == columns) // must be a square matrix
@@ -348,9 +348,9 @@ decimalType LinearAlgebra::Matrix::det()
     }
     return determinant;
 }
-LinearAlgebra::Matrix LinearAlgebra::Matrix::transpose() const
+Matrix Matrix::transpose() const
 {
-    LinearAlgebra::Matrix result = Matrix(columns, rows); // new matrix, but rows&columns flipped
+    Matrix result = Matrix(columns, rows); // new matrix, but rows&columns flipped
     for (int i = 0; i < rows; i++)
     {
         for (int j = 0; j < columns; j++)
@@ -361,7 +361,7 @@ LinearAlgebra::Matrix LinearAlgebra::Matrix::transpose() const
     return result;
 }
 
-void LinearAlgebra::Matrix::rowOp(int row1, decimalType scalar1, int row2, decimalType scalar2)
+void Matrix::rowOp(int row1, decimalType scalar1, int row2, decimalType scalar2)
 {
     if (row1 >= rows || row2 >= rows)
     {
@@ -377,22 +377,22 @@ void LinearAlgebra::Matrix::rowOp(int row1, decimalType scalar1, int row2, decim
 }
 
 // rowOp overloads:
-void LinearAlgebra::Matrix::rowOp(int row1, decimalType scalar1, int row2)
+void Matrix::rowOp(int row1, decimalType scalar1, int row2)
 {
     rowOp(row1, scalar1, row2, 1.0);
 }
-void LinearAlgebra::Matrix::rowOp(int row1, int row2, decimalType scalar2)
+void Matrix::rowOp(int row1, int row2, decimalType scalar2)
 {
     rowOp(row1, 1.0, row2, scalar2);
 }
-void LinearAlgebra::Matrix::rowOp(int row1, int row2)
+void Matrix::rowOp(int row1, int row2)
 {
     rowOp(row1, 1.0, row2, 1.0);
 }
 
 //+, -, *, = operators:
 
-LinearAlgebra::Matrix &LinearAlgebra::Matrix::operator=(const Matrix &other)
+Matrix &Matrix::operator=(const Matrix &other)
 {
     if (this != &other)
     {
@@ -420,7 +420,7 @@ LinearAlgebra::Matrix &LinearAlgebra::Matrix::operator=(const Matrix &other)
     return *this;
 }
 
-LinearAlgebra::Matrix LinearAlgebra::Matrix::operator+(const Matrix &other) const
+Matrix Matrix::operator+(const Matrix &other) const
 {
     Matrix matSum = Matrix(rows, columns);
     if (columns == other.columns && rows == other.rows)
@@ -441,7 +441,7 @@ LinearAlgebra::Matrix LinearAlgebra::Matrix::operator+(const Matrix &other) cons
     }
 }
 
-LinearAlgebra::Matrix LinearAlgebra::Matrix::operator-(const Matrix &other) const
+Matrix Matrix::operator-(const Matrix &other) const
 {
     Matrix result = Matrix(rows, columns);
     if (columns == other.columns && rows == other.rows)
@@ -465,7 +465,7 @@ LinearAlgebra::Matrix LinearAlgebra::Matrix::operator-(const Matrix &other) cons
 Pre::M1 columns = M2 Rows
 Post::multiplies both matrices as M1 X M2
 */
-LinearAlgebra::Matrix LinearAlgebra::Matrix::operator*(const Matrix &other) const
+Matrix Matrix::operator*(const Matrix &other) const
 {
     if (columns != other.rows)
     {
