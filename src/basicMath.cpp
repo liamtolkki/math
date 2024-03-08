@@ -1,4 +1,4 @@
-#include "math.h"
+#include "../include/math.h"
 // #define epsilon .0000001
 
 bool compareMag(decimalType n1, decimalType n2)

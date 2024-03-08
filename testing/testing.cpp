@@ -9,7 +9,8 @@ Liam Tolkkinen
 #define __MATRIX_SUM_TESTING
 
 #include <stdio.h>
-#include "math.h"
+#include "../include/math.h"
+#include "../include/linearAlgebra.h"
 #include <limits>
 #define multiplyRVal1 -1.0
 #define multiplyIVal1 2.0
@@ -167,7 +168,6 @@ int main()
        printf("toFrac(%f) = %s\n", decimal, piFrac.toString().c_str());
 
        printf("Testing fibonacci:\n");
-       decimalType fibResult = 0;
        printf("fib(%i) = ", fibVal1);
        printf("%.0f\n", fib(fibVal1));
        printf("fib(%i) = ", fibVal2);
@@ -199,11 +199,11 @@ int main()
 #ifdef __LINEAR_ALGEBRA
 #ifdef __VECTORS
        // test the linear algebra library
-       LinearAlgebra::Vector vec1 = LinearAlgebra::Vector(degree);
+       Vector vec1 = Vector(degree);
        vec1.setVal(0, v1);
        vec1.setVal(1, v2);
        vec1.setVal(2, v3);
-       LinearAlgebra::Vector vec2 = LinearAlgebra::Vector(degree);
+       Vector vec2 = Vector(degree);
        vec2.setVal(0, u1);
        vec2.setVal(1, u2);
        vec2.setVal(2, u3);
@@ -238,15 +238,15 @@ int main()
        printf("TESTING MATRICES--------------------------\n\n");
 
        decimalType componentArray1[] = M1CompArr;
-       LinearAlgebra::Matrix m1 = LinearAlgebra::Matrix(M1Rows, M1Columns, componentArray1, M1Sz);
+       Matrix m1 = Matrix(M1Rows, M1Columns, componentArray1, M1Sz);
        printf("Matrix 1:\n%s\n", m1.toString().c_str());
 
        decimalType componentArray2[] = M2CompArr;
-       LinearAlgebra::Matrix m2 = LinearAlgebra::Matrix(M2Rows, M2Columns, componentArray2, M2Sz);
+       Matrix m2 = Matrix(M2Rows, M2Columns, componentArray2, M2Sz);
        printf("Matrix 2:\n%s\n", m2.toString().c_str());
 
        decimalType componentArray3[] = M3CompArr;
-       LinearAlgebra::Matrix m3 = LinearAlgebra::Matrix(M3Rows, M3Columns, componentArray3, M3Sz);
+       Matrix m3 = Matrix(M3Rows, M3Columns, componentArray3, M3Sz);
        printf("Matrix 3:\n%s\n", m3.toString().c_str());
 
        printf("testing get():\n");
@@ -270,39 +270,39 @@ int main()
        printf("det(M3) = %f\n", detTest2);
 
        decimalType componentArray4[] = M4CompArr;
-       LinearAlgebra::Matrix m4 = LinearAlgebra::Matrix(M4Rows, M4Columns, componentArray4, M4Sz);
+       Matrix m4 = Matrix(M4Rows, M4Columns, componentArray4, M4Sz);
        printf("Matrix 4:\n%s", m4.toString().c_str());
        decimalType detTest1 = m4.det();
        printf("det(M4) = %f\n", detTest1);
 
        decimalType componentArray5[] = M5CompArr;
-       LinearAlgebra::Matrix m5 = LinearAlgebra::Matrix(M5Rows, M5Columns, componentArray5, M5Sz);
+       Matrix m5 = Matrix(M5Rows, M5Columns, componentArray5, M5Sz);
        printf("Matrix 5:\n%s\n", m5.toString().c_str());
 
 #ifdef __MATRIX_SUM_TESTING
-       LinearAlgebra::Matrix matSum = LinearAlgebra::Matrix(M1Rows, M1Columns);
+       Matrix matSum = Matrix(M1Rows, M1Columns);
        matSum = m1 + m1;
        printf("Testing M1 + M1:\n%s", matSum.toString().c_str());
 
        matSum = m4 - m5;
        printf("Testing M4 - M5:\n%s", matSum.toString().c_str());
 
-       LinearAlgebra::Matrix matProd = m4 * m4;
+       Matrix matProd = m4 * m4;
        printf("Testing M4 * M4:\n%s", matProd.toString().c_str());
        matProd = m5 * m5;
        printf("Testing M5 * M5:\n%s", matProd.toString().c_str());
 
        decimalType componentArray6[] = M6CompArr;
-       LinearAlgebra::Matrix m6 = LinearAlgebra::Matrix(M6Rows, M6Columns, componentArray6, M6Sz);
+       Matrix m6 = Matrix(M6Rows, M6Columns, componentArray6, M6Sz);
        printf("Matrix 6:\n%s\n", m6.toString().c_str());
 
        decimalType componentArray7[] = M7CompArr;
-       LinearAlgebra::Matrix m7 = LinearAlgebra::Matrix(M7Rows, M7Columns, componentArray7, M7Sz);
+       Matrix m7 = Matrix(M7Rows, M7Columns, componentArray7, M7Sz);
        printf("Matrix 7:\n%s\n", m7.toString().c_str());
        matProd = m6 * m7;
        printf("Testing M6 * M7:\n%s", matProd.toString().c_str());
        printf("Testing (M6 * M7) transpose:\n");
-       LinearAlgebra::Matrix matProdT = matProd.transpose();
+       Matrix matProdT = matProd.transpose();
        printf("%s\n", matProdT.toString().c_str());
 
        printf("row operations (matrix_5):\n");

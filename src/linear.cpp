@@ -1,5 +1,5 @@
-#include "math.h"
-#include "linearAlgebra.h"
+#include "../include/math.h"
+#include "../include/linearAlgebra.h"
 #ifdef __LINEAR_ALGEBRA
 #ifdef __VECTORS
 Vector::Vector()
