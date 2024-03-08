@@ -123,7 +123,7 @@ decimalType pow(decimalType x, int n)
 }
 decimalType square(decimalType x)
 {
-    return pow(x, 2);
+    return x * x;
 }
 
 decimalType sqrt(decimalType x)
