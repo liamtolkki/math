@@ -11,6 +11,12 @@ Liam Tolkkinen
 #include <stdio.h>
 #include "../include/math.h"
 #include "../include/linearAlgebra.h"
+#include "../include/complex.h"
+#ifdef __CALCULUS
+#include "../include/calculus.h"
+#endif
+#include "../include/polynomial.h"
+#include "../include/trig.h"
 #include <limits>
 #define multiplyRVal1 -1.0
 #define multiplyIVal1 2.0
@@ -148,8 +154,10 @@ int main()
        printf("%s / %s:\n", sciNotTest.toString().c_str(), sciNotTest2.toString().c_str());
        sciNotOperatorResult = sciNotTest / sciNotTest2;
        printf("%s\n", sciNotOperatorResult.toString().c_str());
+#ifdef __EXPONENTIALS
        decimalType powResult = pow(powBase, powExp);
        printf("testing %f^%d: %f\n", powBase, powExp, powResult);
+#endif
        printf("testing nth root: %d root of %f: ", nRootN, nRootBase);
        decimalType nrootResult = nRoot(nRootBase, nRootN);
        printf("%f\n", nrootResult);

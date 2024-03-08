@@ -1,5 +1,8 @@
 #include "../include/math.h"
-// #define epsilon .0000001
+
+/*
+All functions in this file are declared in math.h
+*/
 
 bool compareMag(decimalType n1, decimalType n2)
 { // if n1 is within the magnitude of n2, return true, else return false
@@ -67,6 +70,12 @@ Fraction toFrac(decimalType x)
     return result;
 }
 
+/*
+nRoot is included in this #ifdef statement because it utilizes the
+pow() function (exponential functionality)
+*/
+
+#ifdef __EXPONENTIALS
 decimalType nRoot(decimalType x, int n)
 {
     if (x == 2 && n == 2)
@@ -100,7 +109,6 @@ decimalType nRoot(decimalType x, int n)
     }
     return guess;
 }
-
 decimalType pow(decimalType x, int n)
 { // returns x^n
     decimalType currentProduct = 1;
@@ -121,6 +129,7 @@ decimalType pow(decimalType x, int n)
     }
     return currentProduct;
 }
+#endif
 decimalType square(decimalType x)
 {
     return x * x;
@@ -130,6 +139,7 @@ decimalType sqrt(decimalType x)
 { // square root algorithm
     return nRoot(x, 2);
 }
+#ifdef __LOGARITHMS
 decimalType log(decimalType base, decimalType x)
 {
     return ln(x) / ln(base); // this is a logarithm identity
@@ -148,6 +158,7 @@ decimalType ln(decimalType x)
     {
     }
 }
+#endif
 decimalType fact(int x)
 {
     if (x >= 0)

@@ -14,6 +14,7 @@ decimalType arctan(decimalType x);
 decimalType arcsec(decimalType x);
 decimalType arccsc(decimalType x);
 decimalType arccot(decimalType x);
+
 decimalType toDeg(decimalType rad); // radians -> degrees
 decimalType toRad(decimalType deg); // degrees -> radians
 #endif

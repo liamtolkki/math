@@ -2,6 +2,11 @@
 #define __LINEAR_ALGEBRA
 #define __VECTORS
 #define __MATRICES
+#define __VECTOR_NOTATION_CONSTANTS
+#ifdef __VECTOR_NOTATION_CONSTANTS
+const int COMPONENT_NOTATION = 0;
+const int UNIT_NOTATION = 1;
+#endif
 #ifdef __LINEAR_ALGEBRA
 #ifdef __VECTORS
 
