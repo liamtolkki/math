@@ -2,7 +2,18 @@
 #include <string>
 #include <stdexcept>
 #include <cstdio>
-// #define __MATRIX_INVERSE
+
+/*
+
+This Library was made by Liam Tolkkinen as a personal project.
+Feel free to modify it as you see fit
+
+
+
+This is the parent header for every file in this library.
+It contains useful data types and constants for other sublibraries
+*/
+
 #define __SCIENTIFIC_NOTATION_CONSTANTS
 #define __VECTOR_NOTATION_CONSTANTS
 typedef double decimalType;

@@ -1,4 +1,4 @@
-#include "../include/math.h"
+#include "../include/trig.h"
 #ifdef TRIG
 
 decimalType toDeg(decimalType rad)
