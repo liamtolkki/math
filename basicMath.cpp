@@ -132,7 +132,7 @@ decimalType sqrt(decimalType x)
 }
 decimalType log(decimalType base, decimalType x)
 {
-    return ln(x) / ln(base); //
+    return ln(x) / ln(base); // this is a logarithm identity
 }
 decimalType ln(decimalType x)
 {
