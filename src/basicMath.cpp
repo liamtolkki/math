@@ -109,6 +109,41 @@ decimalType nRoot(decimalType x, int n)
     }
     return guess;
 }
+
+decimalType exp(decimalType x)
+{ // returns e^x
+    int n = 15;
+    if (x < -4.0)
+    {
+        n = 20;
+    }
+    if (x < -6.0)
+    {
+        n = 30;
+    }
+    if (n < -9.0)
+    {
+        return 0.0001;
+    }
+    if (n < -15.0)
+        return 0.00000001; // low number
+    if (n < -20)
+    {
+        return 9.357623e-14;
+    }
+    // makes sense to return a very low number instead of doing more computations (expensive)
+
+    n = 15; // number of iterations
+    decimalType result = 0;
+    for (int i = 0; i < n; i++)
+    { // Taylor series
+        decimalType numerator = pow(x, i);
+        decimalType denominator = fact(i);
+        result += (numerator / denominator); // sum
+    }
+    return result;
+}
+
 decimalType pow(decimalType x, int n)
 { // returns x^n
     decimalType currentProduct = 1;
