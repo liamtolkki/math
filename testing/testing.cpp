@@ -29,9 +29,10 @@ Liam Tolkkinen
 #define gcd2 210
 #define decimal 3.14159
 #define coefficient 3.0
-#define exp 2
+#define exp1 2
 #define coefficient2 6.0
 #define exp2 2
+#define e_pow 2.653
 
 #define powBase 5.0
 #define powExp 6
@@ -131,9 +132,9 @@ int main()
               complexValue1.toString().c_str(), complexValue2.toString().c_str());
        ComplexNum complexDivideResult = complexValue1 / complexValue2;
        printf("Result: %s\n", complexDivideResult.toString().c_str());
-       SciNot sciNotTest = SciNot(coefficient, exp);
+       SciNot sciNotTest = SciNot(coefficient, exp1);
        printf("testing scientific notation:\nCoef: %.15f\nexp: %d\nResult: %s\n", coefficient,
-              exp, sciNotTest.toString().c_str());
+              exp1, sciNotTest.toString().c_str());
        SciNot sciNotTest2 = SciNot(coefficient2, exp2);
        printf("Testing Scientific notation addition:\n");
        printf("%s + %s:\n", sciNotTest.toString().c_str(), sciNotTest2.toString().c_str());
@@ -157,6 +158,9 @@ int main()
 #ifdef __EXPONENTIALS
        decimalType powResult = pow(powBase, powExp);
        printf("testing %f^%d: %f\n", powBase, powExp, powResult);
+
+       printf("testing exp(x):\n");
+       printf("exp(%f) = %f\n", e_pow, exp(e_pow));
 #endif
        printf("testing nth root: %d root of %f: ", nRootN, nRootBase);
        decimalType nrootResult = nRoot(nRootBase, nRootN);
