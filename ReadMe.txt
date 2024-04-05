@@ -2,9 +2,13 @@
 Liam Tolkkinen
 liamtolkki@gmail.com
 ----------------------
-A fun project to calculate certain math operations
+A fun and open-source project to calculate certain math operations
+installation 
+index:
 --basic
     --basic math functions
+        --FFT(list X) {Fast Fourier Transform}
+        --IFFT(list X) {Inverse Fast Fourier Transform}
         --log_n(base, x)
         --toFrac(x)
         --exp(x)
@@ -18,7 +22,12 @@ A fun project to calculate certain math operations
     --Scientific notation:
         --Ex: 2.38903E19, -9.22719E8, 4.090145E-6, -7.22079389E-26
     --Polynomials:
-        --Polynomial operators (+, -, *, /)
+        --Basic Polynomial operators (+, -)
+        --polynomial representation:
+            --Point form
+                --interpolation
+            --Coefficient form
+        --polynomial multiplication (using FFT)
         ...
 --Calculus
     --differentiation
