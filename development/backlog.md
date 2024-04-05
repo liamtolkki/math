@@ -1,5 +1,5 @@
-#Product Back-Log
-(in order of importance)
+# Product Back-Log
+#### (in order of importance)
 
 
 *ln(x)
@@ -8,7 +8,7 @@
     *point form
     *coefficient form
 
-###Needed for polynomial multiplication:
+## Needed for polynomial multiplication:
 
 *FFT()
 *IFFT()
