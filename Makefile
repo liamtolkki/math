@@ -1,4 +1,4 @@
-PROJECT = Test
+TEST_EXECUTABLE = Test
 CC = g++
 
 INC_DIR = include
@@ -32,8 +32,8 @@ OBJFILES := $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SRC_FILES))
 $(info TEST_OBJ_FILES: $(TEST_OBJ_FILES))
 
 
-$(PROJECT): $(TEST_OBJ_FILES) $(OBJFILES)
-	$(CC) -o $(PROJECT) $(CFLAGS) $^
+$(TEST_EXECUTABLE): $(TEST_OBJ_FILES) $(OBJFILES)
+	$(CC) -o $(TEST_EXECUTABLE) $(CFLAGS) $^
 
 $(OBJFILES): $(INC_DIR)/math.h 
 
@@ -45,8 +45,9 @@ $(OBJ_DIR)/%.o: $(TEST_DIR)/%.cpp
 
 
 clean:
-	rm -rf $(OBJ_DIR)/*.o *.out $(PROJECT)
+	rm -rf $(OBJ_DIR)/*.o *.out $(TEST_EXECUTABLE)
 test:
 	make clean
 	make
-	./$(PROJECT)
+	./$(TEST_EXECUTABLE)
+.PHONY: clean test
