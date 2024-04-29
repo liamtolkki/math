@@ -121,17 +121,19 @@ decimalType exp(decimalType x)
     {
         n = 30;
     }
-    if (n < -9.0)
-    {
-        return 0.0001;
-    }
-    if (n < -15.0)
-        return 0.00000001; // low number
-    if (n < -20)
-    {
-        return 9.357623e-14;
-    }
+
     // makes sense to return a very low number instead of doing more computations (expensive)
+
+    if (x < -20)
+    {
+        return 2.0611536224e-9;
+    }
+    if (x < -15.0)
+        return 3.059023205e-7; // low number
+    if (x < -9.0)
+    {
+        return 0.000123409804087;
+    }
 
     decimalType result = 0;
     for (int i = 0; i < n; i++)
