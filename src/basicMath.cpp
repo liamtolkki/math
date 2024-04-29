@@ -209,7 +209,7 @@ decimalType fact(int x)
     }
     else
     {
-        throw std::runtime_error("Factorial error: input must be >0");
+        throw std::runtime_error("Factorial error: input must be >=0");
     }
 }
 
