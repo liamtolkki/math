@@ -122,17 +122,16 @@ decimalType exp(decimalType x)
         n = 30;
     }
 
-    // makes sense to return a very low number instead of doing more computations (expensive)
-
+    // makes sense to return a precomputed number instead of doing more computations (expensive)
     if (x < -20)
     {
-        return 2.0611536224e-9;
+        return 2.0611536224e-9; // precomputed number
     }
     if (x < -15.0)
-        return 3.059023205e-7; // low number
+        return 3.059023205e-7; // precomputed number
     if (x < -9.0)
     {
-        return 0.000123409804087;
+        return 0.000123409804087; // precomputed number
     }
 
     decimalType result = 0;
