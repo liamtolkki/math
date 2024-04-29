@@ -133,7 +133,6 @@ decimalType exp(decimalType x)
     }
     // makes sense to return a very low number instead of doing more computations (expensive)
 
-    n = 15; // number of iterations
     decimalType result = 0;
     for (int i = 0; i < n; i++)
     { // Taylor series
