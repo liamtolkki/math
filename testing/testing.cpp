@@ -15,7 +15,9 @@ Liam Tolkkinen
 #ifdef __CALCULUS
 #include "../include/calculus.h"
 #endif
+#ifdef __POLYNOMIALS
 #include "../include/polynomial.h"
+#endif
 #include "../include/trig.h"
 #include <limits>
 #define multiplyRVal1 -1.0
@@ -121,6 +123,12 @@ Liam Tolkkinen
 
 #define M7Rows 3
 #define M7Sz (M7Rows * M7Columns)
+
+#define polynomial1Arr      \
+       {                    \
+              1.0, 2.0, 3.0 \
+       }
+#define polynomial1SZ 3
 
 // det(M3) should be 30
 // holds the largest long double possible
@@ -363,8 +371,14 @@ int main()
 #endif
 #endif
 
-       printf("END TESTING LINEAR ALGEBRA---------------\n");
+       printf("END TESTING LINEAR ALGEBRA---------------\n\n");
 
+#endif
+#ifdef __POLYNOMIALS
+       printf("TESTING POLYNOMIALS-----------------\n");
+       Polynomial emptyPolynomial; // to test default constructor
+       decimalType poly1Arr[] = polynomial1Arr;
+       Polynomial poly1 = Polynomial(poly1Arr, polynomial1SZ);
 #endif
        return 0;
 }
