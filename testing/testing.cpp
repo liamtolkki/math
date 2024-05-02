@@ -137,6 +137,10 @@ Liam Tolkkinen
        }
 #define polynomial2SZ 5
 
+#define eval1 2.0
+#define eval2 3.0
+#define eval3 1.0
+
 // holds the largest long double possible
 decimalType largestValue = std::numeric_limits<decimalType>::max();
 
@@ -397,6 +401,12 @@ int main()
        printf("Testing polynomial1 - polynomial2:\n");
        Polynomial polySubtract = poly1 - poly2;
        polySubtract.printPoly();
+       printf("Testing polynomial evaluation: P1(2.0) = ");
+       decimalType eval1Result = poly1.evaluate(eval1);
+       printf("%f\n", eval1Result);
+
+       printf("END TESTING POLYNOMIALS-------------\n");
+
 #endif
        return 0;
 }
