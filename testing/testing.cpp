@@ -34,7 +34,16 @@ Liam Tolkkinen
 #define exp2 2
 #define e_pow 2.653
 
-#define loginput 687.9834
+#define loginput1 0.0000245
+#define loginput2 e
+#define loginput3 9871813.971307031
+#define loginput4 1.0
+#define logbase1 10.0
+#define logbase2 2.0
+#define logbase3 3.14159
+#define loginput5 1000.0
+#define loginput6 2048.0
+#define loginput7 3.9343
 
 #define powBase 5.0
 #define powExp 6
@@ -189,9 +198,21 @@ int main()
 
 #ifdef __LOGARITHMS
        printf("\n\nTESTING LOGARITHMS-----------------------------\n");
-       decimalType logResult = ln(loginput);
-       printf("Testing ln(x): ln(%f) = %f\n", loginput, logResult);
+       decimalType logResult1 = ln(loginput1);
+       printf("Testing ln(x): ln(%f) = %f\n", loginput1, logResult1);
+       decimalType logResult2 = ln(loginput2);
+       printf("Testing ln(x): ln(%f) = %f\n", loginput2, logResult2);
+       decimalType logResult3 = ln(loginput3);
+       printf("Testing ln(x): ln(%f) = %f\n", loginput3, logResult3);
+       decimalType logResult4 = ln(loginput4);
+       printf("Testing ln(x): ln(%f) = %f\n", loginput4, logResult4);
 
+       decimalType logResult5 = log(logbase1, loginput5);
+       printf("Testing log(n, x): log(%f, %f) = %f\n", logbase1, loginput5, logResult5);
+       decimalType logResult6 = log(logbase2, loginput6);
+       printf("Testing log(n, x): log(%f, %f) = %f\n", logbase2, loginput6, logResult6);
+       decimalType logResult7 = log(logbase3, loginput7);
+       printf("Testing log(n, x): log(%f, %f) = %f\n", logbase3, loginput7, logResult7);
 
        printf("END TESTING LOGARITHMS-------------------------\n\n\n");
 
