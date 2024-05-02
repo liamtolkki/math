@@ -262,11 +262,12 @@ decimalType fib(int x)
     return result;
 }
 
-decimalType *FFT(decimalType *list, int sz)
+decimalType *FFT(const decimalType *list, const int sz)
 { // TODO
+
 }
 
-decimalType *IFFT(decimalType *list, int sz)
+decimalType *IFFT(const decimalType *list, const int sz)
 { // TODO
 }
 

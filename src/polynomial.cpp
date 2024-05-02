@@ -72,6 +72,11 @@ Polynomial Polynomial::operator*(const Polynomial &other) const
         // bit shift (pow2 * 2)
         pow2 = pow2 << 1;
     }
+
+    // this is because we need to double the size to prepare for the FFT() call
+    pow2 = pow2 << 1;
+
+    // these are the lists needed
     decimalType *list1 = new decimalType[pow2];
     decimalType *list2 = new decimalType[pow2];
     for (int i = 0; i < pow2; i++)
@@ -95,19 +100,18 @@ Polynomial Polynomial::operator*(const Polynomial &other) const
     }
     decimalType *list3 = FFT(list1, pow2);
     decimalType *list4 = FFT(list2, pow2);
+    decimalType *list5 = new decimalType[pow2];
     for (int i = 0; i < pow2; i++)
     { // O(n) multiplication
-        list1[i] = list3[i] * list4[i];
+        list5[i] = list3[i] * list4[i];
     }
-    delete[] list3;
-    delete[] list4;
 
     // free up memory since it is no longer needed
-    list3 = IFFT(list1, pow2);
+    list3 = IFFT(list5, pow2);
     delete[] list1;
     delete[] list2;
     Polynomial result = Polynomial(list3, pow2);
-    delete[] list3;
+    delete[] list5;
     return result;
 }
 
