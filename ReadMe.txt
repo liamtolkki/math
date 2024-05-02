@@ -3,7 +3,7 @@ Liam Tolkkinen
 liamtolkki@gmail.com
 ----------------------
 A fun and open-source project to calculate certain math operations
-installation 
+installation -- Soon to come!
 index:
 --basic
     --basic math functions
