@@ -146,7 +146,7 @@ decimalType exp(decimalType x)
 
 decimalType pow(decimalType x, int n)
 { // returns x^n
-    decimalType currentProduct = 1;
+    decimalType currentProduct = 1.0;
     bool isNegExp = (n < 0);
     if (n == 0)
         return 1.0;
@@ -181,17 +181,35 @@ decimalType log(decimalType base, decimalType x)
 }
 decimalType ln(decimalType x)
 {
-
+    decimalType lower = 0.36787944; // e^-1
+    decimalType upper = 1.64872127; // e^0.5
+    int sqrtCount = 0;              // keeps track of how many times x is square rooted
     if (x <= epsilon_BASIC)
     {
         throw std::runtime_error("ln(x): x must be greater than zero!");
     }
-    else if (x < 1)
-    {
+    if (compareMag(x - 1, epsilon_BASIC))
+    { // if 1, return zero
+        return 0.0;
     }
-    else // x > 1
-    {
+    while (x > upper || x < lower)
+    {                // while outside the bounds of accuracy
+        x = sqrt(x); // square rooting any positive value will make it approach 1
+        sqrtCount++;
     }
+    // taylor series:
+    int n = 20; // number of iterations
+    decimalType sum = 0.0;
+    for (int i = 1; i <= n; i++) // cant start at zero because of divison errors
+    {
+        int sign = (i % 2 != 0) ? 1 : -1;
+        sum += ((sign * pow(x - 1.0, i)) / i);
+    }
+
+    // law of logarithms states that you can pull out the exponent
+    // and then multiply by it
+    sum *= pow(2, sqrtCount);
+    return sum;
 }
 #endif
 decimalType fact(int x)

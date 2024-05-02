@@ -13,7 +13,7 @@ Feel free to modify it as you see fit
 This is the parent header for every file in this library.
 It contains useful data types and constants for other sublibraries
 */
-// #define __LOGARITHMS
+#define __LOGARITHMS
 #define __EXPONENTIALS
 #define __SCIENTIFIC_NOTATION_CONSTANTS
 typedef double decimalType;

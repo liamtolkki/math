@@ -34,6 +34,8 @@ Liam Tolkkinen
 #define exp2 2
 #define e_pow 2.653
 
+#define loginput 687.9834
+
 #define powBase 5.0
 #define powExp 6
 #define nRootBase 26.0
@@ -184,6 +186,16 @@ int main()
        printf("%.0f\n", fib(fibVal1));
        printf("fib(%i) = ", fibVal2);
        printf("%.0f\n", fib(fibVal2));
+
+#ifdef __LOGARITHMS
+       printf("\n\nTESTING LOGARITHMS-----------------------------\n");
+       decimalType logResult = ln(loginput);
+       printf("Testing ln(x): ln(%f) = %f\n", loginput, logResult);
+
+
+       printf("END TESTING LOGARITHMS-------------------------\n\n\n");
+
+#endif
 #ifdef TRIG
        printf("Degrees to Radians: %.10f deg = %.10f rad\n", degrees, toRad(degrees));
        printf("Radians to Degrees: %.10f rad = %.10f deg\n", radians, toDeg(radians));
