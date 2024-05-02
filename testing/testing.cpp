@@ -411,6 +411,10 @@ int main()
        decimalType eval3Result = poly2.evaluate(eval3);
        printf("%f\n", eval3Result);
 
+       printf("Testing polynomial multiplication\n");
+       printf("Poly1 * poly2 = ");
+       Polynomial polyProduct = poly1 * poly2;
+
        printf("END TESTING POLYNOMIALS-------------\n");
 
 #endif
