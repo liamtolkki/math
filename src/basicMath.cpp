@@ -266,6 +266,14 @@ decimalType fib(int x)
     return result;
 }
 
+decimalType *FFT(decimalType *list, int sz)
+{ // TODO
+}
+
+decimalType *IFFT(decimalType *list, int sz)
+{ // TODO
+}
+
 SciNot::SciNot()
 { // default constructor
     exp = 0;

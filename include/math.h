@@ -50,8 +50,12 @@ bool compareMag(decimalType n1, decimalType n2); // tests if |n1| <= |n2|
 decimalType fmod(decimalType x, decimalType y);  // returns x % y
 decimalType sum(decimalType start, decimalType end, decimalType (*term)(decimalType));
 
-decimalType *fft(decimalType *list);
-decimalType *ifft(decimalType *list);
+// Fast Fourier Transform
+decimalType *FFT(decimalType *list, int sz);
+
+// Inverse Fast Fourier Transform
+decimalType *IFFT(decimalType *list, int sz);
+
 #ifdef __LOGARITHMS
 decimalType log(decimalType base, decimalType x);
 decimalType ln(decimalType x);
