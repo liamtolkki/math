@@ -9,3 +9,6 @@
 
 * Complex Numbers addition
 * Complex Numbers subtraction
+
+* Statistics
+    -- all statistical concepts to be added
