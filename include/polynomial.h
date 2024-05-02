@@ -9,6 +9,8 @@ public:
     ~Polynomial();
     int getSize();
     void printPoly(); // prints the polynomial to stdout
+    decimalType evaluate(decimalType x);
+    decimalType evaluateHelper(decimalType x, decimalType *list, int sz); // recursive function
     Polynomial operator+(const Polynomial &other) const;
     Polynomial operator-(const Polynomial &other) const;
     Polynomial operator*(const Polynomial &other) const;
