@@ -431,6 +431,6 @@ std::string SciNot::toString()
         sign = '0';
     }
     // so that the string printer doesn't think that '0' is a string terminator
-    sprintf(result, "%fE%c%d", coefficient, sign, (exp >= 0 ? exp : exp * -1));
+    sprintf(result, "%fe%c%d", coefficient, sign, (exp >= 0 ? exp : exp * -1));
     return result;
 }
