@@ -51,10 +51,10 @@ decimalType fmod(decimalType x, decimalType y);  // returns x % y
 decimalType sum(decimalType start, decimalType end, decimalType (*term)(decimalType));
 
 // Fast Fourier Transform
-decimalType *FFT(decimalType *list, int sz);
+decimalType *FFT(const decimalType *list, const int sz);
 
 // Inverse Fast Fourier Transform
-decimalType *IFFT(decimalType *list, int sz);
+decimalType *IFFT(const decimalType *list, const int sz);
 
 #ifdef __LOGARITHMS
 decimalType log(decimalType base, decimalType x);
