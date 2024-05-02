@@ -130,6 +130,12 @@ Liam Tolkkinen
        }
 #define polynomial1SZ 3
 
+#define polynomial2Arr                \
+       {                              \
+              2.0, 1.0, 6.0, 5.0, 2.0 \
+       }
+#define polynomial2SZ 5
+
 // det(M3) should be 30
 // holds the largest long double possible
 decimalType largestValue = std::numeric_limits<decimalType>::max();
@@ -379,6 +385,15 @@ int main()
        Polynomial emptyPolynomial; // to test default constructor
        decimalType poly1Arr[] = polynomial1Arr;
        Polynomial poly1 = Polynomial(poly1Arr, polynomial1SZ);
+       printf("Polynomial 1\n");
+       poly1.printPoly();
+       decimalType poly2Arr[] = polynomial2Arr;
+       Polynomial poly2 = Polynomial(poly2Arr, polynomial2SZ);
+       printf("Polynomial 2\n");
+       poly2.printPoly();
+       printf("Testing Polynomial1 + polynomial2:\n");
+       Polynomial polySum = poly1 + poly2;
+       polySum.printPoly();
 #endif
        return 0;
 }
