@@ -404,6 +404,12 @@ int main()
        printf("Testing polynomial evaluation: P1(2.0) = ");
        decimalType eval1Result = poly1.evaluate(eval1);
        printf("%f\n", eval1Result);
+       printf("Testing polynomial evaluation: P2(3.0) = ");
+       decimalType eval2Result = poly2.evaluate(eval2);
+       printf("%f\n", eval2Result);
+       printf("Testing polynomial evaluation: P2(1.0) = ");
+       decimalType eval3Result = poly2.evaluate(eval3);
+       printf("%f\n", eval3Result);
 
        printf("END TESTING POLYNOMIALS-------------\n");
 
