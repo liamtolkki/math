@@ -16,6 +16,7 @@ It contains useful data types and constants for other sublibraries
 #define __LOGARITHMS
 #define __EXPONENTIALS
 #define __SCIENTIFIC_NOTATION_CONSTANTS
+#define __POLYNOMIALS
 typedef double decimalType;
 typedef double imaginaryType;
 typedef double realType;
@@ -48,6 +49,9 @@ decimalType abs(decimalType x);
 bool compareMag(decimalType n1, decimalType n2); // tests if |n1| <= |n2|
 decimalType fmod(decimalType x, decimalType y);  // returns x % y
 decimalType sum(decimalType start, decimalType end, decimalType (*term)(decimalType));
+
+decimalType *fft(decimalType *list);
+decimalType *ifft(decimalType *list);
 #ifdef __LOGARITHMS
 decimalType log(decimalType base, decimalType x);
 decimalType ln(decimalType x);
