@@ -20,7 +20,7 @@ index:
     --complex numbers (EX: 3 + 5i)
         --complex operators: (+, -, *, /)
     --Scientific notation:
-        --Ex: 2.38903E19, -9.22719E8, 4.090145E-6, -7.22079389E-26
+        --Ex: 2.38903e19, -9.22719e8, 4.090145e-6, -7.22079389e-26
     --Polynomials:
         --Basic Polynomial operators (+, -)
         --polynomial representation:
