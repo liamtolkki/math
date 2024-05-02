@@ -8,6 +8,7 @@ public:
     Polynomial(decimalType *list, int size);
     ~Polynomial();
     int getSize();
+    void printPoly(); // prints the polynomial to stdout
     Polynomial operator+(const Polynomial &other) const;
     Polynomial operator-(const Polynomial &other) const;
     Polynomial operator*(const Polynomial &other) const;
