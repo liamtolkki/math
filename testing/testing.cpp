@@ -36,6 +36,7 @@ Liam Tolkkinen
 #define exp2 2
 #define e_pow 2.653
 
+// log testing macros
 #define loginput1 0.0000245
 #define loginput2 e
 #define loginput3 9871813.971307031
@@ -136,7 +137,6 @@ Liam Tolkkinen
        }
 #define polynomial2SZ 5
 
-// det(M3) should be 30
 // holds the largest long double possible
 decimalType largestValue = std::numeric_limits<decimalType>::max();
 
@@ -394,6 +394,9 @@ int main()
        printf("Testing Polynomial1 + polynomial2:\n");
        Polynomial polySum = poly1 + poly2;
        polySum.printPoly();
+       printf("Testing polynomial1 - polynomial2:\n");
+       Polynomial polySubtract = poly1 - poly2;
+       polySubtract.printPoly();
 #endif
        return 0;
 }

@@ -51,6 +51,14 @@ Polynomial Polynomial::operator+(const Polynomial &other) const
 
 Polynomial Polynomial::operator-(const Polynomial &other) const
 {
+    decimalType *list = new decimalType[other.size];
+    for (int i = 0; i < other.size; i++)
+    {
+        list[i] = -1.0 * other.coefficients[i]; // make negative, then add (subtraction)
+    }
+    Polynomial temp = Polynomial(list, other.size);
+    delete[] list;
+    return operator+(temp);
 }
 
 Polynomial::~Polynomial()
