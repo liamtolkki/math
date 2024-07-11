@@ -98,9 +98,9 @@ Polynomial Polynomial::operator*(const Polynomial &other) const
             list2[i] = 0.0; // zero pad if out of bounds
         }
     }
-    decimalType *list3 = FFT(list1, pow2);
-    decimalType *list4 = FFT(list2, pow2);
-    decimalType *list5 = new decimalType[pow2];
+    ComplexNum *list3 = FFT(list1, pow2);
+    ComplexNum *list4 = FFT(list2, pow2);
+    ComplexNum *list5 = new ComplexNum[pow2];
     for (int i = 0; i < pow2; i++)
     { // O(n) multiplication
         list5[i] = list3[i] * list4[i];
@@ -110,7 +110,14 @@ Polynomial Polynomial::operator*(const Polynomial &other) const
     list3 = IFFT(list5, pow2);
     delete[] list1;
     delete[] list2;
-    Polynomial result = Polynomial(list3, pow2);
+    decimalType *finalList = new decimalType[pow2];
+    for (int i = 0; i < pow2; i++)
+    {
+        // convert from imaginary to real
+        finalList[i] = list3[i].getReal();
+    }
+    Polynomial result = Polynomial(finalList, pow2);
+    delete[] finalList;
     delete[] list5;
     return result;
 }

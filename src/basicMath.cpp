@@ -262,12 +262,16 @@ decimalType fib(int x)
     return result;
 }
 
-decimalType *FFT(const decimalType *list, const int sz)
+std::vector<ComplexNum> FFT(const std::vector<decimalType> list, const int sz)
 { // TODO
-
+    //ComplexNum *p = new ComplexNum[sz];
+    if (sz == 1)
+    {
+        return;
+    }
 }
 
-decimalType *IFFT(const decimalType *list, const int sz)
+std::vector<ComplexNum> IFFT(const std::vector<ComplexNum> list, const int sz)
 { // TODO
 }
 

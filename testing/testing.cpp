@@ -11,7 +11,6 @@ Liam Tolkkinen
 #include <stdio.h>
 #include "../include/math.h"
 #include "../include/linearAlgebra.h"
-#include "../include/complex.h"
 #ifdef __CALCULUS
 #include "../include/calculus.h"
 #endif

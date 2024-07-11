@@ -1,4 +1,10 @@
-#include "../include/complex.h"
+#include "../include/math.h"
+
+ComplexNum::ComplexNum()
+{
+    real = 0.0;
+    img = 0.0;
+}
 
 ComplexNum::ComplexNum(realType newReal, imaginaryType newImg) // make a new complex number
 {

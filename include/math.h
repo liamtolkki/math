@@ -2,6 +2,7 @@
 #include <string>
 #include <stdexcept>
 #include <cstdio>
+#include <vector>
 
 /*
 
@@ -13,6 +14,7 @@ Feel free to modify it as you see fit
 This is the parent header for every file in this library.
 It contains useful data types and constants for other sublibraries
 */
+class ComplexNum; // forward declaration
 #define __LOGARITHMS
 #define __EXPONENTIALS
 #define __SCIENTIFIC_NOTATION_CONSTANTS
@@ -51,10 +53,10 @@ decimalType fmod(decimalType x, decimalType y);  // returns x % y
 decimalType sum(decimalType start, decimalType end, decimalType (*term)(decimalType));
 
 // Fast Fourier Transform
-decimalType *FFT(const decimalType *list, const int sz);
+std::vector<ComplexNum> FFT(const decimalType *list, const int sz);
 
 // Inverse Fast Fourier Transform
-decimalType *IFFT(const decimalType *list, const int sz);
+std::vector<ComplexNum> IFFT(const std::vector<ComplexNum> list, const int sz);
 
 #ifdef __LOGARITHMS
 decimalType log(decimalType base, decimalType x);
@@ -92,4 +94,24 @@ public:
 private:
     decimalType coefficient;
     int exp;
+};
+
+class ComplexNum
+{
+    /*
+    complex numbers have both a real and an imaginary component.
+    ex: 3 + 5i
+    */
+private:
+    double real;
+    double img;
+
+public:
+    ComplexNum(); // default constructor
+    ComplexNum(realType real, imaginaryType img);
+    ComplexNum operator*(const ComplexNum &other) const; // overloads the * operator
+    ComplexNum operator/(const ComplexNum &other) const;
+    realType getReal();
+    imaginaryType getImg();
+    std::string toString();
 };
