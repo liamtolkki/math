@@ -6,7 +6,7 @@ made by Liam Tolkkinen
 
 struct point // represents a cartesian 2D point
 {
-    point(decimalType x_val = 0.0, decimalType y_val = 0.0): x(x_val), y(y_val){}
+    point(decimalType x_val = 0.0, decimalType y_val = 0.0) : x(x_val), y(y_val) {}
     decimalType x;
     decimalType y;
 };
