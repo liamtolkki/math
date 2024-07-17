@@ -3,7 +3,7 @@
 Polygon::Polygon()
 {
     n = 0;
-    vertices = nullptr; // no space allocated
+    vertices = NULL; // no space allocated
 }
 Polygon::Polygon(int nVal)
 {
@@ -21,7 +21,7 @@ Polygon::Polygon(int nVal, point *vertexArray)
 }
 Polygon::~Polygon()
 {
-    if (n > 0 && vertices != nullptr) // to prevent freeing a nullptr
+    if (n > 0 && vertices != NULL) // to prevent freeing a nullptr
     {
         delete[] vertices;
     }
