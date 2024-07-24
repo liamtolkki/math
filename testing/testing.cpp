@@ -1,7 +1,7 @@
 /*
 A testing environment for the math library made by me
 Liam Tolkkinen
-11/23/2023
+started: 11/23/2023
 */
 
 #define __MATRIX_TESTING
@@ -19,6 +19,9 @@ Liam Tolkkinen
 #include "../include/polynomial.h"
 #endif
 #include "../include/trig.h"
+#ifdef __GEOMETRY
+#include "../include/geometry.h"
+#endif
 #include <limits>
 #define multiplyRVal1 -1.0
 #define multiplyIVal1 2.0
@@ -416,6 +419,9 @@ int main()
        Polynomial polyProduct = poly1 * poly2;
 
        printf("END TESTING POLYNOMIALS-------------\n");
+
+#endif
+#ifdef __GEOMETRY
 
 #endif
        return 0;
