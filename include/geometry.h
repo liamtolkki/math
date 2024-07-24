@@ -22,12 +22,12 @@ public:
     void setN(int n);
     point *getVertices(); // returns an array of points
 
-    decimalType area();                // calculates and returns the area of the polygon
-                                       // uses Gauss's shoelace formula
-    decimalType perimeter();           // returns the perimeter of the polygon
-    Polygon();                         // default constructor
-    Polygon(int n);                    // default constructor given n
-    Polygon(int n, point *vertexList); // constructor
-    ~Polygon();                        // destructor
+    decimalType area();                       // calculates and returns the area of the polygon
+                                              // uses Gauss's shoelace formula
+    decimalType perimeter();                  // returns the perimeter of the polygon
+    Polygon();                                // default constructor
+    Polygon(int n);                           // default constructor given n
+    Polygon(int n, point *vertexList);        // constructor
+    ~Polygon();                               // destructor
 };
 #endif

@@ -53,6 +53,7 @@ Polygon::Polygon(int nVal, point *vertexArray)
         vertices[i] = vertexArray[i]; // hard copy
     }
 }
+
 Polygon::~Polygon()
 {
     if (n > 0 && vertices != NULL) // to prevent freeing a nullptr
