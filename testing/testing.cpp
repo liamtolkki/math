@@ -144,6 +144,29 @@ started: 11/23/2023
 #define eval2 3.0
 #define eval3 1.0
 
+// geometry macros:
+#define POLYGON1_N 4
+#define P1             \
+       {               \
+              0.0, 0.0 \
+       }
+#define P2             \
+       {               \
+              1.0, 0.0 \
+       }
+#define P3             \
+       {               \
+              1.0, 1.0 \
+       }
+#define P4             \
+       {               \
+              0.0, 1.0 \
+       }
+#define VERTEX_LIST1         \
+       {                     \
+              P1, P2, P3, P4 \
+       }
+
 // holds the largest long double possible
 decimalType largestValue = std::numeric_limits<decimalType>::max();
 
@@ -422,7 +445,19 @@ int main()
 
 #endif
 #ifdef __GEOMETRY
-
+       printf("BEGIN TESTING POLYGONS--------------\n");
+       decimalType vertex_arr1[][2] = VERTEX_LIST1;
+       point *point_Arr1 = new point[POLYGON1_N];
+       for (int i = 0; i < POLYGON1_N; i++)
+       {
+              point_Arr1[i].x = vertex_arr1[i][0];
+              point_Arr1[i].y = vertex_arr1[i][1];
+       }
+       Polygon polygon1 = Polygon(POLYGON1_N, point_Arr1);
+       delete[] point_Arr1;
+       printf("the perimeter for polygon1 is: %f\n", polygon1.perimeter());
+       printf("the area for polygon1 is: %f\n", polygon1.area());
+       printf("END TESTING POLYGONS----------------\n");
 #endif
        return 0;
 }
