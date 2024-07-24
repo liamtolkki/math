@@ -17,6 +17,7 @@ It contains useful data types and constants for other sublibraries
 #define __EXPONENTIALS
 #define __SCIENTIFIC_NOTATION_CONSTANTS
 #define __POLYNOMIALS
+#define __GEOMETRY
 typedef double decimalType;
 typedef double imaginaryType;
 typedef double realType;
