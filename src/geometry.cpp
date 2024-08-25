@@ -34,6 +34,14 @@ decimalType Polygon::perimeter()
     return length;
 }
 
+int Polygon::getN()
+{
+    return n;
+}
+void Polygon::setN(int newN)
+{
+    n = newN;
+}
 Polygon::Polygon()
 {
     n = 0;
@@ -60,4 +68,18 @@ Polygon::~Polygon()
     {
         delete[] vertices;
     }
+}
+decimalType Circle::area()
+{
+    return PI * radius * radius; // A = PI * r**2
+}
+decimalType Circle::circumference()
+{
+    return 2.0 * PI * radius;
+}
+Circle::Circle() : radius(0.0), center(point()) {}
+Circle::Circle(decimalType r) : radius(r), center(point()) {}
+Circle::Circle(decimalType r, point p) : radius(r), center(p) {}
+Circle::~Circle()
+{
 }

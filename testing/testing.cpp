@@ -167,6 +167,10 @@ started: 11/23/2023
               P1, P2, P3, P4 \
        }
 
+#define CIRCLE_1_RADIUS 3.0
+#define CIRCLE_2_RADIUS 2.0
+
+
 // holds the largest long double possible
 decimalType largestValue = std::numeric_limits<decimalType>::max();
 
@@ -458,6 +462,12 @@ int main()
        printf("the perimeter for polygon1 is: %f\n", polygon1.perimeter());
        printf("the area for polygon1 is: %f\n", polygon1.area());
        printf("END TESTING POLYGONS----------------\n");
+       Circle circle1 = Circle(CIRCLE_1_RADIUS);
+       printf("Circle 1 radius: %f\nCircle 1 area: %f\nCircle 1 circumference: %f\n",
+       CIRCLE_1_RADIUS, circle1.area(), circle1.circumference());
+
+       //this is to test out making a polygon that resembles a circle:
+       Polygon polycircle = Polygon();
 #endif
        return 0;
 }
