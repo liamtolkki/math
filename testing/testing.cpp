@@ -440,11 +440,11 @@ int main()
        printf("Testing polynomial evaluation: P2(1.0) = ");
        decimalType eval3Result = poly2.evaluate(eval3);
        printf("%f\n", eval3Result);
-
+       #ifdef __FFT
        printf("Testing polynomial multiplication\n");
        printf("Poly1 * poly2 = ");
        Polynomial polyProduct = poly1 * poly2;
-
+       #endif
        printf("END TESTING POLYNOMIALS-------------\n");
 
 #endif
