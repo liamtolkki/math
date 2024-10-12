@@ -261,16 +261,15 @@ decimalType fib(int x)
     delete[] dict;
     return result;
 }
-
+#ifdef __FFT
 decimalType *FFT(const decimalType *list, const int sz)
 { // TODO
-
 }
 
 decimalType *IFFT(const decimalType *list, const int sz)
 { // TODO
 }
-
+#endif
 SciNot::SciNot()
 { // default constructor
     exp = 0;
