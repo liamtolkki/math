@@ -49,13 +49,15 @@ int gcd(int a, int b); // returns greatest common denominator
 decimalType abs(decimalType x);
 bool compareMag(decimalType n1, decimalType n2); // tests if |n1| <= |n2|
 decimalType fmod(decimalType x, decimalType y);  // returns x % y
-decimalType sum(decimalType start, decimalType end, decimalType (*term)(decimalType));
+//decimalType sum(decimalType start, decimalType end, decimalType (*term)(decimalType));
 
+#ifdef __FFT
 // Fast Fourier Transform
 decimalType *FFT(const decimalType *list, const int sz);
 
 // Inverse Fast Fourier Transform
 decimalType *IFFT(const decimalType *list, const int sz);
+#endif
 
 #ifdef __LOGARITHMS
 decimalType log(decimalType base, decimalType x);
