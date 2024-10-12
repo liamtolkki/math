@@ -9,18 +9,19 @@ started: 11/23/2023
 #define __MATRIX_SUM_TESTING
 
 #include <stdio.h>
-#include "../include/math.h"
-#include "../include/linearAlgebra.h"
-#include "../include/complex.h"
+#include <mathlib/math.h>
+#include <mathlib/linearAlgebra.h>
+#include <mathlib/complex.h>
+//#include "../include/complex.h"
 #ifdef __CALCULUS
-#include "../include/calculus.h"
+#include <mathlib/calculus.h>
 #endif
 #ifdef __POLYNOMIALS
-#include "../include/polynomial.h"
+#include <mathlib/polynomial.h>
 #endif
-#include "../include/trig.h"
+#include <mathlib/trig.h>
 #ifdef __GEOMETRY
-#include "../include/geometry.h"
+#include <mathlib/geometry.h>
 #endif
 #include <limits>
 #define multiplyRVal1 -1.0

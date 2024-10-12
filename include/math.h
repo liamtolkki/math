@@ -1,4 +1,5 @@
 #pragma once
+#define PROJECTNAME "mathlib"
 #include <string>
 #include <stdexcept>
 #include <cstdio>

@@ -1,1 +1,1 @@
-#include "../include/math.h"
+#include <mathlib/math.h>

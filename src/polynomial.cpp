@@ -1,4 +1,4 @@
-#include "../include/polynomial.h"
+#include <mathlib/polynomial.h>
 
 void Polynomial::printPoly()
 {

@@ -1,4 +1,4 @@
-#include "../include/math.h"
+#include <mathlib/math.h>
 
 bool compareMag(decimalType n1, decimalType n2)
 { // if n1 is within the magnitude of n2, return true, else return false
