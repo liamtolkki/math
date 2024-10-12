@@ -9,7 +9,19 @@ SRC_DIR = src
 
 TEST_DIR = testing
 
-CFLAGS = -I$(INC_DIR) -I$(SRC_DIR) -I$(OBJ_DIR) -g -Wall -ansi -pedantic -Wno-write-strings -Wno-parentheses
+CFLAGS = -I$(INC_DIR) -I$(SRC_DIR) -I$(OBJ_DIR) -fPIC -g -Wall -ansi -pedantic -Wno-write-strings -Wno-parentheses
+
+#installation variables:
+
+#name of archive
+LIB_NAME = libmathlib
+#prefix for installation
+PREFIX = /usr/local
+#path to binaries
+LIB_DEST = $(PREFIX)/lib
+#path to headers
+INC_DEST = $(PREFIX)/include/mathlib
+
 
 
 .SUFFIXES: .cpp .o .C
@@ -38,16 +50,39 @@ $(TEST_EXECUTABLE): $(TEST_OBJ_FILES) $(OBJFILES)
 $(OBJFILES): $(INC_DIR)/math.h 
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(OBJ_DIR)/%.o: $(TEST_DIR)/%.cpp
+	mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
+all: $(TEST_EXECUTABLE) static shared #this builds the full project
 
+#static library
+static: $(OBJFILES)
+	ar rcs $(LIB_NAME).a $(OBJFILES)
+
+#shared library
+shared: $(OBJFILES)
+	$(CC) $(CFLAGS) -shared -o $(LIB_NAME).so $(OBJFILES)
+
+#installation:
+install: static shared
+	install -d $(LIB_DEST) $(INC_DEST)
+	install -m 644 $(LIB_NAME).a $(LIB_DEST)
+	install -m 755 $(LIB_NAME).so $(LIB_DEST)
+	install -m 644 $(INC_DIR)/*.h $(INC_DEST)
+
+#clean will only clean the working directory...
 clean:
-	rm -rf $(OBJ_DIR)/*.o *.out $(TEST_EXECUTABLE)
-test:
-	make clean
-	make
+	rm -rf $(OBJ_DIR) *.out $(TEST_EXECUTABLE)
+
+uninstall:
+	rm -f $(LIB_DEST)/$(LIB_NAME).a
+	rm -f $(LIB_DEST)/$(LIB_NAME).so
+	rm -rf $(INC_DEST)
+
+test: clean all
 	./$(TEST_EXECUTABLE)
 .PHONY: clean test
