@@ -1,2 +1,0 @@
-Do not delete this directory.
-This is where the compiled object files will reside.
