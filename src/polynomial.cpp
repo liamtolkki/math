@@ -60,7 +60,7 @@ Polynomial Polynomial::operator-(const Polynomial &other) const
     delete[] list;
     return operator+(temp);
 }
-
+#ifdef __FFT
 Polynomial Polynomial::operator*(const Polynomial &other) const
 {
     // needs FFT() and IFFT()
@@ -114,7 +114,7 @@ Polynomial Polynomial::operator*(const Polynomial &other) const
     delete[] list5;
     return result;
 }
-
+#endif
 decimalType Polynomial::evaluate(decimalType x)
 {
     // the first coefficient is a constant, so leave it out of the chain
