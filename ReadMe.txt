@@ -7,6 +7,7 @@ installation:
     - If you have make installed:
         - Run "sudo make install" to install the binaries and headers to your system
         - Run "sudo make uninstall" to uninstall the binaries and headers from your system
+    - Installer: soon to come!
 index:
 --basic
     --basic math functions
