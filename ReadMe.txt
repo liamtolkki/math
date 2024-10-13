@@ -3,7 +3,10 @@ Liam Tolkkinen
 liamtolkki@gmail.com
 ----------------------
 A fun and open-source project to calculate certain math operations
-installation -- Soon to come!
+installation:
+    - If you have make installed:
+        - Run "sudo make install" to install the binaries and headers to your system
+        - Run "sudo make uninstall" to uninstall the binaries and headers from your system
 index:
 --basic
     --basic math functions
