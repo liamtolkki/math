@@ -28,6 +28,11 @@ public:
     void norm();                            // normalize the vector
     void scale(decimalType scalar);         // apply a scalar to the vector and return
 
+    // vector operators:
+    Vector operator+(const Vector &other) const;
+    Vector operator-(const Vector &other) const;
+    Vector operator*(const Vector &other) const;
+
 private:
     int degree;
     decimalType *components;
