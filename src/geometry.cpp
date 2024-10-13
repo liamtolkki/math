@@ -1,4 +1,4 @@
-#include <mathlib/geometry.h>
+#include "../include/geometry.h"
 
 decimalType Polygon::area()
 {

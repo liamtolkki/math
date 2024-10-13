@@ -1,4 +1,5 @@
-#include <mathlib/linearAlgebra.h>
+//#include <mathlib/linearAlgebra.h>
+#include "../include/linearAlgebra.h"
 #ifdef __LINEAR_ALGEBRA
 #ifdef __VECTORS
 Vector::Vector()
@@ -143,6 +144,13 @@ decimalType Vector::dot(Vector *other)
         return 0;
     }
 }
+
+Vector Vector::operator+(const Vector &other) const
+{
+    Vector result;
+    return result;
+}
+
 #endif
 
 #ifdef __MATRICES
