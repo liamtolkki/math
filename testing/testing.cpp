@@ -12,7 +12,7 @@ started: 11/23/2023
 #include <mathlib/math.h>
 #include <mathlib/linearAlgebra.h>
 #include <mathlib/complex.h>
-//#include "../include/complex.h"
+// #include "../include/complex.h"
 #ifdef __CALCULUS
 #include <mathlib/calculus.h>
 #endif
@@ -74,71 +74,62 @@ started: 11/23/2023
 #define M1Rows 4
 #define M1Columns 3
 #define M1Sz (M1Rows * M1Columns)
-#define M1CompArr                                                        \
-       {                                                                 \
-              4.0, 6.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 2.0, 0.0, 1.0, 4.0 \
-       }
+#define M1CompArr \
+       {          \
+           4.0, 6.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 2.0, 0.0, 1.0, 4.0}
 
 #define M2Rows 4
 #define M2Columns 4
 #define M2Sz (M2Rows * M2Columns)
-#define M2CompArr                                                                                          \
-       {                                                                                                   \
-              3.0, 24.0, 6.0, 4.5, 3.04, 0.0, -28.0, 7.922, -0.23, 83.0, 2.0, 9.0, 83.1, -19.0, 2.718, 3.3 \
-       }
-#define M3CompArr                                         \
-       {                                                  \
-              4.0, 6.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 2.0 \
-       }
+#define M2CompArr \
+       {          \
+           3.0, 24.0, 6.0, 4.5, 3.04, 0.0, -28.0, 7.922, -0.23, 83.0, 2.0, 9.0, 83.1, -19.0, 2.718, 3.3}
+#define M3CompArr \
+       {          \
+           4.0, 6.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 2.0}
 #define M3Rows 3
 #define M3Columns 3
 #define M3Sz (M3Rows * M3Columns)
 
-#define M4CompArr                \
-       {                         \
-              2.0, 3.0, 4.0, 2.0 \
-       }
+#define M4CompArr \
+       {          \
+           2.0, 3.0, 4.0, 2.0}
 #define M4Columns 2
 
 #define M4Rows 2
 #define M4Sz (M4Rows * M4Columns)
 
-#define M5CompArr                \
-       {                         \
-              1.0, 2.0, 5.0, 3.0 \
-       }
+#define M5CompArr \
+       {          \
+           1.0, 2.0, 5.0, 3.0}
 #define M5Columns 2
 
 #define M5Rows 2
 #define M5Sz (M5Rows * M5Columns)
 
-#define M6CompArr                          \
-       {                                   \
-              1.0, 2.0, 5.0, 3.0, 9.0, 0.0 \
-       }
+#define M6CompArr \
+       {          \
+           1.0, 2.0, 5.0, 3.0, 9.0, 0.0}
 #define M6Columns 3
 
 #define M6Rows 2
 #define M6Sz (M6Rows * M6Columns)
-#define M7CompArr                                         \
-       {                                                  \
-              3.0, 4.0, 0.0, -9.0, 6.5, 0.6, 3.1, 2, 8.95 \
-       }
+#define M7CompArr \
+       {          \
+           3.0, 4.0, 0.0, -9.0, 6.5, 0.6, 3.1, 2, 8.95}
 #define M7Columns 3
 
 #define M7Rows 3
 #define M7Sz (M7Rows * M7Columns)
 
-#define polynomial1Arr      \
-       {                    \
-              1.0, 2.0, 3.0 \
-       }
+#define polynomial1Arr \
+       {               \
+           1.0, 2.0, 3.0}
 #define polynomial1SZ 3
 
-#define polynomial2Arr                \
-       {                              \
-              2.0, 1.0, 6.0, 5.0, 2.0 \
-       }
+#define polynomial2Arr \
+       {               \
+           2.0, 1.0, 6.0, 5.0, 2.0}
 #define polynomial2SZ 5
 
 #define eval1 2.0
@@ -147,30 +138,24 @@ started: 11/23/2023
 
 // geometry macros:
 #define POLYGON1_N 4
-#define P1             \
-       {               \
-              0.0, 0.0 \
-       }
-#define P2             \
-       {               \
-              1.0, 0.0 \
-       }
-#define P3             \
-       {               \
-              1.0, 1.0 \
-       }
-#define P4             \
-       {               \
-              0.0, 1.0 \
-       }
-#define VERTEX_LIST1         \
-       {                     \
-              P1, P2, P3, P4 \
-       }
+#define P1 \
+       {   \
+           0.0, 0.0}
+#define P2 \
+       {   \
+           1.0, 0.0}
+#define P3 \
+       {   \
+           1.0, 1.0}
+#define P4 \
+       {   \
+           0.0, 1.0}
+#define VERTEX_LIST1 \
+       {             \
+           P1, P2, P3, P4}
 
 #define CIRCLE_1_RADIUS 3.0
 #define CIRCLE_2_RADIUS 2.0
-
 
 // holds the largest long double possible
 decimalType largestValue = std::numeric_limits<decimalType>::max();
@@ -314,7 +299,10 @@ int main()
        printf("Vector2 magnitude: %f\n", vec2.mag());
 
        decimalType dotResult = vec1.dot(&vec2);
-
+       printf("Testing vector overloaded operators:\n");
+       printf("Vector1 + Vector2 = %s\n", (vec1 + vec2).toString(UNIT_NOTATION).c_str());
+       printf("Vector1 - Vector2 = %s\n", (vec1 - vec2).toString(UNIT_NOTATION).c_str());
+       printf("Vector1 * Vector2 = %f\n", (vec1 * vec2));
        printf("Testing V1 dot V2: %f\n", dotResult);
 
        vec1.norm();
@@ -441,11 +429,11 @@ int main()
        printf("Testing polynomial evaluation: P2(1.0) = ");
        decimalType eval3Result = poly2.evaluate(eval3);
        printf("%f\n", eval3Result);
-       #ifdef __FFT
+#ifdef __FFT
        printf("Testing polynomial multiplication\n");
        printf("Poly1 * poly2 = ");
        Polynomial polyProduct = poly1 * poly2;
-       #endif
+#endif
        printf("END TESTING POLYNOMIALS-------------\n");
 
 #endif
@@ -465,9 +453,9 @@ int main()
        printf("END TESTING POLYGONS----------------\n");
        Circle circle1 = Circle(CIRCLE_1_RADIUS);
        printf("Circle 1 radius: %f\nCircle 1 area: %f\nCircle 1 circumference: %f\n",
-       CIRCLE_1_RADIUS, circle1.area(), circle1.circumference());
+              CIRCLE_1_RADIUS, circle1.area(), circle1.circumference());
 
-       //this is to test out making a polygon that resembles a circle:
+       // this is to test out making a polygon that resembles a circle:
        Polygon polycircle = Polygon();
 #endif
        return 0;
