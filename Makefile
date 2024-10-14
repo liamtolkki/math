@@ -82,7 +82,7 @@ uninstall:
 	rm -f $(LIB_DEST)/$(LIB_NAME).a
 	rm -f $(LIB_DEST)/$(LIB_NAME).so
 	rm -rf $(INC_DEST)
-
+rebuild: clean all
 test: clean all
 	./$(TEST_EXECUTABLE)
 .PHONY: clean test
