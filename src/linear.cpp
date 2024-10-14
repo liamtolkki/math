@@ -1,4 +1,4 @@
-//#include <mathlib/linearAlgebra.h>
+// #include <mathlib/linearAlgebra.h>
 #include "../include/linearAlgebra.h"
 #ifdef __LINEAR_ALGEBRA
 #ifdef __VECTORS
@@ -121,7 +121,7 @@ void Vector::norm()
     }
 }
 
-decimalType Vector::dot(Vector *other)
+decimalType Vector::dot(const Vector *other) const
 { // dot product (return a scalar quantity
     decimalType result = 0.0;
     // must have same degree:
@@ -147,8 +147,39 @@ decimalType Vector::dot(Vector *other)
 
 Vector Vector::operator+(const Vector &other) const
 {
-    Vector result;
+    int deg = this->degree;
+    if (this->degree != other.degree)
+    {
+        throw std::runtime_error("Vector::operator+() error:\nVectors must have the same degree for addition!");
+    }
+    Vector result(deg);
+    for (int i = 0; i < deg; i++)
+    {
+        result.setVal(i, this->components[i] + other.components[i]);
+    }
     return result;
+}
+Vector Vector::operator-(const Vector &other) const
+{
+    int deg = this->degree;
+    if (this->degree != other.degree)
+    {
+        throw std::runtime_error("Vector::operator-() error:\nVectors must have the same degree for subtraction!");
+    }
+    Vector result(deg);
+    for (int i = 0; i < deg; i++)
+    {
+        result.setVal(i, this->components[i] - other.components[i]);
+    }
+    return result;
+}
+decimalType Vector::operator*(const Vector &other) const
+{
+    if (this->degree != other.degree)
+    {
+        throw std::runtime_error("Vector::operator*() error:\nVectors must have the same degree for dot product!");
+    }
+    return this->dot(&other);
 }
 
 #endif

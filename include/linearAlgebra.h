@@ -21,17 +21,17 @@ public:
     int getDegree();
     decimalType getVal(int x); // get the value at index x
     void setDegree(int degree);
-    void setVal(int x, decimalType newVal); // set the value at x to be newVal
-    decimalType dot(Vector *other);         // dot product
-    Vector *cross(Vector *other);           // cross product
-    decimalType mag();                      // returns the magnitude of the vector
-    void norm();                            // normalize the vector
-    void scale(decimalType scalar);         // apply a scalar to the vector and return
+    void setVal(int x, decimalType newVal);     // set the value at x to be newVal
+    decimalType dot(const Vector *other) const; // dot product
+    Vector *cross(Vector *other);               // cross product
+    decimalType mag();                          // returns the magnitude of the vector
+    void norm();                                // normalize the vector
+    void scale(decimalType scalar);             // apply a scalar to the vector and return
 
     // vector operators:
     Vector operator+(const Vector &other) const;
     Vector operator-(const Vector &other) const;
-    Vector operator*(const Vector &other) const;
+    decimalType operator*(const Vector &other) const;
 
 private:
     int degree;
