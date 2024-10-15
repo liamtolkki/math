@@ -3,6 +3,7 @@ Geometry header for geometry.cpp
 made by Liam Tolkkinen
 */
 #include "math.h"
+#pragma once
 #ifdef __GEOMETRY
 struct point // represents a cartesian 2D point
 {
