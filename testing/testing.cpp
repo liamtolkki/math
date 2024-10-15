@@ -9,19 +9,19 @@ started: 11/23/2023
 #define __MATRIX_SUM_TESTING
 
 #include <stdio.h>
-#include <mathlib/math.h>
-#include <mathlib/linearAlgebra.h>
-#include <mathlib/complex.h>
+#include "../include/math.h"
+#include "../include/linearAlgebra.h"
+#include "../include/complex.h"
 // #include "../include/complex.h"
 #ifdef __CALCULUS
-#include <mathlib/calculus.h>
+#include "../include/calculus.h"
 #endif
 #ifdef __POLYNOMIALS
-#include <mathlib/polynomial.h>
+#include "../include/polynomial.h"
 #endif
-#include <mathlib/trig.h>
+#include "../include/geometry.h"
 #ifdef __GEOMETRY
-#include <mathlib/geometry.h>
+#include "../include/geometry.h"
 #endif
 #include <limits>
 #define multiplyRVal1 -1.0
@@ -279,13 +279,17 @@ int main()
 #ifdef __VECTORS
        // test the linear algebra library
        Vector vec1 = Vector(degree);
-       vec1.setVal(0, v1);
-       vec1.setVal(1, v2);
-       vec1.setVal(2, v3);
+       decimalType compArr[] = {v1, v2, v3};
+       for (int i = 0; i < degree; i++)
+       {
+              vec1.components[i] = compArr[i];
+       }
+       decimalType compArr2[] = {u1, u2, u3};
        Vector vec2 = Vector(degree);
-       vec2.setVal(0, u1);
-       vec2.setVal(1, u2);
-       vec2.setVal(2, u3);
+       for (int i = 0; i < degree; i++)
+       {
+              vec2.components[i] = compArr2[i];
+       }
        printf("TESTING LINEAR ALGEBRA-------------------\n\n");
        printf("TESTING VECTORS--------------------------\n\n");
 
@@ -304,6 +308,9 @@ int main()
        printf("Vector1 - Vector2 = %s\n", (vec1 - vec2).toString(UNIT_NOTATION).c_str());
        printf("Vector1 * Vector2 = %f\n", (vec1 * vec2));
        printf("Testing V1 dot V2: %f\n", dotResult);
+       printf("Vector1 = %s\n", vec1.toString().c_str());
+       Vector scaledVec1 = vec1 * 2.0;
+       printf("Testing scalar: Vector1 * 2.0: %s\n", scaledVec1.toString().c_str());
 
        vec1.norm();
        vec2.norm();
@@ -332,10 +339,10 @@ int main()
        printf("Matrix 3:\n%s\n", m3.toString().c_str());
 
        printf("testing get():\n");
-       printf("getting matrix_1(1,1): %f\n", m1.get(1, 1));
-       printf("getting matrix_2(1,1): %f\n", m2.get(1, 1));
-       m1.set(1, 1, 3.1415);
-       m2.set(1, 1, 12.34);
+       printf("getting matrix_1(1,1): %f\n", m1.components[1][1]);
+       printf("getting matrix_2(1,1): %f\n", m2.components[1][1]);
+       m1.components[1][1] = 3.1415;
+       m2.components[1][1] = 12.34;
        printf("testing set():\n");
 
        printf("setting matrix_1(1,1) to 3.1415:\n");
