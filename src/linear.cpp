@@ -12,43 +12,21 @@ Vector::Vector(int deg)
 {
     degree = deg;
     components = new decimalType[deg];
+    for (int i = 0; i < deg; i++)
+    {
+        components[i] = 0.0;
+    }
 }
 
 Vector::~Vector()
 {
-    delete components;
+    if (components != NULL)
+    {
+        delete[] components;
+        components = NULL;
+    }
 }
 
-int Vector::getDegree()
-{
-    return degree;
-}
-void Vector::setDegree(int deg)
-{
-    delete components;
-    components = new decimalType[deg];
-    degree = deg;
-}
-decimalType Vector::getVal(int x)
-{
-    if (x < degree)
-    {
-        return components[x];
-    }
-    else
-    {
-        throw std::runtime_error("Vector Index Out of Bounds ERROR");
-        return 0;
-    }
-}
-void Vector::setVal(int x, decimalType newVal)
-{ // sets component x to newVal
-    if (x < degree)
-    {
-        components[x] = newVal;
-    }
-    return;
-}
 decimalType Vector::mag()
 {
     decimalType result = 0;
@@ -120,6 +98,13 @@ void Vector::norm()
         components[i] /= mag;
     }
 }
+void Vector::scale(const decimalType scalar)
+{
+    for (int i = 0; i < degree; i++)
+    {
+        components[i] *= scalar;
+    }
+}
 
 decimalType Vector::dot(const Vector *other) const
 { // dot product (return a scalar quantity
@@ -155,7 +140,7 @@ Vector Vector::operator+(const Vector &other) const
     Vector result(deg);
     for (int i = 0; i < deg; i++)
     {
-        result.setVal(i, this->components[i] + other.components[i]);
+        result.components[i] = (this->components[i] + other.components[i]);
     }
     return result;
 }
@@ -169,7 +154,7 @@ Vector Vector::operator-(const Vector &other) const
     Vector result(deg);
     for (int i = 0; i < deg; i++)
     {
-        result.setVal(i, this->components[i] - other.components[i]);
+        result.components[i] = (this->components[i] - other.components[i]);
     }
     return result;
 }
@@ -181,6 +166,31 @@ decimalType Vector::operator*(const Vector &other) const
     }
     return this->dot(&other);
 }
+
+Vector Vector::operator*(const decimalType &other) const
+{
+    Vector result = Vector(degree);
+    for (int i = 0; i < degree; i++)
+    {
+        result.components[i] = components[i] * other;
+    }
+    return result;
+}
+
+// Vector &Vector::operator=(const Vector &other) // assignment constructor
+//{
+//     degree = other.degree;
+//     if (this != &other)
+//     {
+//         delete[] components;
+//         components = new decimalType[degree];
+//         for (int i = 0; i < degree; i++)
+//         {
+//             components[i] = other.components[i];
+//         }
+//     }
+//     return *this;
+// }
 
 #endif
 
@@ -236,38 +246,6 @@ Matrix::~Matrix()
         delete[] components[i];
     }
     delete[] components;
-}
-
-int Matrix::getRows() const
-{
-    return rows;
-}
-
-int Matrix::getColumns() const
-{
-    return columns;
-}
-decimalType Matrix::get(int i, int j) const
-{
-    if ((i < rows) && (j < columns))
-    {
-        return components[i][j];
-    }
-    else
-    {
-        throw std::runtime_error("index out of range of matrix");
-    }
-}
-void Matrix::set(int i, int j, decimalType newVal)
-{
-    if ((i < rows) && (j < columns))
-    {
-        components[i][j] = newVal;
-    }
-    else
-    {
-        throw std::runtime_error("index out of range of matrix");
-    }
 }
 
 std::string Matrix::toString()
@@ -327,21 +305,21 @@ void Matrix::initialize(decimalType *compArr, int sz)
 decimalType detHelp(Matrix *sub)
 {
     decimalType result = 0.0;
-    int subRows = sub->getRows();
-    int subCols = sub->getColumns();
+    int subRows = sub->rows;
+    int subCols = sub->columns;
 
     if (subRows == 1 && subCols == 1)
     { // -------BASE CASE-------
       //    CURRENT SUB IS 1X1
-        return sub->get(0, 0);
+        return sub->components[0][0];
     }
     decimalType currCoef = 0.0;
     int sign = 1; // will either be +1 or -1
     for (int i = 0; i < subCols; i++)
     {
-        currCoef = sub->get(0, i);    // current coefficient to multiply to the minor
-        sign = (i % 2 == 0) ? 1 : -1; // check to see if i is even
-        currCoef *= sign;             // sets the sign
+        currCoef = sub->components[0][i]; // current coefficient to multiply to the minor
+        sign = (i % 2 == 0) ? 1 : -1;     // check to see if i is even
+        currCoef *= sign;                 // sets the sign
         int subSz = (subCols - 1) * (subRows - 1);
         decimalType *compArr = new decimalType[subSz];
         int nextIndx = 0;
@@ -356,7 +334,7 @@ decimalType detHelp(Matrix *sub)
             {
                 for (int k = 1; k < subCols; k++) // k == row index
                 {
-                    compArr[nextIndx] = sub->get(k, j);
+                    compArr[nextIndx] = sub->components[k][j]; // @todo test this
                     nextIndx++;
                 }
             }
