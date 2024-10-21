@@ -1,7 +1,11 @@
-// #include <mathlib/linearAlgebra.h>
+#ifdef DEVELOPMENT_MODE
 #include "../include/linearAlgebra.h"
+#else
+#include <mathlib/linearAlgebra.h>
+#endif
 #ifdef __LINEAR_ALGEBRA
 #ifdef __VECTORS
+
 Vector::Vector()
 {
     degree = 0;

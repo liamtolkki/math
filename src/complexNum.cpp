@@ -1,4 +1,8 @@
+#ifdef DEVELOPMENT_MODE
 #include "../include/complex.h"
+#else
+#include <mathlib/complex.h>
+#endif
 
 ComplexNum::ComplexNum(realType newReal, imaginaryType newImg) // make a new complex number
 {

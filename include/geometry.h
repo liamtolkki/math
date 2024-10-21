@@ -2,7 +2,11 @@
 Geometry header for geometry.cpp
 made by Liam Tolkkinen
 */
+#ifdef DEVELOPMENT_MODE
 #include "math.h"
+#else
+#include <mathlib/math.h>
+#endif
 #pragma once
 #ifdef __GEOMETRY
 struct point // represents a cartesian 2D point
@@ -22,7 +26,7 @@ public:
     int getN();
     void setN(int newN);
     point *getVertices(); // returns an array of points
-    void setVertices(point* vertexList);
+    void setVertices(point *vertexList);
 
     decimalType area();                // calculates and returns the area of the polygon
                                        // uses Gauss's shoelace formula

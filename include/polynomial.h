@@ -1,4 +1,8 @@
+#ifdef DEVELOPMENT_MODE
 #include "math.h"
+#else
+#include <mathlib/math.h>
+#endif
 class Polynomial
 {
     // by default, a polynomial is represented in coefficient form

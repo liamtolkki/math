@@ -3,6 +3,7 @@
 #include <string>
 #include <stdexcept>
 #include <cstdio>
+// #define DEVELOPMENT_MODE //this will be defined using compile flags!
 
 /*
 
@@ -19,6 +20,7 @@ It contains useful data types and constants for other sublibraries
 #define __SCIENTIFIC_NOTATION_CONSTANTS
 #define __POLYNOMIALS
 #define __GEOMETRY
+#define TRIG
 typedef double decimalType;
 typedef double imaginaryType;
 typedef double realType;
@@ -50,7 +52,7 @@ int gcd(int a, int b); // returns greatest common denominator
 decimalType abs(decimalType x);
 bool compareMag(decimalType n1, decimalType n2); // tests if |n1| <= |n2|
 decimalType fmod(decimalType x, decimalType y);  // returns x % y
-//decimalType sum(decimalType start, decimalType end, decimalType (*term)(decimalType));
+// decimalType sum(decimalType start, decimalType end, decimalType (*term)(decimalType));
 
 #ifdef __FFT
 // Fast Fourier Transform

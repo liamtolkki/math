@@ -1,4 +1,8 @@
+#ifdef DEVELOPMENT_MODE
 #include "math.h"
+#else
+#include <mathlib/math.h>
+#endif
 #define __LINEAR_ALGEBRA
 #define __VECTORS
 #define __MATRICES

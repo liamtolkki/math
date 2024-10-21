@@ -1,5 +1,8 @@
+#ifdef DEVELOPMENT_MODE
 #include "../include/polynomial.h"
-
+#else
+#include <mathlib/polynomial.h>
+#endif
 void Polynomial::printPoly()
 {
     printf("{");

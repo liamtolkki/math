@@ -1,5 +1,8 @@
+#ifdef DEVELOPMENT_MODE
 #include "math.h"
-#define TRIG
+#else
+#include <mathlib/math.h>
+#endif
 // BEGIN BASIC TRIG FUNCTIONS--------------
 #ifdef TRIG
 decimalType sin(decimalType x);

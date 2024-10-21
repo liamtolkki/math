@@ -4,24 +4,39 @@ Liam Tolkkinen
 started: 11/23/2023
 */
 
-#define __MATRIX_TESTING
+// #define __MATRIX_TESTING
 #define __DETERMINANT_TESTING
 #define __MATRIX_SUM_TESTING
 
 #include <stdio.h>
-#include "../include/math.h"
+#ifdef DEVELOPMENT_MODE
 #include "../include/linearAlgebra.h"
+#include "../include/math.h"
 #include "../include/complex.h"
-// #include "../include/complex.h"
 #ifdef __CALCULUS
 #include "../include/calculus.h"
 #endif
 #ifdef __POLYNOMIALS
 #include "../include/polynomial.h"
 #endif
-#include "../include/geometry.h"
 #ifdef __GEOMETRY
 #include "../include/geometry.h"
+#endif
+#include "../include/trig.h"
+#else
+#include <mathlib/math.h>
+#include <mathlib/linearAlgebra.h>
+#include <mathlib/complex.h>
+#ifdef __CALCULUS
+#include <mathlib/calculus.h>
+#endif
+#ifdef __POLYNOMIALS
+#include <mathlib/polynomial.h>
+#endif
+#include <mathlib/trig.h>
+#ifdef __GEOMETRY
+#include <mathlib/geometry.h>
+#endif
 #endif
 #include <limits>
 #define multiplyRVal1 -1.0
@@ -311,7 +326,6 @@ int main()
        printf("Vector1 = %s\n", vec1.toString().c_str());
        Vector scaledVec1 = vec1 * 2.0;
        printf("Testing scalar: Vector1 * 2.0: %s\n", scaledVec1.toString().c_str());
-
        vec1.norm();
        vec2.norm();
        printf("Vector1 normalized: %s\n", vec1.toString().c_str());
@@ -465,5 +479,6 @@ int main()
        // this is to test out making a polygon that resembles a circle:
        Polygon polycircle = Polygon();
 #endif
+       printf("END TESTING...\n");
        return 0;
 }

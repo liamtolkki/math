@@ -1,4 +1,8 @@
+#ifdef DEVELOPMENT_MODE
 #include "../include/trig.h"
+#else
+#include <mathlib/trig.h>
+#endif
 #ifdef TRIG
 
 decimalType toDeg(decimalType rad)

@@ -1,15 +1,15 @@
 TEST_EXECUTABLE = Test
 CC = g++
 
-INC_DIR = include
+INC_DIR = ./include
 
-OBJ_DIR = obj
+OBJ_DIR = ./obj
 
-SRC_DIR = src
+SRC_DIR = ./src
 
-TEST_DIR = testing
+TEST_DIR = ./testing
 
-CFLAGS = -I$(INC_DIR) -I$(SRC_DIR) -I$(OBJ_DIR) -fPIC -g -Wall -ansi -pedantic -Wno-write-strings -Wno-parentheses
+CFLAGS := -DDEVELOPMENT_MODE -I$(INC_DIR) -I$(SRC_DIR) -I$(OBJ_DIR) -fPIC -g -Wall -ansi -pedantic -Wno-write-strings -Wno-parentheses
 
 #installation variables:
 

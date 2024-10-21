@@ -1,5 +1,8 @@
+#ifdef DEVELOPMENT_MODE
 #include "../include/geometry.h"
-
+#else
+#include <mathlib/geometry.h>
+#endif
 decimalType Polygon::area()
 {
     decimalType area = 0.0;     // initialize the area to 0

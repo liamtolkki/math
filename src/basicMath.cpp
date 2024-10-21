@@ -1,5 +1,8 @@
+#ifdef DEVELOPMENT_MODE
 #include "../include/math.h"
-
+#else
+#include <mathlib/math.h>
+#endif
 bool compareMag(decimalType n1, decimalType n2)
 { // if n1 is within the magnitude of n2, return true, else return false
     return abs(n1) <= abs(n2);
