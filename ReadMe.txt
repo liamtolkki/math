@@ -10,6 +10,8 @@ installation:
     - Installer: soon to come!
 index:
 --basic
+    --Equation parsing
+        --string holding equation will be parsed and return a decimaltype value based on input value
     --basic math functions
         --FFT(list X) {Fast Fourier Transform}
         --IFFT(list X) {Inverse Fast Fourier Transform}
@@ -21,6 +23,19 @@ index:
         --fact(x)
         --fib(x)
         --nthroot(n, x)
+    --Trig
+        --sin(x)
+        --cos(x)
+        --tan(x)
+        --sec(x)
+        --csc(x)
+        --cot(x)
+        --arcsin(x);
+        --arccos(x);
+        --arctan(x);
+        --arcsec(x);
+        --arccsc(x);
+        --arccot(x);
     --complex numbers (EX: 3 + 5i)
         --complex operators: (+, -, *, /)
     --Scientific notation:
