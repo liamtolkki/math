@@ -76,7 +76,7 @@ install: static shared
 
 #clean will only clean the working directory...
 clean:
-	rm -rf $(OBJ_DIR) *.out $(TEST_EXECUTABLE)
+	rm -rf $(OBJ_DIR) *.out *.a *.so $(TEST_EXECUTABLE)
 
 uninstall:
 	rm -f $(LIB_DEST)/$(LIB_NAME).a
