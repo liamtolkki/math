@@ -3,6 +3,12 @@ CC = g++
 
 INC_DIR = ./include
 
+LIB_DIR = ./lib
+
+SCRIPT_DIR = ./scripts
+
+HEADER_GEN_EXE = headerGen
+
 OBJ_DIR = ./obj
 
 SRC_DIR = ./src
@@ -34,6 +40,8 @@ INC_DEST = $(PREFIX)/include/mathlib
 
 TEST_FILES := $(wildcard $(TEST_DIR)/*.cpp)
 
+HEADER_GEN_FILE = headerList.cpp
+
 SRC_FILES := $(wildcard $(SRC_DIR)/*.cpp)
 
 TEST_OBJ_FILES := $(patsubst $(TEST_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(TEST_FILES))
@@ -57,15 +65,23 @@ $(OBJ_DIR)/%.o: $(TEST_DIR)/%.cpp
 	mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-all: $(TEST_EXECUTABLE) static shared #this builds the full project
+all: $(TEST_EXECUTABLE) static shared headerGen #this builds the full project
 
 #static library
 static: $(OBJFILES)
-	ar rcs $(LIB_NAME).a $(OBJFILES)
+	mkdir -p $(LIB_DIR)
+	ar rcs $(LIB_DIR)/$(LIB_NAME).a $(OBJFILES)
 
 #shared library
 shared: $(OBJFILES)
-	$(CC) $(CFLAGS) -shared -o $(LIB_NAME).so $(OBJFILES)
+	mkdir -p $(LIB_DIR)
+	$(CC) $(CFLAGS) -shared -o $(LIB_DIR)/$(LIB_NAME).so $(OBJFILES)
+
+headerGen:
+	$(CC) $(SCRIPT_DIR)/$(HEADER_GEN_FILE) -std=c++17 -o $(SCRIPT_DIR)/$(HEADER_GEN_EXE)
+	$(SCRIPT_DIR)/$(HEADER_GEN_EXE)
+
+
 
 #installation:
 install: static shared
@@ -76,7 +92,7 @@ install: static shared
 
 #clean will only clean the working directory...
 clean:
-	rm -rf $(OBJ_DIR) *.out *.a *.so $(TEST_EXECUTABLE)
+	rm -rf $(OBJ_DIR) *.out *.a *.so $(TEST_EXECUTABLE) $(LIB_DIR) $(SCRIPT_DIR)/$(HEADER_GEN_EXE)
 
 uninstall:
 	rm -f $(LIB_DEST)/$(LIB_NAME).a
