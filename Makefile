@@ -65,7 +65,7 @@ $(OBJ_DIR)/%.o: $(TEST_DIR)/%.cpp
 	mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-all: $(TEST_EXECUTABLE) static shared headerGen #this builds the full project
+all: headerGen $(TEST_EXECUTABLE) static shared  #this builds the full project
 
 #static library
 static: $(OBJFILES)
@@ -84,10 +84,10 @@ headerGen:
 
 
 #installation:
-install: static shared
+install: headerGen static shared
 	install -d $(LIB_DEST) $(INC_DEST)
-	install -m 644 $(LIB_NAME).a $(LIB_DEST)
-	install -m 755 $(LIB_NAME).so $(LIB_DEST)
+	install -m 644 $(LIB_DIR)/$(LIB_NAME).a $(LIB_DEST)
+	install -m 755 $(LIB_DIR)/$(LIB_NAME).so $(LIB_DEST)
 	install -m 644 $(INC_DIR)/*.h $(INC_DEST)
 
 #clean will only clean the working directory...
