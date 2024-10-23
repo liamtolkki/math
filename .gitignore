@@ -37,4 +37,4 @@ obj/
 *.exe
 *.out
 *.app
-scripts/headerGen
+/scripts/headerGen
