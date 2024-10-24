@@ -1,5 +1,5 @@
 #ifdef DEVELOPMENT_MODE
-#include "../include/math.h"
+#include "../include/equation.h"
 #else
-#include <mathlib/math.h>
+#include <mathlib/equation.h>
 #endif
